@@ -1,6 +1,6 @@
 // Paste your Impact affiliate link from the Shopify Affiliate Program dashboard
 export const config = {
-  affiliateUrl: "https://shopify.pxf.io/REPLACE_WITH_YOUR_IMPACT_LINK",
+  affiliateUrl: "https://shopify.pxf.io/Skglal",
   productName: "Shopify",
   price: "Start free — plans from $39/mo",
 } as const;
