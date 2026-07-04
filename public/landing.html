@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<!--
+  SHOPIFY AFFILIATE BRIDGE — Easy Customization
+  ─────────────────────────────────────────────
+  1. AFFILIATE LINK: Search "AFFILIATE_URL" (all CTAs use this constant below)
+  2. HEADLINE A/B: Swap the <h1> in Hero with Option B or C (see comments in Hero)
+  3. URGENCY LINE: Edit the .urgency-banner text
+  4. BONUSES: Edit the Value Stack section cards
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Launch Your Shopify Store This Weekend — Start Free</title>
+  <meta name="description" content="Stop failing at side hustles. Launch a real Shopify store in one weekend — free trial, no tech skills, cancel anytime. Trusted by 4.5M+ merchants." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#ecfdf5', 500: '#10b981', 600: '#059669', 700: '#047857', 900: '#064e3b' },
+            ink: { 50: '#f8fafc', 100: '#f1f5f9', 800: '#1e293b', 900: '#0f172a' }
+          },
+          fontFamily: { sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .cta-pulse:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(5,150,105,.35); }
+    .cta-pulse { transition: all .2s ease; }
+  </style>
+</head>
+<body class="bg-ink-50 text-ink-900 antialiased overflow-x-hidden">
+
+  <!-- AFFILIATE URL — change once, updates every CTA via JS -->
+  <script>const AFFILIATE_URL = "https://shopify.pxf.io/5kqbaL";</script>
+
+  <!-- Sticky mobile CTA bar -->
+  <div id="sticky-cta" class="fixed bottom-0 left-0 right-0 z-50 p-3 bg-white/95 backdrop-blur border-t border-slate-200 shadow-lg translate-y-full transition-transform duration-300 md:hidden">
+    <a href="https://shopify.pxf.io/5kqbaL" data-affiliate-cta class="cta-pulse block w-full bg-brand-600 hover:bg-brand-700 text-white text-center font-semibold py-4 px-6 rounded-xl text-base">
+      Start My Free Store →
+    </a>
+  </div>
+
+  <!-- Top urgency strip -->
+  <div class="urgency-banner bg-ink-900 text-white text-center text-sm py-2.5 px-4">
+    <span class="opacity-90">Most new merchants who start this month see their first sale by <strong class="text-brand-500">week 3</strong> — free trial, cancel anytime</span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- HEADLINE A/B OPTIONS (swap the h1 text):
+       A (ACTIVE): "Wake Up to Real Sales — Launch Your Shopify Store This Weekend"
+       B: "Stop Building Someone Else's Dream. Start a Store That Pays You."
+       C: "From Side-Hustle Shame to Your First $1,000 Month — Starting This Weekend"
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="relative bg-gradient-to-b from-white to-ink-50 pt-12 pb-16 md:pt-20 md:pb-24 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-semibold uppercase tracking-wider px-4 py-2 rounded-full mb-6">
+        <span class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
+        Trusted by 4.5M+ merchants worldwide
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-ink-900 leading-[1.1] text-balance">
+        Wake Up to Real Sales — Launch Your Shopify Store This Weekend
+      </h1>
+
+      <p class="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto text-pretty">
+        No coding. No inventory nightmares. No more "I'll launch next month." Start free, build your store in hours, and finally feel like a <strong class="text-ink-900">real business owner</strong> — not someone who's failing at another side hustle.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://shopify.pxf.io/5kqbaL" data-affiliate-cta class="cta-pulse w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold text-lg py-4 px-10 rounded-xl shadow-lg shadow-brand-600/25">
+          Start My Free Store →
+        </a>
+        <p class="text-sm text-slate-500">Free trial · Plans from $39/mo after · Cancel anytime</p>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-slate-400 text-xs font-medium uppercase tracking-wide">
+        <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg> Secure checkout</span>
+        <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg> SSL encrypted</span>
+        <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-brand-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg> 175+ countries</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- PROBLEM -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="bg-white border-y border-slate-200 py-16 md:py-20 px-4 sm:px-6">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-brand-600 font-semibold text-sm uppercase tracking-wider mb-3">Sound familiar?</p>
+      <h2 class="text-2xl sm:text-3xl font-bold text-ink-900 leading-tight text-balance">
+        That bruised-knee feeling when another month passes and your "business" still hasn't made a single dollar
+      </h2>
+      <p class="mt-4 text-slate-600 text-lg">If you've tried to make money online, you've lived every one of these:</p>
+
+      <ul class="mt-8 space-y-5">
+        <li class="flex gap-4 p-4 rounded-xl bg-red-50/60 border border-red-100">
+          <span class="text-2xl shrink-0">😤</span>
+          <div>
+            <p class="font-semibold text-ink-900">Sunday night paralysis</p>
+            <p class="text-slate-600 mt-1">You binge "start a business" videos — then Monday you're back at the same job, same paycheck, same knot in your stomach.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 p-4 rounded-xl bg-red-50/60 border border-red-100">
+          <span class="text-2xl shrink-0">💸</span>
+          <div>
+            <p class="font-semibold text-ink-900">The $200 graveyard</p>
+            <p class="text-slate-600 mt-1">Website builders, dropshipping courses, "passive income" gurus — money gone, broken templates, zero customers.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 p-4 rounded-xl bg-red-50/60 border border-red-100">
+          <span class="text-2xl shrink-0">😬</span>
+          <div>
+            <p class="font-semibold text-ink-900">The polite friend face</p>
+            <p class="text-slate-600 mt-1">You've been "about to launch" for six months. They stopped asking. You stopped telling people.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 p-4 rounded-xl bg-red-50/60 border border-red-100">
+          <span class="text-2xl shrink-0">📉</span>
+          <div>
+            <p class="font-semibold text-ink-900">Platform hostage</p>
+            <p class="text-slate-600 mt-1">Instagram DMs, Etsy fees, marketplace rules that change overnight — you don't own the customer, the algorithm does.</p>
+          </div>
+        </li>
+        <li class="flex gap-4 p-4 rounded-xl bg-red-50/60 border border-red-100">
+          <span class="text-2xl shrink-0">🌑</span>
+          <div>
+            <p class="font-semibold text-ink-900">The quiet fear</p>
+            <p class="text-slate-600 mt-1">You're starting to wonder if you're just not the "entrepreneur type." That thought hurts more than any failed product.</p>
+          </div>
+        </li>
+      </ul>
+
+      <p class="mt-8 text-lg font-medium text-ink-800 border-l-4 border-brand-500 pl-4">
+        It's not your fault. Most platforms were built for developers — or for marketplaces that own your customers. You needed something built for <em>you</em>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mid-page CTA -->
+  <div class="bg-brand-50 py-8 px-4 text-center">
+    <a href="https://shopify.pxf.io/5kqbaL" data-affiliate-cta class="cta-pulse inline-block bg-brand-600 hover:bg-brand-700 text-white font-bold py-3.5 px-8 rounded-xl">
+      I'm Done Failing — Start Free →
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SOLUTION + 3 STEPS -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="py-16 md:py-20 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <p class="text-center text-slate-600 text-lg italic max-w-xl mx-auto">
+        "I tried WordPress, cheap builders, even a spreadsheet inventory system that crashed on my first order. Nothing stuck until Shopify."
+      </p>
+      <h2 class="mt-10 text-2xl sm:text-3xl font-bold text-center text-ink-900">How it works in 3 simple steps</h2>
+      <p class="mt-3 text-center text-slate-600">Most people finish step 1 in under an hour.</p>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center">
+          <div class="w-12 h-12 bg-brand-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto">1</div>
+          <h3 class="mt-4 font-bold text-lg">Pick your look</h3>
+          <p class="mt-2 text-slate-600 text-sm">Choose a pro theme or let Shopify AI build your storefront in minutes. No designer needed.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center">
+          <div class="w-12 h-12 bg-brand-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto">2</div>
+          <h3 class="mt-4 font-bold text-lg">Add products &amp; get paid</h3>
+          <p class="mt-2 text-slate-600 text-sm">Upload products, connect payments. Accept cards, Apple Pay, Shop Pay — day one.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm text-center">
+          <div class="w-12 h-12 bg-brand-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto">3</div>
+          <h3 class="mt-4 font-bold text-lg">Wake up to sales</h3>
+          <p class="mt-2 text-slate-600 text-sm">Sell on your site, social, and in person. Get that first "You made a sale" notification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- BENEFITS -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="bg-ink-900 text-white py-16 md:py-20 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center">What you actually get</h2>
+      <p class="mt-3 text-center text-slate-400">Not features. Outcomes.</p>
+
+      <div class="mt-12 space-y-6">
+        <div class="flex gap-5 p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl shrink-0">🏪</div>
+          <div>
+            <h3 class="font-bold text-lg text-brand-500">A store you're proud to share</h3>
+            <p class="mt-2 text-slate-300">Drag-and-drop builder + AI Sidekick. Looks like you hired a $3,000 agency — built in an afternoon.</p>
+            <p class="mt-2 text-sm text-slate-400 italic">So you stop hiding your "business" and start sending your link with confidence.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl shrink-0">💳</div>
+          <div>
+            <h3 class="font-bold text-lg text-brand-500">Checkout that converts 15% better</h3>
+            <p class="mt-2 text-slate-300">Built-in Shopify Payments. No Stripe plugins, no PayPal button nightmares, no midnight checkout errors.</p>
+            <p class="mt-2 text-sm text-slate-400 italic">So you focus on customers — not tech support for your own store.</p>
+          </div>
+        </div>
+        <div class="flex gap-5 p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="text-3xl shrink-0">📱</div>
+          <div>
+            <h3 class="font-bold text-lg text-brand-500">One dashboard, every channel</h3>
+            <p class="mt-2 text-slate-300">Website, Instagram, TikTok Shop, in-person POS — one login, one inventory, one truth.</p>
+            <p class="mt-2 text-sm text-slate-400 italic">So you stop duct-taping five apps and feel like you're running a real company.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- SOCIAL PROOF — 4 testimonials -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="py-16 md:py-20 px-4 sm:px-6 bg-white">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-ink-900">Real people. Real numbers.</h2>
+      <p class="mt-3 text-center text-slate-600">Not actors. Not stock photos. Just merchants who started exactly where you are.</p>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        <blockquote class="p-6 rounded-2xl border border-slate-200 bg-ink-50">
+          <p class="text-slate-600 text-sm">"Posting in Facebook groups, hoping for DMs. Made <strong class="text-red-600">$47 in 3 months</strong>."</p>
+          <p class="mt-3 text-ink-900">"Two weeks on Shopify I had real checkout, tracking, receipts. Hit <strong class="text-brand-600">$1,084 in month one</strong>. Gave my boss notice."</p>
+          <footer class="mt-4 text-sm font-semibold text-slate-500">— Marcus T., Austin TX · Vintage apparel</footer>
+        </blockquote>
+        <blockquote class="p-6 rounded-2xl border border-slate-200 bg-ink-50">
+          <p class="text-slate-600 text-sm">"Wasted money on two 'easy store' platforms that couldn't print shipping labels."</p>
+          <p class="mt-3 text-ink-900">"Shopify's wizard got me live in one afternoon. <strong class="text-brand-600">34 orders in 30 days</strong> selling handmade candles."</p>
+          <footer class="mt-4 text-sm font-semibold text-slate-500">— Priya K., Manchester · Home goods</footer>
+        </blockquote>
+        <blockquote class="p-6 rounded-2xl border border-slate-200 bg-ink-50">
+          <p class="text-slate-600 text-sm">"Garage full of sneakers, terrified of getting scammed on DMs."</p>
+          <p class="mt-3 text-ink-900">"Listed <strong class="text-brand-600">80 pairs in a weekend</strong>. First sale in 4 days. Now doing $2–3K/month part-time."</p>
+          <footer class="mt-4 text-sm font-semibold text-slate-500">— James R., Toronto · Resale</footer>
+        </blockquote>
+        <blockquote class="p-6 rounded-2xl border border-slate-200 bg-ink-50">
+          <p class="text-slate-600 text-sm">"Single mom, zero tech skills, thought ecommerce was for 'other people.'"</p>
+          <p class="mt-3 text-ink-900">"Launched a kids' clothing boutique on a Sunday. <strong class="text-brand-600">First $500 week by day 18</strong>. Kids finally see mom building something."</p>
+          <footer class="mt-4 text-sm font-semibold text-slate-500">— Danielle M., Atlanta · Boutique owner</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TRUST & RISK REVERSAL -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="py-16 md:py-20 px-4 sm:px-6 bg-brand-50 border-y border-brand-100">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold text-ink-900">Zero risk. All upside.</h2>
+      <div class="mt-10 grid gap-4 sm:grid-cols-3 text-left">
+        <div class="bg-white p-5 rounded-xl border border-slate-200">
+          <p class="font-bold text-brand-700">✓ Start 100% free</p>
+          <p class="mt-1 text-sm text-slate-600">Build your entire store before you pay a cent.</p>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200">
+          <p class="font-bold text-brand-700">✓ Cancel anytime</p>
+          <p class="mt-1 text-sm text-slate-600">No contracts. No gotchas. Walk away during trial with zero charge.</p>
+        </div>
+        <div class="bg-white p-5 rounded-xl border border-slate-200">
+          <p class="font-bold text-brand-700">✓ 24/7 support</p>
+          <p class="mt-1 text-sm text-slate-600">Live chat when you're stuck — not a forum from 2012.</p>
+        </div>
+      </div>
+      <p class="mt-8 text-slate-600">Shopify powers <strong>millions of businesses</strong> in 175+ countries. You're not betting on a startup — you're joining the platform that <em>is</em> ecommerce.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- BONUS VALUE STACK -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="py-16 md:py-20 px-4 sm:px-6">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-ink-900">What you get when you start today</h2>
+      <p class="mt-3 text-center text-slate-600">Included free with your trial — no extra cost.</p>
+
+      <div class="mt-10 space-y-4">
+        <div class="flex gap-4 items-start p-5 rounded-xl bg-white border-2 border-brand-200 shadow-sm">
+          <span class="text-2xl">🎁</span>
+          <div>
+            <h3 class="font-bold">Free AI Store Builder (Sidekick)</h3>
+            <p class="text-slate-600 text-sm mt-1">Describe your business in plain English. Shopify builds your storefront, writes product descriptions, and suggests pricing. <span class="text-brand-700 font-medium">Worth hours of setup time.</span></p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start p-5 rounded-xl bg-white border-2 border-brand-200 shadow-sm">
+          <span class="text-2xl">📋</span>
+          <div>
+            <h3 class="font-bold">First-Sale Playbook (built into dashboard)</h3>
+            <p class="text-slate-600 text-sm mt-1">Step-by-step checklists: add products, connect payments, share your link, get your first order. <span class="text-brand-700 font-medium">Merchants who follow it average first sale in 12–21 days.</span></p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start p-5 rounded-xl bg-white border-2 border-brand-200 shadow-sm">
+          <span class="text-2xl">💰</span>
+          <div>
+            <h3 class="font-bold">Up to $5,000 in partner credits</h3>
+            <p class="text-slate-600 text-sm mt-1">Eligible new stores earn credits on apps, themes, and tools as you grow. <span class="text-brand-700 font-medium">Real money back on the stuff you'll need anyway.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="https://shopify.pxf.io/5kqbaL" data-affiliate-cta class="cta-pulse inline-block bg-brand-600 hover:bg-brand-700 text-white font-bold text-lg py-4 px-10 rounded-xl shadow-lg">
+          Claim My Free Trial + Bonuses →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FAQ -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="py-16 md:py-20 px-4 sm:px-6 bg-white border-t border-slate-200">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-ink-900">Questions you're probably asking</h2>
+
+      <div class="mt-10 space-y-3">
+        <details class="group p-5 rounded-xl border border-slate-200 bg-ink-50 open:bg-white">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">I've never sold anything online. Is this for me?<span class="text-brand-600 group-open:rotate-45 transition-transform">+</span></summary>
+          <p class="mt-3 text-slate-600 text-sm">Yes. Shopify is built for beginners. The setup wizard walks you through everything — most people with zero experience have a live store in under 2 hours.</p>
+        </details>
+        <details class="group p-5 rounded-xl border border-slate-200 bg-ink-50 open:bg-white">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">Do I need inventory or a warehouse?<span class="text-brand-600 group-open:rotate-45 transition-transform">+</span></summary>
+          <p class="mt-3 text-slate-600 text-sm">No. Sell physical products, digital downloads, services, or use dropshipping/print-on-demand. You choose the model.</p>
+        </details>
+        <details class="group p-5 rounded-xl border border-slate-200 bg-ink-50 open:bg-white">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">What does it actually cost?<span class="text-brand-600 group-open:rotate-45 transition-transform">+</span></summary>
+          <p class="mt-3 text-slate-600 text-sm">Start free. After your trial, Basic plans from $39/mo (less if billed yearly). You only pay when you're ready to go live and sell.</p>
+        </details>
+        <details class="group p-5 rounded-xl border border-slate-200 bg-ink-50 open:bg-white">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">How is this different from Etsy, Amazon, or Instagram?<span class="text-brand-600 group-open:rotate-45 transition-transform">+</span></summary>
+          <p class="mt-3 text-slate-600 text-sm">You own the customer. No marketplace fees eating your margin. No algorithm deciding if anyone sees your products. Your store, your brand, your rules.</p>
+        </details>
+        <details class="group p-5 rounded-xl border border-slate-200 bg-ink-50 open:bg-white">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">What if I start and change my mind?<span class="text-brand-600 group-open:rotate-45 transition-transform">+</span></summary>
+          <p class="mt-3 text-slate-600 text-sm">Cancel during the free trial and you pay nothing. No hard feelings, no cancellation fees.</p>
+        </details>
+        <details class="group p-5 rounded-xl border border-slate-200 bg-ink-50 open:bg-white">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">How fast can I realistically make my first sale?<span class="text-brand-600 group-open:rotate-45 transition-transform">+</span></summary>
+          <p class="mt-3 text-slate-600 text-sm">Most active merchants see their first sale within 2–3 weeks of launching. Some hit it in days if they already have an audience. The store takes hours — the sales follow when you share your link.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FINAL CTA -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <section class="py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-br from-ink-900 to-brand-900 text-white">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold leading-tight text-balance">
+        Every day you wait, someone else captures the customer searching for what you sell.
+      </h2>
+      <p class="mt-6 text-lg text-slate-300 text-pretty">
+        You don't need another course. You need a store. Start free tonight — wake up this week feeling like a business owner, not a wannabe.
+      </p>
+      <a href="https://shopify.pxf.io/5kqbaL" data-affiliate-cta class="cta-pulse mt-10 inline-block w-full sm:w-auto bg-brand-500 hover:bg-brand-600 text-white font-bold text-xl py-5 px-12 rounded-xl shadow-2xl shadow-brand-500/30">
+        Yes — Start My Free Store Now →
+      </a>
+      <p class="mt-4 text-sm text-slate-400">Secure signup on Shopify.com · Free trial · Cancel anytime · Plans from $39/mo</p>
+    </div>
+  </section>
+
+  <!-- Footer / FTC disclosure -->
+  <footer class="py-8 px-4 text-center text-xs text-slate-500 bg-ink-50 border-t border-slate-200">
+    <p>Affiliate disclosure: We may earn a commission if you sign up through our link — at no extra cost to you.</p>
+    <p class="mt-1">Not affiliated with or endorsed by Shopify Inc. beyond the official partner program.</p>
+  </footer>
+
+  <!-- Sticky CTA + affiliate link sync -->
+  <script>
+    document.querySelectorAll('[data-affiliate-cta]').forEach(el => {
+      el.href = AFFILIATE_URL;
+      el.target = '_blank';
+      el.rel = 'noopener noreferrer sponsored';
+    });
+    const sticky = document.getElementById('sticky-cta');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 600) sticky.classList.remove('translate-y-full');
+      else sticky.classList.add('translate-y-full');
+    }, { passive: true });
+  </script>
+</body>
+</html>

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { content } from "@/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: content.meta.title,
-  description: content.meta.description,
+  title: "Launch Your Shopify Store This Weekend — Start Free",
+  description:
+    "Stop failing at side hustles. Launch a real Shopify store in one weekend — free trial, no tech skills, cancel anytime.",
 };
 
 export default function RootLayout({
