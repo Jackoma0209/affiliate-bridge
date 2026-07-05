@@ -2,9 +2,18 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Get Your First Sale — Launch a Real Shopify Store This Weekend",
+  metadataBase: new URL("https://getyourfirstsale.com"),
+  title: "Get Your First Sale with Shopify | Beginner Store Launch Checklist",
   description:
-    "Stop failing at side hustles. Launch a professional Shopify store in one weekend — free trial, zero tech skills, first sale in as little as 12 days.",
+    "Start your Shopify trial and follow a simple 7-day checklist to launch your first online store, choose a product, and start driving your first visitors.",
+  openGraph: {
+    title: "Get Your First Sale with Shopify | Beginner Store Launch Checklist",
+    description:
+      "Start your Shopify trial and follow a simple 7-day checklist to launch your first online store, choose a product, and start driving your first visitors.",
+    url: "https://getyourfirstsale.com",
+    siteName: "Get Your First Sale",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

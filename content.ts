@@ -1,117 +1,113 @@
 export const content = {
   meta: {
-    title: "Shopify — Launch Your Online Store Without the Tech Headaches",
+    title: "Get Your First Sale with Shopify | Beginner Store Launch Checklist",
     description:
-      "Start selling online in days, not months. Shopify gives you a professional store, built-in payments, and AI tools — no coding required. Try it free.",
+      "Start your Shopify trial and follow a simple 7-day checklist to launch your first online store, choose a product, and start driving your first visitors.",
   },
 
   hero: {
-    eyebrow: "Finally feel like a real business owner",
+    eyebrow: "Shopify trial + beginner launch checklist",
     headline:
-      "Wake up to sales notifications — without begging for overtime or building a store from scratch",
+      "Launch your Shopify store this weekend — with a simple 7-day plan to chase your first sale",
     subhead:
-      "Shopify helps everyday people go from \"I have an idea\" to \"I made my first sale\" in as little as a weekend — even with zero tech skills.",
-    cta: "I want to launch my online store",
+      "Start with Shopify's free trial, then follow a practical checklist for choosing a product, setting up your store, and getting your first visitors. No coding, no huge upfront spend, no more waiting for the 'perfect' time.",
+    cta: "Start Shopify Free + Get the Checklist",
   },
 
   problem: {
-    headline:
-      "You know that bruised-knee feeling when another month passes and your \"side hustle\" still hasn't paid a single dollar?",
+    headline: "Why most beginners do not get their first sale",
     subhead:
-      "If you've been trying to make money online, you've probably felt every one of these:",
+      "The hard part is usually not motivation. It is knowing the next practical step and finishing it.",
     bullets: [
-      "You spent another Sunday night watching \"start a business\" videos — then Monday morning you're back at the same job, same paycheck, same knot in your stomach.",
-      "You burned $200 on a website builder or dropshipping course that promised \"passive income\" but left you with a broken template and zero customers.",
-      "You told a friend about your business idea and watched their face go polite — because you've been \"about to launch\" for six months and still have nothing to show.",
-      "You tried selling on Instagram or Etsy and got buried — wrong fees, wrong platform, no control over your brand, and algorithms that ghost you overnight.",
-      "You're starting to wonder if you're just not the \"entrepreneur type\" — and that quiet thought scares you more than any failed product ever could.",
+      "No clear product idea",
+      "Store never actually launches",
+      "No traffic plan",
+      "Too much time spent watching courses",
+      "No simple next step",
     ],
     bridge:
-      "It's not your fault. Most platforms weren't built for beginners with a day job and a dream. They were built for developers — or for marketplaces that own your customers.",
+      "A simple plan reduces the guesswork so you can publish, test, learn, and improve.",
   },
 
   solution: {
     empathy:
-      "I tried everything too — WordPress plugins, cheap website builders, even a spreadsheet inventory system that crashed the week I got my first order. Nothing stuck until I found Shopify.",
+      "This guide is independent from Shopify and is designed to help beginners take practical first steps.",
     intro:
-      "Shopify is the all-in-one commerce platform trusted by millions of merchants — designed so you can build, launch, and sell without writing a single line of code.",
+      "Use Shopify for the store, checkout, products, and orders. Use the checklist to decide what to do each day.",
     steps: [
       {
-        title: "Step 1 — Pick your look",
+        title: "Day 1 — Pick one product idea",
         description:
-          "Choose a professional theme or let Shopify's AI build your storefront in minutes — no designer needed.",
+          "Choose one audience, one problem, and one simple offer you can explain in a sentence.",
       },
       {
-        title: "Step 2 — Add products & payments",
+        title: "Day 2 — Open Shopify and choose a simple theme",
         description:
-          "Upload your products, connect Shopify Payments, and you're ready to accept cards, Apple Pay, and more on day one.",
+          "Start the trial, pick a clean theme, and avoid redesigning before you have visitors.",
       },
       {
-        title: "Step 3 — Start selling everywhere",
+        title: "Day 3 — Add product page, photos, and offer",
         description:
-          "Launch your store and sell on your website, social media, and in person — then wake up to your first \"You made a sale\" notification.",
+          "Write clear product copy, add realistic photos, and explain who it is for.",
+      },
+      {
+        title: "Day 4 — Set up payments, shipping, policies",
+        description:
+          "Make the checkout trustworthy and remove basic reasons people hesitate.",
+      },
+      {
+        title: "Day 5 — Add trust signals and test checkout",
+        description:
+          "Check mobile, test payment flow, and make contact, returns, and delivery details easy to find.",
+      },
+      {
+        title: "Day 6 — Share with warm audience and communities",
+        description:
+          "Ask for useful feedback and early traffic without pretending you are already a big brand.",
+      },
+      {
+        title: "Day 7 — Launch a small traffic test and review analytics",
+        description:
+          "Send targeted visitors, review behavior, and improve your offer based on evidence.",
       },
     ],
   },
 
   benefits: [
     {
-      feature: "Drag-and-drop store builder + AI Sidekick",
-      headline: "Launch a store that looks like you hired a pro",
+      feature: "Beginner checklist",
+      headline: "A clear next step each day",
       payoff:
-        "So you can feel proud sharing your link — not embarrassed sending people to a half-finished page",
+        "So you spend less time circling decisions and more time publishing the store.",
     },
     {
-      feature: "Built-in payments & checkout (15% higher conversion)",
-      headline: "Get paid without wrestling Stripe plugins or PayPal buttons",
+      feature: "Commerce-first setup",
+      headline: "Checkout, products, and orders in one place",
       payoff:
-        "So you can focus on products and customers instead of troubleshooting checkout errors at midnight",
+        "So your first store can handle real buyers without duct-taping tools together.",
     },
     {
-      feature: "Sell online, on social, and in person — one dashboard",
-      headline: "Own your business across every channel from a single login",
+      feature: "Traffic test mindset",
+      headline: "Your first sale comes from testing",
       payoff:
-        "So you can stop duct-taping five apps together and finally feel like you're running a real company",
+        "So you judge the offer, audience, and traffic honestly instead of relying on luck.",
     },
   ],
 
-  testimonials: [
-    {
-      name: "Marcus T., Austin TX",
-      before:
-        "Before, I was posting products in Facebook groups and hoping someone would DM me. I made $47 in three months.",
-      change:
-        "After two weeks on Shopify, I had a real storefront with checkout, order tracking, and email receipts...",
-      result:
-        "Now I hit my first $1,000 month and finally told my boss I'm putting in my notice.",
-    },
-    {
-      name: "Priya K., Manchester UK",
-      before:
-        "I was skeptical because I'd already wasted money on two \"easy store\" platforms that couldn't even handle shipping labels.",
-      change:
-        "But Shopify's setup wizard walked me through everything — products, taxes, payments — in one afternoon...",
-      result:
-        "I went from zero sales to 34 orders in my first 30 days selling handmade candles.",
-    },
-    {
-      name: "James R., Toronto",
-      before:
-        "I had a garage full of vintage sneakers and no idea how to sell them without getting scammed on DMs.",
-      change:
-        "Shopify's inventory tools and integrated shipping made the difference — I listed 80 pairs in a weekend...",
-      result:
-        "I'd tell anyone sitting on inventory and procrastinating: just start the free trial tonight.",
-    },
+  realisticWins: [
+    "Your first win might be publishing your store.",
+    "Your second win might be getting your first visitor.",
+    "Your third win might be your first add-to-cart.",
+    "Your first sale comes from testing your offer and traffic, not luck.",
   ],
 
   urgency: {
-    headline: "Why start your store today?",
-    body: "Every week you wait is another week your competitors capture the customers searching for exactly what you sell. Shopify's free trial lets you build your full store before you pay a cent — and Q2 is when online shopping traffic spikes ahead of summer. Merchants who launch now get months of sales data before the holiday rush.",
+    headline: "Start with a trial and a practical plan",
+    body: "You do not need a perfect brand, a giant budget, or a guaranteed winning product before you begin. Start the trial, follow the 7-day checklist, and use real feedback to decide what to improve.",
     riskReversal:
-      "Start free — only pay when you're ready. Cancel anytime during your trial with zero risk.",
-    cta: "Yes — I want to launch my online store →",
+      "This is an independent affiliate guide. Your sales depend on your product, offer, traffic, and effort.",
+    cta: "Start Shopify Free + Get the Checklist",
     microCopy:
-      "Secure signup on the official Shopify site · Start free — plans from $39/mo",
+      "Disclosure: I may earn a commission if you start Shopify through my link, at no extra cost to you. Results vary.",
   },
 } as const;

@@ -122,10 +122,17 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    @apply font-sans;
+    scroll-behavior: auto;
   }
 }

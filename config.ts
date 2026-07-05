@@ -1,8 +1,11 @@
-// Paste your Impact affiliate link from the Shopify Affiliate Program dashboard
 export const config = {
+  siteName: "Get Your First Sale",
   affiliateUrl: "https://shopify.pxf.io/5kqbaL",
   productName: "Shopify",
-  price: "Start free — plans from $39/mo",
+  price: "Shopify's free trial",
+  affiliateDisclosure:
+    "Disclosure: I may earn a commission if you start Shopify through my link, at no extra cost to you.",
+  contactEmail: "hello@getyourfirstsale.com",
 } as const;
 
 export type SiteConfig = typeof config;
