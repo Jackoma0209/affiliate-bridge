@@ -108,9 +108,9 @@ export function FirstSaleQuiz() {
           return (
             <fieldset
               key={question.id}
-              className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/[0.03]"
+              className="rounded-lg border border-border bg-card p-4 shadow-sm shadow-black/[0.03]"
             >
-              <legend className="text-sm font-semibold text-slate-950">
+              <legend className="text-sm font-semibold text-card-foreground">
                 {question.legend}
               </legend>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -125,8 +125,8 @@ export function FirstSaleQuiz() {
                       className={cn(
                         "inline-flex cursor-pointer items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors",
                         isSelected
-                          ? "border-emerald-600 bg-emerald-50 text-emerald-950"
-                          : "border-slate-200 bg-white text-slate-700 hover:border-slate-300"
+                          ? "border-primary bg-primary/10 text-foreground"
+                          : "border-border bg-card text-muted-foreground hover:border-primary/50 hover:text-foreground"
                       )}
                     >
                       <input
@@ -154,31 +154,31 @@ export function FirstSaleQuiz() {
       </div>
 
       <aside
-        className="rounded-lg border border-slate-200 bg-slate-950 p-5 text-white shadow-sm shadow-slate-950/10"
+        className="rounded-lg border border-border bg-foreground p-5 text-background shadow-[0_22px_70px_var(--card-glow)] dark:bg-card dark:text-card-foreground"
         aria-live="polite"
       >
-        <p className="text-sm font-semibold text-emerald-300">Your quiz result</p>
+        <p className="text-sm font-semibold text-primary">Your quiz result</p>
         {result ? (
           <div className="mt-4 space-y-5">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-wide text-background/60 dark:text-muted-foreground">
                 Recommended store type
               </p>
               <h3 className="mt-1 text-2xl font-semibold tracking-tight">
                 {result.recommendedStoreType}
               </h3>
             </div>
-            <div className="space-y-3 text-sm leading-6 text-slate-300">
+            <div className="space-y-3 text-sm leading-6 text-background/75 dark:text-muted-foreground">
               <p className="flex gap-2">
                 <CheckCircle2
-                  className="mt-0.5 size-4 shrink-0 text-emerald-300"
+                  className="mt-0.5 size-4 shrink-0 text-primary"
                   aria-hidden="true"
                 />
                 <span>{result.firstAction}</span>
               </p>
               <p className="flex gap-2">
                 <CheckCircle2
-                  className="mt-0.5 size-4 shrink-0 text-emerald-300"
+                  className="mt-0.5 size-4 shrink-0 text-primary"
                   aria-hidden="true"
                 />
                 <span>{result.pace}</span>
@@ -190,11 +190,11 @@ export function FirstSaleQuiz() {
                 variant="light"
                 className="w-full"
               >
-                Start Shopify Free
+                Start Shopify Free + Get the Checklist
               </AffiliateCta>
               <a
                 href="#launch-plan"
-                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-white/15 px-4 text-sm font-semibold text-white transition-colors hover:bg-white/10 focus-visible:ring-4 focus-visible:ring-white/20 focus-visible:outline-none"
+                className="inline-flex min-h-11 items-center justify-center rounded-lg border border-background/15 px-4 text-sm font-semibold text-background transition-colors hover:bg-background/10 focus-visible:ring-4 focus-visible:ring-background/20 focus-visible:outline-none dark:border-border dark:text-foreground dark:hover:bg-muted"
               >
                 Open the checklist
               </a>
@@ -205,7 +205,7 @@ export function FirstSaleQuiz() {
             <h3 className="text-2xl font-semibold tracking-tight">
               Answer the questions to get a starting path.
             </h3>
-            <p className="text-sm leading-6 text-slate-300">
+            <p className="text-sm leading-6 text-background/75 dark:text-muted-foreground">
               The recommendation is only a starting point. Your first sale still
               depends on your product, offer, traffic, and follow-through.
             </p>

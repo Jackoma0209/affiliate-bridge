@@ -5,29 +5,51 @@ import { config } from "@/config";
 
 export const metadata: Metadata = {
   title: `Privacy Policy | ${config.siteName}`,
-  description: "Privacy policy placeholder for Get Your First Sale.",
+  description: "Privacy policy for Get Your First Sale.",
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      description="This editable placeholder should be reviewed and updated for your final tracking, forms, and data practices."
+      description="A plain-language summary of how this independent affiliate site handles visitor information."
     >
+      <h2>Overview</h2>
       <p>
-        This site may collect basic analytics information, such as page views and
-        affiliate link clicks, to understand how visitors use the page. If you add
-        analytics, pixels, email forms, cookies, or downloads later, update this
-        policy before publishing those changes.
+        Get Your First Sale is independent from Shopify and is not owned or
+        operated by Shopify. This site provides educational content and may earn
+        a commission if you start Shopify through an affiliate link, at no extra
+        cost to you.
+      </p>
+      <h2>Information this site may process</h2>
+      <p>
+        This site may process basic technical and usage information, such as page
+        views, browser type, approximate device information, referring pages, and
+        affiliate link clicks. This helps understand whether the content is useful
+        and whether important calls to action work correctly.
       </p>
       <p>
-        The current mini quiz runs in the browser and does not submit answers to
-        a backend. Affiliate links send visitors to Shopify or its affiliate
-        tracking partners.
+        The mini quiz runs in your browser and does not submit answers to a
+        backend. The current checklist request section uses a mailto fallback,
+        so no form details are stored by this website unless you choose to send
+        an email.
       </p>
+      <h2>Analytics and affiliate links</h2>
       <p>
-        For privacy questions, contact {config.contactEmail}. Replace this text
-        with your full legal privacy policy before relying on it in production.
+        Analytics scripts are only loaded when measurement IDs are configured.
+        Affiliate links may send you to Shopify or an affiliate tracking partner,
+        where their own privacy policies and terms apply.
+      </p>
+      <h2>Your choices</h2>
+      <p>
+        You can use browser controls to limit cookies, block scripts, or clear
+        local storage. Dark mode preference is stored locally in your browser so
+        the site can remember your selected theme.
+      </p>
+      <h2>Contact</h2>
+      <p>
+        For privacy questions, contact{" "}
+        <a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a>.
       </p>
     </LegalPage>
   );

@@ -18,11 +18,11 @@ type AffiliateCtaProps = {
 
 const variants = {
   primary:
-    "bg-emerald-600 text-white shadow-sm shadow-emerald-900/10 hover:bg-emerald-700 focus-visible:ring-emerald-600/30",
+    "bg-primary text-primary-foreground shadow-[0_16px_38px_var(--card-glow)] hover:brightness-95 focus-visible:ring-primary/30",
   light:
-    "bg-white text-slate-950 shadow-sm shadow-slate-950/10 ring-1 ring-slate-200 hover:bg-slate-50 focus-visible:ring-white/50",
+    "bg-card text-card-foreground shadow-sm shadow-black/10 ring-1 ring-border hover:bg-muted focus-visible:ring-primary/25",
   dark:
-    "bg-slate-950 text-white shadow-sm shadow-slate-950/15 hover:bg-slate-800 focus-visible:ring-slate-950/30",
+    "bg-foreground text-background shadow-sm shadow-black/15 hover:opacity-90 focus-visible:ring-foreground/30",
 };
 
 export function AffiliateCta({

@@ -11,7 +11,6 @@ import {
   Megaphone,
   PackageCheck,
   PackageSearch,
-  Rocket,
   ShieldCheck,
   Store,
   Target,
@@ -20,7 +19,10 @@ import {
 
 import { AffiliateCta } from "@/components/affiliate-cta";
 import { FirstSaleQuiz } from "@/components/first-sale-quiz";
+import { LeadCapture } from "@/components/lead-capture";
 import { MobileStickyCta } from "@/components/mobile-sticky-cta";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
 import { content } from "@/content";
 import { cn } from "@/lib/utils";
@@ -28,12 +30,20 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: content.meta.title,
   description: content.meta.description,
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: content.meta.title,
     description: content.meta.description,
-    url: "https://getyourfirstsale.com",
+    url: config.siteUrl,
     siteName: config.siteName,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: content.meta.title,
+    description: content.meta.description,
   },
 };
 
@@ -193,15 +203,15 @@ function SectionHeader({
       )}
     >
       {eyebrow ? (
-        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+        <p className="text-sm font-semibold uppercase tracking-wide text-primary">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-slate-950 text-balance md:text-4xl">
+      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground text-balance md:text-4xl">
         {title}
       </h2>
       {body ? (
-        <p className="mt-4 text-base leading-7 text-slate-600 md:text-lg">
+        <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
           {body}
         </p>
       ) : null}
@@ -218,17 +228,17 @@ function LaunchChecklistPreview() {
   ];
 
   return (
-    <div className="relative rounded-lg border border-slate-200 bg-white p-4 shadow-xl shadow-slate-950/[0.08]">
-      <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+    <div className="relative rounded-lg border border-border bg-card p-4 shadow-[0_24px_80px_var(--card-glow)]">
+      <div className="flex items-center justify-between border-b border-border pb-4">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+          <p className="text-xs font-semibold uppercase tracking-wide text-primary">
             Weekend launch board
           </p>
-          <p className="mt-1 text-lg font-semibold text-slate-950">
+          <p className="mt-1 text-lg font-semibold text-card-foreground">
             7-day first sale plan
           </p>
         </div>
-        <div className="rounded-lg bg-emerald-50 p-2 text-emerald-700">
+        <div className="rounded-lg bg-primary/10 p-2 text-primary">
           <ListChecks className="size-5" aria-hidden="true" />
         </div>
       </div>
@@ -237,31 +247,28 @@ function LaunchChecklistPreview() {
         {previewItems.map((item, index) => (
           <div
             key={item}
-            className="flex items-center gap-3 rounded-lg border border-slate-100 bg-slate-50 p-3"
+            className="flex items-center gap-3 rounded-lg border border-border bg-muted/70 p-3"
           >
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-white text-xs font-semibold text-slate-500 ring-1 ring-slate-200">
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-card text-xs font-semibold text-muted-foreground ring-1 ring-border">
               {index + 1}
             </span>
-            <span className="text-sm font-medium text-slate-800">{item}</span>
-            <CheckCircle2
-              className="ml-auto size-4 text-emerald-600"
-              aria-hidden="true"
-            />
+            <span className="text-sm font-medium text-card-foreground">{item}</span>
+            <CheckCircle2 className="ml-auto size-4 text-primary" aria-hidden="true" />
           </div>
         ))}
       </div>
 
-      <div className="mt-5 grid grid-cols-3 gap-3 border-t border-slate-100 pt-4">
+      <div className="mt-5 grid grid-cols-3 gap-3 border-t border-border pt-4">
         {[
           ["Focus", "1 product"],
           ["Setup", "No code"],
           ["Traffic", "Small test"],
         ].map(([label, value]) => (
-          <div key={label} className="rounded-lg bg-white p-3 ring-1 ring-slate-200">
-            <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-slate-500">
+          <div key={label} className="rounded-lg bg-background/70 p-3 ring-1 ring-border">
+            <p className="text-[0.7rem] font-semibold uppercase tracking-wide text-muted-foreground">
               {label}
             </p>
-            <p className="mt-1 text-sm font-semibold text-slate-950">{value}</p>
+            <p className="mt-1 text-sm font-semibold text-foreground">{value}</p>
           </div>
         ))}
       </div>
@@ -286,23 +293,18 @@ function CtaBand({
     <section
       className={cn(
         "px-4 py-5 sm:px-6 md:py-8",
-        isDark ? "bg-slate-950 text-white" : "border-y border-slate-200 bg-slate-50"
+        isDark
+          ? "bg-foreground text-background dark:bg-card dark:text-card-foreground"
+          : "border-y border-border bg-muted/65"
       )}
     >
       <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <h2
-            className={cn(
-              "text-xl font-semibold tracking-tight",
-              isDark ? "text-white" : "text-slate-950"
-            )}
-          >
-            {title}
-          </h2>
+          <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
           <p
             className={cn(
               "mt-1 max-w-2xl text-sm leading-6",
-              isDark ? "text-slate-300" : "text-slate-600"
+              isDark ? "text-background/75 dark:text-muted-foreground" : "text-muted-foreground"
             )}
           >
             {body}
@@ -313,7 +315,7 @@ function CtaBand({
           variant={isDark ? "light" : "primary"}
           className="md:w-auto"
         >
-          Start Shopify Free
+          Open Shopify Trial
         </AffiliateCta>
       </div>
     </section>
@@ -329,60 +331,20 @@ export default function Home() {
           __html: JSON.stringify(faqSchema).replace(/</g, "\\u003c"),
         }}
       />
-      <main className="bg-white pb-24 text-slate-950 md:pb-0">
-        <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
-          <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-            <Link href="/" className="flex items-center gap-3">
-              <span className="flex size-9 items-center justify-center rounded-lg bg-emerald-600 text-white">
-                <Rocket className="size-5" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-sm font-semibold text-slate-950">
-                  {config.siteName}
-                </span>
-                <span className="hidden text-xs text-slate-500 sm:block">
-                  Independent beginner guide
-                </span>
-              </span>
-            </Link>
-
-            <nav
-              className="hidden items-center gap-6 text-sm font-medium text-slate-600 md:flex"
-              aria-label="Main navigation"
-            >
-              <a href="#launch-plan" className="hover:text-slate-950">
-                7-day plan
-              </a>
-              <a href="#quiz" className="hover:text-slate-950">
-                Quiz
-              </a>
-              <a href="#comparison" className="hover:text-slate-950">
-                Compare
-              </a>
-            </nav>
-
-            <AffiliateCta
-              eventName="hero_cta_click"
-              className="hidden sm:inline-flex sm:w-auto"
-              showIcon={false}
-            >
-              Start Free
-            </AffiliateCta>
-          </div>
-        </header>
-
-        <section className="px-4 pt-8 pb-6 sm:px-6 md:py-20">
+      <SiteHeader />
+      <main className="bg-background pb-24 text-foreground md:pb-0">
+        <section className="bg-[image:var(--hero-gradient)] px-4 pt-8 pb-8 sm:px-6 md:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.03fr_0.8fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.hero.eyebrow}
               </p>
-              <h1 className="mt-4 max-w-4xl text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-slate-950 text-balance sm:text-5xl lg:text-[3.4rem]">
-                Launch your Shopify store this weekend — with a simple{" "}
+              <h1 className="mt-4 max-w-4xl text-[2.1rem] leading-[1.05] font-semibold tracking-tight text-foreground text-balance sm:text-5xl lg:text-[3.4rem]">
+                Launch your Shopify store this weekend with a simple{" "}
                 <span className="whitespace-nowrap">7-day plan</span> to chase
                 your first sale
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 text-pretty md:text-lg md:leading-8">
+              <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground text-pretty md:text-lg md:leading-8">
                 {content.hero.subhead}
               </p>
 
@@ -390,17 +352,18 @@ export default function Home() {
                 <AffiliateCta eventName="hero_cta_click" large>
                   {content.hero.cta}
                 </AffiliateCta>
-                <a
-                  href="#launch-plan"
-                  className="inline-flex min-h-14 items-center justify-center rounded-lg border border-slate-300 px-6 text-base font-semibold text-slate-950 transition-colors hover:bg-slate-50 focus-visible:ring-4 focus-visible:ring-slate-300/50 focus-visible:outline-none"
+                <Link
+                  href="/checklist"
+                  className="inline-flex min-h-14 items-center justify-center rounded-lg border border-border bg-card px-6 text-base font-semibold text-card-foreground transition-colors hover:bg-muted focus-visible:ring-4 focus-visible:ring-primary/25 focus-visible:outline-none"
                 >
-                  See the 7-Day Plan
-                </a>
+                  Use the 7-Day Checklist
+                </Link>
               </div>
 
-              <p className="mt-4 max-w-2xl text-xs leading-5 text-slate-500">
-                {config.affiliateDisclosure} Results vary. Your sales depend on
-                your product, offer, traffic, and effort.
+              <p className="mt-4 max-w-2xl text-xs leading-5 text-muted-foreground">
+                Affiliate disclosure: {config.affiliateDisclosure.replace("Disclosure: ", "")}{" "}
+                Results vary. Your sales depend on your product, offer, traffic,
+                and effort.
               </p>
             </div>
 
@@ -429,13 +392,13 @@ export default function Home() {
                 return (
                   <article
                     key={item.title}
-                    className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/[0.03]"
+                    className="rounded-lg border border-border bg-card p-5 shadow-sm shadow-black/[0.03]"
                   >
-                    <Icon className="size-5 text-emerald-700" aria-hidden="true" />
-                    <h3 className="mt-4 text-base font-semibold text-slate-950">
+                    <Icon className="size-5 text-primary" aria-hidden="true" />
+                    <h3 className="mt-4 text-base font-semibold text-card-foreground">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
                       {item.description}
                     </p>
                   </article>
@@ -447,7 +410,7 @@ export default function Home() {
 
         <section
           id="launch-plan"
-          className="scroll-mt-24 border-y border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 md:py-24"
+          className="scroll-mt-24 border-y border-border bg-muted/55 px-4 py-16 sm:px-6 md:py-24"
         >
           <div className="mx-auto max-w-6xl">
             <SectionHeader
@@ -462,18 +425,18 @@ export default function Home() {
                 return (
                   <article
                     key={step.title}
-                    className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm shadow-slate-950/[0.03] lg:col-span-1"
+                    className="rounded-lg border border-border bg-card p-5 shadow-sm shadow-black/[0.03] lg:col-span-1"
                   >
                     <div className="flex items-center justify-between gap-3">
-                      <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                      <span className="text-xs font-semibold uppercase tracking-wide text-primary">
                         Day {index + 1}
                       </span>
-                      <Icon className="size-5 text-slate-500" aria-hidden="true" />
+                      <Icon className="size-5 text-muted-foreground" aria-hidden="true" />
                     </div>
-                    <h3 className="mt-4 text-base font-semibold leading-6 text-slate-950">
+                    <h3 className="mt-4 text-base font-semibold leading-6 text-card-foreground">
                       {step.title.replace(/^Day \d+ — /, "")}
                     </h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
                       {step.description}
                     </p>
                   </article>
@@ -490,6 +453,8 @@ export default function Home() {
           variant="dark"
         />
 
+        <LeadCapture />
+
         <section id="quiz" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
           <div className="mx-auto max-w-6xl">
             <SectionHeader
@@ -503,7 +468,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-y border-slate-200 bg-slate-50 px-4 py-16 sm:px-6 md:py-24">
+        <section className="border-y border-border bg-muted/55 px-4 py-16 sm:px-6 md:py-24">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1fr] lg:items-start">
             <SectionHeader
               align="left"
@@ -515,15 +480,15 @@ export default function Home() {
               {realisticWins.map((win, index) => (
                 <div
                   key={win}
-                  className="flex gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm shadow-slate-950/[0.03]"
+                  className="flex gap-3 rounded-lg border border-border bg-card p-4 shadow-sm shadow-black/[0.03]"
                 >
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-sm font-semibold text-emerald-700">
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-semibold text-primary">
                     {index + 1}
                   </span>
-                  <p className="text-sm leading-6 text-slate-700">{win}</p>
+                  <p className="text-sm leading-6 text-card-foreground">{win}</p>
                 </div>
               ))}
-              <p className="mt-2 text-sm leading-6 text-slate-500">
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
                 Results vary. Your sales depend on your product, offer, traffic,
                 pricing, trust signals, and follow-through.
               </p>
@@ -542,13 +507,13 @@ export default function Home() {
               body="There are valid ways to validate an offer. The question is which option gives a beginner enough structure to sell, learn, and keep going."
             />
 
-            <div className="mt-10 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm shadow-slate-950/[0.03]">
+            <div className="mt-10 overflow-x-auto rounded-lg border border-border bg-card shadow-sm shadow-black/[0.03]">
               <table className="w-full min-w-[820px] border-collapse text-left text-sm">
                 <caption className="sr-only">
                   Comparison of beginner selling options and Shopify
                 </caption>
                 <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50 text-slate-950">
+                  <tr className="border-b border-border bg-muted/80 text-foreground">
                     <th scope="col" className="w-[18%] px-4 py-4 font-semibold">
                       Criteria
                     </th>
@@ -561,29 +526,23 @@ export default function Home() {
                     <th scope="col" className="px-4 py-4 font-semibold">
                       Generic website builder
                     </th>
-                    <th
-                      scope="col"
-                      className="bg-emerald-50 px-4 py-4 font-semibold text-emerald-950"
-                    >
+                    <th scope="col" className="bg-primary/10 px-4 py-4 font-semibold text-foreground">
                       Shopify
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200">
+                <tbody className="divide-y divide-border">
                   {comparisonRows.map((row) => (
                     <tr key={row.label} className="align-top">
-                      <th
-                        scope="row"
-                        className="px-4 py-4 font-semibold text-slate-950"
-                      >
+                      <th scope="row" className="px-4 py-4 font-semibold text-card-foreground">
                         {row.label}
                       </th>
                       {row.values.map((value, index) => (
                         <td
                           key={value}
                           className={cn(
-                            "px-4 py-4 leading-6 text-slate-600",
-                            index === 3 ? "bg-emerald-50/70 text-emerald-950" : ""
+                            "px-4 py-4 leading-6 text-muted-foreground",
+                            index === 3 ? "bg-primary/10 text-card-foreground" : ""
                           )}
                         >
                           {value}
@@ -610,16 +569,16 @@ export default function Home() {
               title="Beginner FAQ"
               body="Short answers, no smoke and mirrors."
             />
-            <div className="mt-10 divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+            <div className="mt-10 divide-y divide-border rounded-lg border border-border bg-card">
               {faqItems.map((item) => (
                 <details key={item.question} className="group p-5">
-                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold text-slate-950">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold text-card-foreground">
                     {item.question}
-                    <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition-transform group-open:rotate-45">
+                    <span className="flex size-6 shrink-0 items-center justify-center rounded-lg border border-border text-muted-foreground transition-transform group-open:rotate-45">
                       +
                     </span>
                   </summary>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     {item.answer}
                   </p>
                 </details>
@@ -628,13 +587,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-slate-950 px-4 py-16 text-white sm:px-6 md:py-24">
+        <section className="bg-foreground px-4 py-16 text-background sm:px-6 md:py-24 dark:bg-card dark:text-card-foreground">
           <div className="mx-auto max-w-3xl text-center">
-            <Target className="mx-auto size-8 text-emerald-300" aria-hidden="true" />
+            <Target className="mx-auto size-8 text-primary" aria-hidden="true" />
             <h2 className="mt-5 text-3xl font-semibold tracking-tight text-balance md:text-5xl">
               Start the trial. Follow the plan. Learn from real visitors.
             </h2>
-            <p className="mt-5 text-base leading-7 text-slate-300 md:text-lg">
+            <p className="mt-5 text-base leading-7 text-background/75 md:text-lg dark:text-muted-foreground">
               The goal today is not a fantasy revenue number. It is a real store,
               a clear offer, and your first practical traffic test.
             </p>
@@ -643,45 +602,14 @@ export default function Home() {
                 Start Shopify Free + Get the Checklist
               </AffiliateCta>
             </div>
-            <p className="mt-4 text-xs leading-5 text-slate-400">
+            <p className="mt-4 text-xs leading-5 text-background/65 dark:text-muted-foreground">
               {config.affiliateDisclosure} Results vary.
             </p>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-slate-800 bg-slate-950 px-4 py-10 text-slate-400 sm:px-6">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_auto] md:items-start">
-          <div>
-            <p className="text-sm font-semibold text-white">{config.siteName}</p>
-            <p className="mt-3 max-w-2xl text-sm leading-6">
-              {config.affiliateDisclosure}
-            </p>
-            <p className="mt-2 max-w-2xl text-sm leading-6">
-              This site is independent from Shopify. It is not Shopify, not owned
-              by Shopify, and does not imply that I work for Shopify.
-            </p>
-          </div>
-          <nav
-            className="grid gap-2 text-sm md:text-right"
-            aria-label="Footer navigation"
-          >
-            <Link href="/affiliate-disclosure" className="hover:text-white">
-              Affiliate Disclosure
-            </Link>
-            <Link href="/privacy-policy" className="hover:text-white">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="hover:text-white">
-              Terms
-            </Link>
-            <Link href="/contact" className="hover:text-white">
-              Contact
-            </Link>
-          </nav>
-        </div>
-      </footer>
-
+      <SiteFooter />
       <MobileStickyCta />
     </>
   );

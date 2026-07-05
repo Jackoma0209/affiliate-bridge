@@ -12,7 +12,7 @@ export default function ContactPage() {
   return (
     <LegalPage
       title="Contact"
-      description="Use this page for questions about the site, affiliate disclosure, or placeholder legal text."
+      description="Questions about the site, checklist, affiliate disclosure, or privacy policy can be sent by email."
     >
       <p>
         Email:{" "}
@@ -24,9 +24,15 @@ export default function ContactPage() {
         </a>
       </p>
       <p>
-        This is a placeholder contact page. Add your preferred support address,
-        business details, response expectations, and any required legal contact
-        information before publishing.
+        Get Your First Sale is an independent website and is not owned or
+        operated by Shopify. If your question is about a Shopify account, billing
+        issue, app, order, or technical support request, contact Shopify directly
+        through its official support channels.
+      </p>
+      <p>
+        This site may earn a commission if visitors start Shopify through
+        affiliate links, at no extra cost to them. Results vary, and this site
+        does not guarantee sales, traffic, revenue, or business outcomes.
       </p>
     </LegalPage>
   );

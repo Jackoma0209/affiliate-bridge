@@ -4,7 +4,10 @@ export type TrackingEventName =
   | "quiz_result_cta_click"
   | "comparison_cta_click"
   | "final_cta_click"
-  | "plan_cta_click";
+  | "plan_cta_click"
+  | "checklist_page_cta_click"
+  | "lead_capture_interest_click"
+  | "theme_toggle_click";
 
 declare global {
   interface Window {
