@@ -11,13 +11,16 @@ const unsafePhrases = [
   "Day 4–21 typical",
   "First $500 week by day 18",
   "Now $2–3K/month part-time",
+  "Start Shopify Free + Get the Checklist",
+  "Email capture coming soon",
 ];
 
 const requiredPhrases = [
-  "Launch your Shopify store this weekend",
-  "7-day plan",
+  "Launch your Shopify store in 7 days",
+  "Get the Free 7-Day Checklist",
   "affiliate disclosure",
   "results vary",
+  "Start My Shopify Trial",
 ];
 
 function normalize(value) {
@@ -27,7 +30,7 @@ function normalize(value) {
 async function main() {
   const response = await fetch(targetUrl, {
     headers: {
-      "user-agent": "getyourfirstsale-copy-regression/1.0",
+      "user-agent": "getyourfirstsale-copy-regression/2.0",
     },
   });
 
@@ -46,7 +49,7 @@ async function main() {
 
   if (unsafeFound.length || requiredMissing.length) {
     if (unsafeFound.length) {
-      console.error("Unsafe legacy phrases found:");
+      console.error("Unsafe or misleading phrases found:");
       unsafeFound.forEach((phrase) => console.error(`- ${phrase}`));
     }
 

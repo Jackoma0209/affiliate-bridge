@@ -1,29 +1,29 @@
 export const content = {
   meta: {
-    title: "Get Your First Sale with Shopify | Beginner Store Launch Checklist",
+    title: "How to Get Your First Shopify Sale: 7-Day Launch Plan",
     description:
-      "Start your Shopify trial and follow a simple 7-day checklist to launch your first online store, choose a product, and start driving your first visitors.",
+      "Launch your first Shopify store with a practical 7-day checklist covering product choice, trust, checkout, and your first targeted visitors.",
   },
 
   hero: {
-    eyebrow: "Shopify trial + beginner launch checklist",
+    eyebrow: "Free Shopify launch checklist for beginners",
     headline:
-      "Launch your Shopify store this weekend — with a simple 7-day plan to chase your first sale",
+      "Launch your Shopify store in 7 days — without guessing what to do next",
     subhead:
-      "Start with Shopify's free trial, then follow a practical checklist for choosing a product, setting up your store, and getting your first visitors. No coding, no huge upfront spend, no more waiting for the 'perfect' time.",
-    cta: "Start Shopify Free + Get the Checklist",
+      "Use a practical day-by-day checklist for choosing one product, building a trustworthy store, testing checkout, and attracting your first targeted visitors. No coding and no income promises.",
+    cta: "Get the Free 7-Day Checklist",
   },
 
   problem: {
-    headline: "Why most beginners do not get their first sale",
+    headline: "Why beginner Shopify stores stall before the first sale",
     subhead:
-      "The hard part is usually not motivation. It is knowing the next practical step and finishing it.",
+      "Most new stores do not stall because the owner lacks motivation. They stall because a focused offer, trustworthy checkout, traffic source, or clear next action is missing.",
     bullets: [
-      "No clear product idea",
-      "Store never actually launches",
-      "No traffic plan",
-      "Too much time spent watching courses",
-      "No simple next step",
+      "The offer is too broad",
+      "The store remains a draft",
+      "There is no traffic source",
+      "Learning has replaced launching",
+      "There is no diagnostic next step",
     ],
     bridge:
       "A simple plan reduces the guesswork so you can publish, test, learn, and improve.",
@@ -103,10 +103,10 @@ export const content = {
 
   urgency: {
     headline: "Start with a trial and a practical plan",
-    body: "You do not need a perfect brand, a giant budget, or a guaranteed winning product before you begin. Start the trial, follow the 7-day checklist, and use real feedback to decide what to improve.",
+    body: "You do not need a perfect brand, a giant budget, or a guaranteed winning product before you begin. Use the free checklist first, then open Shopify when you are ready to build.",
     riskReversal:
       "This is an independent affiliate guide. Your sales depend on your product, offer, traffic, and effort.",
-    cta: "Start Shopify Free + Get the Checklist",
+    cta: "Start My Shopify Trial",
     microCopy:
       "Disclosure: I may earn a commission if you start Shopify through my link, at no extra cost to you. Results vary.",
   },
