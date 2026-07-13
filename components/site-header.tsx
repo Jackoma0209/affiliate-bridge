@@ -1,9 +1,16 @@
 import Link from "next/link";
-import { Rocket } from "lucide-react";
+import { Menu, Rocket } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { config } from "@/config";
+
+const links = [
+  ["Plan", "/#launch-plan"],
+  ["Checklist", "/checklist"],
+  ["Quiz", "/#quiz"],
+  ["Compare", "/#comparison"],
+] as const;
 
 export function SiteHeader() {
   return (
@@ -23,32 +30,30 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav
-          className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex"
-          aria-label="Main navigation"
-        >
-          <Link href="/#launch-plan" className="transition-colors hover:text-foreground">
-            7-day plan
-          </Link>
-          <Link href="/checklist" className="transition-colors hover:text-foreground">
-            Checklist
-          </Link>
-          <Link href="/#quiz" className="transition-colors hover:text-foreground">
-            Quiz
-          </Link>
-          <Link href="/#comparison" className="transition-colors hover:text-foreground">
-            Compare
-          </Link>
+        <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex" aria-label="Main navigation">
+          {links.map(([label, href]) => (
+            <Link key={href} href={href} className="transition-colors hover:text-foreground">
+              {label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2">
+          <details className="relative md:hidden">
+            <summary className="flex size-11 cursor-pointer list-none items-center justify-center rounded-lg border border-border bg-card text-card-foreground focus-visible:ring-4 focus-visible:ring-primary/25 focus-visible:outline-none" aria-label="Open navigation menu">
+              <Menu className="size-4" aria-hidden="true" />
+            </summary>
+            <nav className="absolute right-0 top-12 grid min-w-44 gap-1 rounded-lg border border-border bg-card p-2 text-sm font-medium shadow-xl" aria-label="Mobile navigation">
+              {links.map(([label, href]) => (
+                <Link key={href} href={href} className="rounded-md px-3 py-2 hover:bg-muted">
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </details>
           <ThemeToggle />
-          <AffiliateCta
-            eventName="hero_cta_click"
-            className="hidden sm:inline-flex sm:w-auto"
-            showIcon={false}
-          >
-            Open Shopify Trial
+          <AffiliateCta eventName="hero_cta_click" className="hidden sm:inline-flex sm:w-auto" showIcon={false}>
+            Start Shopify Trial
           </AffiliateCta>
         </div>
       </div>
