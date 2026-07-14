@@ -55,31 +55,45 @@ export function LeadCapture({
 
     setSubmitState("submitting");
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 12000);
+
     try {
+      const body = new URLSearchParams({
+        email: email.trim(),
+        _replyto: email.trim(),
+        first_name: firstName.trim() || "Not provided",
+        source: captureSource,
+        quiz_result: resultTag || "Not provided",
+        checklist_url: `${config.siteUrl}/checklist`,
+        _subject: `New 7-day checklist request — ${captureSource}`,
+        _template: "table",
+        _captcha: "false",
+        _honey: honeypot,
+      });
+
       const response = await fetch(
         `https://formsubmit.co/ajax/${encodeURIComponent(config.contactEmail)}`,
         {
           method: "POST",
           headers: {
             Accept: "application/json",
-            "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            email: email.trim(),
-            first_name: firstName.trim() || "Not provided",
-            source: captureSource,
-            quiz_result: resultTag || "Not provided",
-            checklist_url: `${config.siteUrl}/checklist`,
-            _subject: `New 7-day checklist request — ${captureSource}`,
-            _template: "table",
-            _captcha: "false",
-            _honey: honeypot,
-          }),
+          body,
+          signal: controller.signal,
         }
       );
 
-      if (!response.ok) {
-        throw new Error("The signup service did not accept the request.");
+      const responseBody = (await response.json().catch(() => null)) as
+        | { success?: boolean | string; message?: string }
+        | null;
+
+      if (
+        !response.ok ||
+        responseBody?.success === false ||
+        responseBody?.success === "false"
+      ) {
+        throw new Error(responseBody?.message || "The signup service did not accept the request.");
       }
 
       setSubmitState("success");
@@ -89,11 +103,15 @@ export function LeadCapture({
         cta_location: captureSource,
         quiz_result: resultTag,
       });
-    } catch {
+    } catch (error) {
       setSubmitState("error");
       setErrorMessage(
-        "The form could not submit just now. You can still open the checklist instantly below."
+        error instanceof DOMException && error.name === "AbortError"
+          ? "The email service took too long to respond. Please try once more, or open the checklist instantly below."
+          : "The form could not submit just now. Please try again, or open the checklist instantly below."
       );
+    } finally {
+      window.clearTimeout(timeoutId);
     }
   }
 
