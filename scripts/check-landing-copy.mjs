@@ -14,11 +14,12 @@ const unsafePhrases = [
   "Start Shopify Free + Get the Checklist",
   "Email capture coming soon",
   "guaranteed first sale",
+  "Email Me the Free Checklist",
 ];
 
 const requiredPhrases = [
   "Build a sale-ready Shopify store in 7 days",
-  "Email Me the Free Checklist",
+  "Get the Free Checklist",
   "Preview the 7-Day Plan",
   "affiliate link",
   "results vary",
@@ -32,7 +33,7 @@ function normalize(value) {
 async function main() {
   const response = await fetch(targetUrl, {
     headers: {
-      "user-agent": "getyourfirstsale-copy-regression/3.0",
+      "user-agent": "getyourfirstsale-copy-regression/3.1",
     },
   });
 
