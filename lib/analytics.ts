@@ -3,6 +3,7 @@ export type TrackingEventName =
   | "hero_cta_click"
   | "sticky_checklist_click"
   | "quiz_start"
+  | "quiz_answer"
   | "quiz_complete"
   | "quiz_result_cta_click"
   | "comparison_cta_click"
