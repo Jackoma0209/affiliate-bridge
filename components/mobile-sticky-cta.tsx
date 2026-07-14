@@ -58,7 +58,7 @@ export function MobileStickyCta() {
           onClick={scrollToForm}
           className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 text-sm font-bold text-primary-foreground shadow-[0_16px_38px_var(--card-glow)] transition hover:brightness-95 focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
         >
-          Email Me the Free Checklist
+          Get the Free Checklist
           <ArrowRight className="size-4" aria-hidden="true" />
         </button>
         <p className="mt-1.5 text-center text-xs font-medium text-muted-foreground">
