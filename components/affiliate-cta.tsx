@@ -46,7 +46,7 @@ export function AffiliateCta({
         }
       }}
       className={cn(
-        "inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg px-5 text-sm font-semibold transition-colors outline-none focus-visible:ring-4 sm:w-auto",
+        "inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-bold transition-colors outline-none focus-visible:ring-4 sm:w-auto",
         large ? "min-h-14 px-6 text-base" : "min-h-11",
         variants[variant],
         className
