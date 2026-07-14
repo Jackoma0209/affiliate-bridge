@@ -23,6 +23,11 @@ type LeadCaptureProps = {
 
 type SubmitState = "idle" | "submitting" | "success" | "error";
 
+type SubscribeResponse = {
+  success?: boolean;
+  message?: string;
+};
+
 export function LeadCapture({
   variant = "section",
   source,
@@ -56,44 +61,33 @@ export function LeadCapture({
     setSubmitState("submitting");
 
     const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => controller.abort(), 12000);
+    const timeoutId = window.setTimeout(() => controller.abort(), 15_000);
 
     try {
-      const body = new URLSearchParams({
-        email: email.trim(),
-        _replyto: email.trim(),
-        first_name: firstName.trim() || "Not provided",
-        source: captureSource,
-        quiz_result: resultTag || "Not provided",
-        checklist_url: `${config.siteUrl}/checklist`,
-        _subject: `New 7-day checklist request — ${captureSource}`,
-        _template: "table",
-        _captcha: "false",
-        _honey: honeypot,
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          firstName: firstName.trim(),
+          source: captureSource,
+          resultTag,
+          company: honeypot,
+        }),
+        signal: controller.signal,
       });
 
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${encodeURIComponent(config.contactEmail)}`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-          },
-          body,
-          signal: controller.signal,
-        }
-      );
-
       const responseBody = (await response.json().catch(() => null)) as
-        | { success?: boolean | string; message?: string }
+        | SubscribeResponse
         | null;
 
-      if (
-        !response.ok ||
-        responseBody?.success === false ||
-        responseBody?.success === "false"
-      ) {
-        throw new Error(responseBody?.message || "The signup service did not accept the request.");
+      if (!response.ok || responseBody?.success === false) {
+        throw new Error(
+          responseBody?.message || "The signup service did not accept the request."
+        );
       }
 
       setSubmitState("success");
@@ -105,11 +99,20 @@ export function LeadCapture({
       });
     } catch (error) {
       setSubmitState("error");
-      setErrorMessage(
-        error instanceof DOMException && error.name === "AbortError"
-          ? "The email service took too long to respond. Please try once more, or open the checklist instantly below."
-          : "The form could not submit just now. Please try again, or open the checklist instantly below."
-      );
+
+      if (error instanceof DOMException && error.name === "AbortError") {
+        setErrorMessage(
+          "The email service took too long to respond. Please try again, or open the checklist instantly below."
+        );
+      } else if (error instanceof Error && error.message) {
+        setErrorMessage(
+          `${error.message} You can still open the checklist instantly below.`
+        );
+      } else {
+        setErrorMessage(
+          "The form could not submit just now. Please try again, or open the checklist instantly below."
+        );
+      }
     } finally {
       window.clearTimeout(timeoutId);
     }
@@ -132,12 +135,12 @@ export function LeadCapture({
             <CheckCircle2 className="size-6" aria-hidden="true" />
           </div>
           <div>
-            <p className="text-sm font-semibold text-primary">Your checklist is ready</p>
+            <p className="text-sm font-semibold text-primary">Your checklist is unlocked</p>
             <h3 className={cn("mt-1 font-bold tracking-tight", compact ? "text-xl" : "text-2xl")}>
               Start with Day 1 today.
             </h3>
             <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              Your request was recorded. Open the complete checklist now and save or print it for the week ahead.
+              Your request was accepted. Open the complete checklist now and save or print it for the week ahead.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -169,7 +172,7 @@ export function LeadCapture({
                 Free 7-day launch checklist
               </p>
               <h2 className={cn("mt-2 font-bold tracking-tight text-card-foreground", compact ? "text-xl" : "text-2xl sm:text-3xl")}>
-                {compact ? "Email me this plan" : "Know exactly what to do each day"}
+                {compact ? "Get this plan" : "Know exactly what to do each day"}
               </h2>
             </div>
             <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -246,11 +249,11 @@ export function LeadCapture({
               {submitState === "submitting" ? (
                 <>
                   <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
-                  Sending my checklist…
+                  Unlocking my checklist…
                 </>
               ) : (
                 <>
-                  Email Me the Free Checklist
+                  Get the Free Checklist
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </>
               )}
@@ -266,7 +269,7 @@ export function LeadCapture({
           <div id={`${captureSource}-form-note`} className="mt-4 flex gap-2 text-xs leading-5 text-muted-foreground">
             <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
             <p>
-              Instant access after submitting. No spam. You can ask to be removed from future updates at any time.
+              Instant checklist access after submitting. Your details are sent securely to Get Your First Sale. No spam.
             </p>
           </div>
 
