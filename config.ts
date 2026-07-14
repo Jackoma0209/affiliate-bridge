@@ -8,7 +8,7 @@ export const config = {
   clarityProjectId: "",
   affiliateDisclosure:
     "Disclosure: I may earn a commission if you start Shopify through my link, at no extra cost to you.",
-  contactEmail: "hello@getyourfirstsale.com",
+  contactEmail: "getyourfirstsale@gmail.com",
 } as const;
 
 export type SiteConfig = typeof config;

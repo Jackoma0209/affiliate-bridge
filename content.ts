@@ -1,17 +1,16 @@
 export const content = {
   meta: {
-    title: "How to Get Your First Shopify Sale: 7-Day Launch Plan",
+    title: "Build a Sale-Ready Shopify Store: Free 7-Day Checklist",
     description:
-      "Launch your first Shopify store with a practical 7-day checklist covering product choice, trust, checkout, and your first targeted visitors.",
+      "Follow a practical 7-day Shopify checklist covering product choice, store setup, trust, checkout, and your first targeted visitors.",
   },
 
   hero: {
     eyebrow: "Free Shopify launch checklist for beginners",
-    headline:
-      "Launch your Shopify store in 7 days — without guessing what to do next",
+    headline: "Build a sale-ready Shopify store in 7 days.",
     subhead:
-      "Use a practical day-by-day checklist for choosing one product, building a trustworthy store, testing checkout, and attracting your first targeted visitors. No coding and no income promises.",
-    cta: "Get the Free 7-Day Checklist",
+      "Get the practical beginner checklist for choosing one product, creating trust, testing checkout, and attracting your first targeted visitors—without coding, hype, or endless theme tweaking.",
+    cta: "Email Me the Free Checklist",
   },
 
   problem: {
