@@ -8,6 +8,13 @@ type PageMetadataInput = {
   path: string;
 };
 
+const socialImage = {
+  url: `${config.siteUrl}/opengraph-image`,
+  width: 1200,
+  height: 630,
+  alt: "Get Your First Sale — practical Shopify launch guidance for beginners",
+};
+
 export function buildPageMetadata({
   title,
   description,
@@ -25,11 +32,13 @@ export function buildPageMetadata({
       url,
       siteName: config.siteName,
       type: "article",
+      images: [socialImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [`${config.siteUrl}/twitter-image`],
     },
   };
 }
