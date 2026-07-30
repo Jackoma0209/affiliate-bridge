@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 import { AnalyticsScripts } from "@/components/analytics-scripts";
+import { AttributionCapture } from "@/components/attribution-capture";
 import { config } from "@/config";
 
 import "./globals.css";
@@ -51,6 +52,7 @@ export default function RootLayout({
             })();
           `}
         </Script>
+        <AttributionCapture />
         {children}
         <AnalyticsScripts />
       </body>
