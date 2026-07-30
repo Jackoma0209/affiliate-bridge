@@ -77,11 +77,10 @@ export function LeadCapture() {
             Free launch checklist
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground text-balance md:text-4xl">
-            Get the checklist now — and the launch tips by email
+            Get the checklist now — join the list for future launch tips
           </h2>
           <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
-            The full checklist is free to open instantly. If you want the follow-up launch tips too,
-            add your email below. No income promises and no need to subscribe to use the checklist.
+            The full checklist is free to open instantly. If you want future checklist updates and practical Shopify launch tips, you can optionally join the email list below. No income promises and no need to subscribe to use the checklist.
           </p>
         </div>
 
@@ -175,7 +174,7 @@ export function LeadCapture() {
                   className="mt-1 size-4 accent-emerald-600"
                 />
                 <span>
-                  Email me the checklist updates and practical Shopify launch tips. I can unsubscribe at any time.
+                  Email me future checklist updates and practical Shopify launch tips. I can unsubscribe at any time.
                 </span>
               </label>
 
@@ -185,7 +184,7 @@ export function LeadCapture() {
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-border bg-foreground px-5 text-sm font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-wait disabled:opacity-60 dark:bg-primary dark:text-primary-foreground"
               >
                 <Mail className="size-4" aria-hidden="true" />
-                {status === "loading" ? "Saving..." : "Send Me the Launch Tips"}
+                {status === "loading" ? "Saving..." : "Join the Launch Tips List"}
               </button>
 
               {status === "error" ? (
@@ -197,7 +196,7 @@ export function LeadCapture() {
           )}
 
           <p className="mt-4 text-xs leading-5 text-muted-foreground">
-            Your email is used for the checklist update series and practical launch tips. See the Privacy Policy for details.
+            Your email is stored for future checklist updates and practical launch tips. See the Privacy Policy for details.
           </p>
         </div>
       </div>
