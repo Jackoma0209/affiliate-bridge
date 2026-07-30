@@ -21,31 +21,52 @@ export default function PrivacyPolicyPage() {
         a commission if you start Shopify through an affiliate link, at no extra
         cost to you.
       </p>
+
       <h2>Information this site may process</h2>
       <p>
         This site may process basic technical and usage information, such as page
-        views, browser type, approximate device information, referring pages, and
-        affiliate link clicks. This helps understand whether the content is useful
-        and whether important calls to action work correctly.
+        views, browser type, approximate device information, referring pages,
+        campaign parameters, and affiliate link clicks. This helps understand
+        which content and traffic sources are useful and whether important calls
+        to action work correctly.
       </p>
       <p>
-        The mini quiz runs in your browser and does not submit answers to a
-        backend. The current checklist request section uses a mailto fallback,
-        so no form details are stored by this website unless you choose to send
-        an email.
+        Campaign attribution such as a UTM source may be stored in your browser
+        so that a later checklist or Shopify click can be attributed to the visit
+        that introduced you to the site. This value is used for aggregate
+        performance reporting and is not intended to identify you personally.
       </p>
-      <h2>Analytics and affiliate links</h2>
+
+      <h2>Email checklist and launch tips</h2>
       <p>
-        Analytics scripts are only loaded when measurement IDs are configured.
-        Affiliate links may send you to Shopify or an affiliate tracking partner,
+        If you choose to join the email list, the site sends your email address
+        and optional first name to MailerLite, the email service used to manage
+        the 7-Day Shopify Checklist list and follow-up launch tips. The signup
+        also records an opt-in timestamp and may record the IP address associated
+        with the signup for consent and abuse-prevention records.
+      </p>
+      <p>
+        Email signup is optional. The checklist can be opened without providing
+        an email address. You can unsubscribe from marketing emails using the
+        unsubscribe option included in those messages.
+      </p>
+
+      <h2>Quiz, analytics, and affiliate links</h2>
+      <p>
+        The mini quiz runs in your browser and does not submit your answers to a
+        backend. Analytics scripts are only loaded when measurement IDs are
+        configured. Affiliate links may send you to Shopify through impact.com,
         where their own privacy policies and terms apply.
       </p>
+
       <h2>Your choices</h2>
       <p>
         You can use browser controls to limit cookies, block scripts, or clear
-        local storage. Dark mode preference is stored locally in your browser so
-        the site can remember your selected theme.
+        local storage. Dark mode preference and basic campaign attribution may be
+        stored locally in your browser. You can clear these values through your
+        browser settings.
       </p>
+
       <h2>Contact</h2>
       <p>
         For privacy questions, contact{" "}
