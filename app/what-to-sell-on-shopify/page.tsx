@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-
 import { GuidePage } from "@/components/guide-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "What to Sell on Shopify: A Beginner Product Filter",
   description:
     "Use a practical product filter to choose what to sell on Shopify without relying on hype, fake winning-product lists, or endless research.",
-  alternates: { canonical: "/what-to-sell-on-shopify" },
-};
+  path: "/what-to-sell-on-shopify",
+});
 
 const related = [
   {
