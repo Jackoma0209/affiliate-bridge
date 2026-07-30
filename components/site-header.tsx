@@ -8,6 +8,7 @@ import { config } from "@/config";
 const links = [
   ["Plan", "/#launch-plan"],
   ["Checklist", "/checklist"],
+  ["Guides", "/guides"],
   ["Quiz", "/#quiz"],
   ["Compare", "/#comparison"],
 ] as const;
@@ -30,7 +31,7 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm font-medium text-muted-foreground md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-5 text-sm font-medium text-muted-foreground md:flex" aria-label="Main navigation">
           {links.map(([label, href]) => (
             <Link key={href} href={href} className="transition-colors hover:text-foreground">
               {label}
@@ -52,7 +53,12 @@ export function SiteHeader() {
             </nav>
           </details>
           <ThemeToggle />
-          <AffiliateCta eventName="hero_cta_click" className="hidden sm:inline-flex sm:w-auto" showIcon={false}>
+          <AffiliateCta
+            eventName="hero_cta_click"
+            trackingPlacement="header"
+            className="hidden sm:inline-flex sm:w-auto"
+            showIcon={false}
+          >
             Start Shopify Trial
           </AffiliateCta>
         </div>
