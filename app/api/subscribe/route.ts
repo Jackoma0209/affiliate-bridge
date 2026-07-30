@@ -15,7 +15,7 @@ function mailerLiteDate(date = new Date()) {
   return date.toISOString().slice(0, 19).replace("T", " ");
 }
 
-async function getOrCreateGroup(token: string) {
+async function listMatchingGroups(token: string) {
   const groupsResponse = await fetch(
     `${API_BASE}/groups?filter[name]=${encodeURIComponent(GROUP_NAME)}&limit=100`,
     {
@@ -31,7 +31,13 @@ async function getOrCreateGroup(token: string) {
   const groupsPayload = (await groupsResponse.json()) as {
     data?: Array<{ id: string; name: string }>;
   };
-  const existing = groupsPayload.data?.find(
+
+  return groupsPayload.data || [];
+}
+
+async function getOrCreateGroup(token: string) {
+  const groups = await listMatchingGroups(token);
+  const existing = groups.find(
     (group) => group.name.toLowerCase() === GROUP_NAME.toLowerCase()
   );
 
@@ -57,6 +63,47 @@ async function getOrCreateGroup(token: string) {
   }
 
   return createPayload.data.id;
+}
+
+export async function GET() {
+  const token = process.env.MAILERLITE_API_TOKEN?.trim();
+
+  if (!token) {
+    return NextResponse.json(
+      {
+        ok: false,
+        configured: false,
+        providerReachable: false,
+        checklistGroupReady: false,
+      },
+      { status: 503 }
+    );
+  }
+
+  try {
+    const groups = await listMatchingGroups(token);
+    const checklistGroupReady = groups.some(
+      (group) => group.name.toLowerCase() === GROUP_NAME.toLowerCase()
+    );
+
+    return NextResponse.json({
+      ok: true,
+      configured: true,
+      providerReachable: true,
+      checklistGroupReady,
+    });
+  } catch (error) {
+    console.error("MailerLite health check failed", error);
+    return NextResponse.json(
+      {
+        ok: false,
+        configured: true,
+        providerReachable: false,
+        checklistGroupReady: false,
+      },
+      { status: 502 }
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
