@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const API_BASE = "https://connect.mailerlite.com/api";
 const GROUP_NAME = "7-Day Shopify Checklist";
+const AUTOMATION_NAME = "7-Day Shopify Checklist Welcome";
 
 function mailerLiteHeaders(token: string) {
   return {
@@ -33,6 +34,57 @@ async function listMatchingGroups(token: string) {
   };
 
   return groupsPayload.data || [];
+}
+
+async function getAutomationHealth(token: string) {
+  try {
+    const response = await fetch(
+      `${API_BASE}/automations?filter[name]=${encodeURIComponent(AUTOMATION_NAME)}&limit=100`,
+      {
+        headers: mailerLiteHeaders(token),
+        cache: "no-store",
+      }
+    );
+
+    if (!response.ok) {
+      return {
+        automationCheckAvailable: false,
+        automationFound: false,
+        automationEnabled: false,
+        automationTriggerValid: false,
+        automationStepCount: 0,
+      };
+    }
+
+    const payload = (await response.json()) as {
+      data?: Array<{
+        name: string;
+        enabled?: boolean;
+        trigger_data?: { valid?: boolean };
+        steps?: unknown[];
+      }>;
+    };
+
+    const automation = payload.data?.find(
+      (item) => item.name.toLowerCase() === AUTOMATION_NAME.toLowerCase()
+    );
+
+    return {
+      automationCheckAvailable: true,
+      automationFound: Boolean(automation),
+      automationEnabled: Boolean(automation?.enabled),
+      automationTriggerValid: Boolean(automation?.trigger_data?.valid),
+      automationStepCount: automation?.steps?.length || 0,
+    };
+  } catch {
+    return {
+      automationCheckAvailable: false,
+      automationFound: false,
+      automationEnabled: false,
+      automationTriggerValid: false,
+      automationStepCount: 0,
+    };
+  }
 }
 
 async function getOrCreateGroup(token: string) {
@@ -75,6 +127,11 @@ export async function GET() {
         configured: false,
         providerReachable: false,
         checklistGroupReady: false,
+        automationCheckAvailable: false,
+        automationFound: false,
+        automationEnabled: false,
+        automationTriggerValid: false,
+        automationStepCount: 0,
       },
       { status: 503 }
     );
@@ -85,12 +142,14 @@ export async function GET() {
     const checklistGroupReady = groups.some(
       (group) => group.name.toLowerCase() === GROUP_NAME.toLowerCase()
     );
+    const automationHealth = await getAutomationHealth(token);
 
     return NextResponse.json({
       ok: true,
       configured: true,
       providerReachable: true,
       checklistGroupReady,
+      ...automationHealth,
     });
   } catch (error) {
     console.error("MailerLite health check failed", error);
@@ -100,6 +159,11 @@ export async function GET() {
         configured: true,
         providerReachable: false,
         checklistGroupReady: false,
+        automationCheckAvailable: false,
+        automationFound: false,
+        automationEnabled: false,
+        automationTriggerValid: false,
+        automationStepCount: 0,
       },
       { status: 502 }
     );
