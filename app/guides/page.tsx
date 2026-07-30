@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "Shopify Beginner Guides | Get Your First Sale",
   description:
     "Practical beginner guides for choosing a product, launching Shopify, diagnosing no-sales problems, and comparing Shopify with Etsy.",
-  alternates: { canonical: "/guides" },
-};
+  path: "/guides",
+});
 
 const guides = [
   {
