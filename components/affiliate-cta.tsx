@@ -1,16 +1,18 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import { config } from "@/config";
 import { trackEvent, type TrackingEventName } from "@/lib/analytics";
+import { buildImpactAffiliateUrl, readAttribution } from "@/lib/attribution";
 import { cn } from "@/lib/utils";
 
 type AffiliateCtaProps = {
   children: ReactNode;
   className?: string;
   eventName?: TrackingEventName;
+  trackingPlacement?: string;
   large?: boolean;
   variant?: "primary" | "light" | "dark";
   showIcon?: boolean;
@@ -29,20 +31,37 @@ export function AffiliateCta({
   children,
   className,
   eventName,
+  trackingPlacement,
   large = false,
   variant = "primary",
   showIcon = true,
 }: AffiliateCtaProps) {
+  const placement = trackingPlacement || eventName || "cta";
+  const [href, setHref] = useState(config.affiliateUrl);
+
+  useEffect(() => {
+    setHref(buildImpactAffiliateUrl(config.affiliateUrl, placement));
+  }, [placement]);
+
   return (
     <a
-      href={config.affiliateUrl}
+      href={href}
       target="_blank"
       rel="sponsored nofollow noopener noreferrer"
       aria-label={`${children} — affiliate link to ${config.productName}`}
       data-analytics-event={eventName}
       onClick={() => {
-        if (eventName) {
-          trackEvent(eventName);
+        const attribution = readAttribution();
+        const parameters = {
+          cta_location: placement,
+          traffic_source: attribution?.source || "website",
+          page_path: window.location.pathname,
+          destination: "shopify",
+        };
+
+        trackEvent("affiliate_click", parameters);
+        if (eventName && eventName !== "affiliate_click") {
+          trackEvent(eventName, parameters);
         }
       }}
       className={cn(
