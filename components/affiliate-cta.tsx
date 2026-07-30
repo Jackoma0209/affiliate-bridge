@@ -37,7 +37,7 @@ export function AffiliateCta({
   showIcon = true,
 }: AffiliateCtaProps) {
   const placement = trackingPlacement || eventName || "cta";
-  const [href, setHref] = useState(config.affiliateUrl);
+  const [href, setHref] = useState<string>(config.affiliateUrl);
 
   useEffect(() => {
     setHref(buildImpactAffiliateUrl(config.affiliateUrl, placement));
