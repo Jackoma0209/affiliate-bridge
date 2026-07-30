@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-
 import { GuidePage } from "@/components/guide-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "Why Is My Shopify Store Not Getting Sales? A Diagnostic Guide",
   description:
     "Diagnose a Shopify store with no sales by checking traffic, offer relevance, product page clarity, trust, checkout friction, and analytics in order.",
-  alternates: { canonical: "/why-my-shopify-store-isnt-getting-sales" },
-};
+  path: "/why-my-shopify-store-isnt-getting-sales",
+});
 
 const related = [
   {
