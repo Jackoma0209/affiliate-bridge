@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-
 import { GuidePage } from "@/components/guide-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "Shopify vs Etsy for Beginners: Which Should You Start With?",
   description:
     "Compare Shopify and Etsy for beginners across audience ownership, built-in demand, setup, branding, fees, testing, and when each option makes sense.",
-  alternates: { canonical: "/shopify-vs-etsy" },
-};
+  path: "/shopify-vs-etsy",
+});
 
 const related = [
   {

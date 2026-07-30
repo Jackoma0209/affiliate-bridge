@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-
 import { GuidePage } from "@/components/guide-page";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "Shopify for Beginners: A Practical First-Store Guide",
   description:
     "A practical Shopify beginner guide covering product choice, store setup, product pages, checkout, trust, traffic, and what to measure first.",
-  alternates: { canonical: "/shopify-for-beginners" },
-};
+  path: "/shopify-for-beginners",
+});
 
 const related = [
   {
