@@ -4,7 +4,15 @@ const API_BASE = "https://connect.mailerlite.com/api";
 const GROUP_NAME = "7-Day Shopify Checklist";
 const AUTOMATION_NAME = "7-Day Shopify Checklist Welcome";
 
-function mailerLiteHeaders(token: string) {
+type Group = { id: string; name: string };
+type Automation = {
+  name: string;
+  enabled?: boolean;
+  trigger_data?: { valid?: boolean };
+  steps?: unknown[];
+};
+
+function headers(token: string) {
   return {
     Authorization: `Bearer ${token}`,
     Accept: "application/json",
@@ -16,55 +24,30 @@ function mailerLiteDate(date = new Date()) {
   return date.toISOString().slice(0, 19).replace("T", " ");
 }
 
-async function listMatchingGroups(token: string) {
-  const groupsResponse = await fetch(
+async function listGroups(token: string) {
+  const response = await fetch(
     `${API_BASE}/groups?filter[name]=${encodeURIComponent(GROUP_NAME)}&limit=100`,
-    {
-      headers: mailerLiteHeaders(token),
-      cache: "no-store",
-    }
+    { headers: headers(token), cache: "no-store" }
   );
 
-  if (!groupsResponse.ok) {
-    throw new Error(`MailerLite group lookup failed (${groupsResponse.status})`);
+  if (!response.ok) {
+    throw new Error(`MailerLite group lookup failed (${response.status})`);
   }
 
-  const groupsPayload = (await groupsResponse.json()) as {
-    data?: Array<{ id: string; name: string }>;
-  };
-
-  return groupsPayload.data || [];
+  const payload = (await response.json()) as { data?: Group[] };
+  return payload.data || [];
 }
 
-async function getAutomationHealth(token: string) {
+async function automationHealth(token: string) {
   try {
     const response = await fetch(
       `${API_BASE}/automations?filter[name]=${encodeURIComponent(AUTOMATION_NAME)}&limit=100`,
-      {
-        headers: mailerLiteHeaders(token),
-        cache: "no-store",
-      }
+      { headers: headers(token), cache: "no-store" }
     );
 
-    if (!response.ok) {
-      return {
-        automationCheckAvailable: false,
-        automationFound: false,
-        automationEnabled: false,
-        automationTriggerValid: false,
-        automationStepCount: 0,
-      };
-    }
+    if (!response.ok) throw new Error("Automation check unavailable");
 
-    const payload = (await response.json()) as {
-      data?: Array<{
-        name: string;
-        enabled?: boolean;
-        trigger_data?: { valid?: boolean };
-        steps?: unknown[];
-      }>;
-    };
-
+    const payload = (await response.json()) as { data?: Automation[] };
     const automation = payload.data?.find(
       (item) => item.name.toLowerCase() === AUTOMATION_NAME.toLowerCase()
     );
@@ -88,33 +71,27 @@ async function getAutomationHealth(token: string) {
 }
 
 async function getOrCreateGroup(token: string) {
-  const groups = await listMatchingGroups(token);
+  const groups = await listGroups(token);
   const existing = groups.find(
     (group) => group.name.toLowerCase() === GROUP_NAME.toLowerCase()
   );
 
   if (existing) return existing.id;
 
-  const createResponse = await fetch(`${API_BASE}/groups`, {
+  const response = await fetch(`${API_BASE}/groups`, {
     method: "POST",
-    headers: mailerLiteHeaders(token),
+    headers: headers(token),
     body: JSON.stringify({ name: GROUP_NAME }),
     cache: "no-store",
   });
 
-  if (!createResponse.ok) {
-    throw new Error(`MailerLite group creation failed (${createResponse.status})`);
+  if (!response.ok) {
+    throw new Error(`MailerLite group creation failed (${response.status})`);
   }
 
-  const createPayload = (await createResponse.json()) as {
-    data?: { id?: string };
-  };
-
-  if (!createPayload.data?.id) {
-    throw new Error("MailerLite did not return a group ID");
-  }
-
-  return createPayload.data.id;
+  const payload = (await response.json()) as { data?: { id?: string } };
+  if (!payload.data?.id) throw new Error("MailerLite did not return a group ID");
+  return payload.data.id;
 }
 
 export async function GET() {
@@ -138,18 +115,17 @@ export async function GET() {
   }
 
   try {
-    const groups = await listMatchingGroups(token);
+    const groups = await listGroups(token);
     const checklistGroupReady = groups.some(
       (group) => group.name.toLowerCase() === GROUP_NAME.toLowerCase()
     );
-    const automationHealth = await getAutomationHealth(token);
 
     return NextResponse.json({
       ok: true,
       configured: true,
       providerReachable: true,
       checklistGroupReady,
-      ...automationHealth,
+      ...(await automationHealth(token)),
     });
   } catch (error) {
     console.error("MailerLite health check failed", error);
@@ -172,7 +148,6 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const token = process.env.MAILERLITE_API_TOKEN?.trim();
-
   if (!token) {
     return NextResponse.json(
       { ok: false, message: "Email updates are temporarily unavailable." },
@@ -180,9 +155,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  let body: unknown;
+  let payload: {
+    email?: string;
+    firstName?: string;
+    consent?: boolean;
+    website?: string;
+  };
+
   try {
-    body = await request.json();
+    payload = await request.json();
   } catch {
     return NextResponse.json(
       { ok: false, message: "Please enter a valid email address." },
@@ -190,16 +171,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const payload = body as {
-    email?: string;
-    firstName?: string;
-    consent?: boolean;
-    website?: string;
-  };
-
-  if (payload.website) {
-    return NextResponse.json({ ok: true });
-  }
+  if (payload.website) return NextResponse.json({ ok: true });
 
   const email = payload.email?.trim().toLowerCase() || "";
   const firstName = payload.firstName?.trim().slice(0, 100) || "";
@@ -210,7 +182,7 @@ export async function POST(request: NextRequest) {
       {
         ok: false,
         message: !payload.consent
-          ? "Please confirm that you want to receive the checklist and launch tips."
+          ? "Please confirm that you want to receive future checklist updates and launch tips."
           : "Please enter a valid email address.",
       },
       { status: 422 }
@@ -221,8 +193,7 @@ export async function POST(request: NextRequest) {
     const groupId = await getOrCreateGroup(token);
     const forwardedFor = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
     const now = mailerLiteDate();
-
-    const subscriberBody: Record<string, unknown> = {
+    const subscriber: Record<string, unknown> = {
       email,
       groups: [groupId],
       status: "active",
@@ -230,25 +201,21 @@ export async function POST(request: NextRequest) {
       opted_in_at: now,
     };
 
-    if (firstName) {
-      subscriberBody.fields = { name: firstName };
-    }
-
+    if (firstName) subscriber.fields = { name: firstName };
     if (forwardedFor) {
-      subscriberBody.ip_address = forwardedFor;
-      subscriberBody.optin_ip = forwardedFor;
+      subscriber.ip_address = forwardedFor;
+      subscriber.optin_ip = forwardedFor;
     }
 
-    const subscribeResponse = await fetch(`${API_BASE}/subscribers`, {
+    const response = await fetch(`${API_BASE}/subscribers`, {
       method: "POST",
-      headers: mailerLiteHeaders(token),
-      body: JSON.stringify(subscriberBody),
+      headers: headers(token),
+      body: JSON.stringify(subscriber),
       cache: "no-store",
     });
 
-    if (!subscribeResponse.ok) {
-      const errorText = await subscribeResponse.text();
-      console.error("MailerLite subscribe failed", subscribeResponse.status, errorText);
+    if (!response.ok) {
+      console.error("MailerLite subscribe failed", response.status, await response.text());
       return NextResponse.json(
         { ok: false, message: "We couldn't save your signup. Please try again." },
         { status: 502 }
@@ -257,13 +224,16 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       ok: true,
-      message: "You're on the list. The checklist is available now, and future launch tips will go to your inbox.",
+      message: "You're on the list. The free checklist is available now.",
       checklistUrl: "/checklist",
     });
   } catch (error) {
     console.error("Checklist signup error", error);
     return NextResponse.json(
-      { ok: false, message: "Email signup is temporarily unavailable. The checklist is still free to open now." },
+      {
+        ok: false,
+        message: "Email signup is temporarily unavailable. The checklist is still free to open now.",
+      },
       { status: 502 }
     );
   }
