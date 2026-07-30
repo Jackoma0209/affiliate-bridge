@@ -7,7 +7,7 @@ export const config = {
   gaMeasurementId: "G-Y50H3R0QVQ",
   clarityProjectId: "",
   affiliateDisclosure:
-    "Disclosure: I may earn a commission if you start Shopify through my link, at no extra cost to you.",
+    "Disclosure: I'm a Shopify affiliate and may earn a commission if you start Shopify through my link, at no extra cost to you.",
   contactEmail: "hello@getyourfirstsale.com",
 } as const;
 
