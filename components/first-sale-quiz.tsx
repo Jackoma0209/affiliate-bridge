@@ -63,8 +63,21 @@ const initialAnswers: Answers = {
   time: "",
 };
 
+function isReadyToBuild(answers: Answers) {
+  // Product exists + enough time this week = prioritise Shopify trial CTA.
+  return (
+    answers.hasProduct === "yes" &&
+    (answers.time === "five" || answers.time === "ten")
+  );
+}
+
 function getResult(answers: Answers) {
-  if (!answers.storeType || !answers.hasProduct || !answers.audience || !answers.time) {
+  if (
+    !answers.storeType ||
+    !answers.hasProduct ||
+    !answers.audience ||
+    !answers.time
+  ) {
     return null;
   }
 
@@ -102,6 +115,7 @@ function getResult(answers: Answers) {
     firstAction,
     trafficAction,
     pace,
+    readyToBuild: isReadyToBuild(answers),
   };
 }
 
@@ -116,8 +130,13 @@ export function FirstSaleQuiz() {
         {questions.map((question) => {
           const selectedValue = answers[question.id as keyof Answers];
           return (
-            <fieldset key={question.id} className="rounded-lg border border-border bg-card p-4 shadow-sm shadow-black/[0.03]">
-              <legend className="text-sm font-semibold text-card-foreground">{question.legend}</legend>
+            <fieldset
+              key={question.id}
+              className="rounded-lg border border-border bg-card p-4 shadow-sm shadow-black/[0.03]"
+            >
+              <legend className="text-sm font-semibold text-card-foreground">
+                {question.legend}
+              </legend>
               <div className="mt-3 flex flex-wrap gap-2">
                 {question.options.map((option) => {
                   const inputId = `${question.id}-${option.value}`;
@@ -142,15 +161,22 @@ export function FirstSaleQuiz() {
                         onChange={() => {
                           if (!started) {
                             setStarted(true);
-                            trackEvent("quiz_start", { first_question: question.id });
+                            trackEvent("quiz_start", {
+                              first_question: question.id,
+                            });
                           }
-                          const next = { ...answers, [question.id]: option.value };
+                          const next = {
+                            ...answers,
+                            [question.id]: option.value,
+                          };
                           setAnswers(next);
-                          if (getResult(next)) {
+                          const completed = getResult(next);
+                          if (completed) {
                             trackEvent("quiz_complete", {
                               store_type: next.storeType,
                               audience: next.audience,
                               time_available: next.time,
+                              ready_to_build: completed.readyToBuild,
                             });
                           }
                         }}
@@ -166,36 +192,87 @@ export function FirstSaleQuiz() {
         })}
       </div>
 
-      <aside className="rounded-lg border border-border bg-foreground p-5 text-background shadow-[0_22px_70px_var(--card-glow)] dark:bg-card dark:text-card-foreground" aria-live="polite">
-        <p className="text-sm font-semibold text-primary">Your practical starting path</p>
+      <aside
+        className="rounded-lg border border-border bg-foreground p-5 text-background shadow-[0_22px_70px_var(--card-glow)] dark:bg-card dark:text-card-foreground"
+        aria-live="polite"
+      >
+        <p className="text-sm font-semibold text-primary">
+          Your practical starting path
+        </p>
         {result ? (
           <div className="mt-4 space-y-5">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wide text-background/60 dark:text-muted-foreground">Recommended store type</p>
-              <h3 className="mt-1 text-2xl font-semibold tracking-tight">{result.recommendedStoreType}</h3>
+              <p className="text-xs font-semibold uppercase tracking-wide text-background/60 dark:text-muted-foreground">
+                Recommended store type
+              </p>
+              <h3 className="mt-1 text-2xl font-semibold tracking-tight">
+                {result.recommendedStoreType}
+              </h3>
+              {result.readyToBuild ? (
+                <p className="mt-2 text-sm font-medium text-primary">
+                  You look ready to open a simple Shopify trial this week.
+                </p>
+              ) : null}
             </div>
             <div className="space-y-3 text-sm leading-6 text-background/75 dark:text-muted-foreground">
-              {[result.firstAction, result.trafficAction, result.pace].map((item) => (
-                <p key={item} className="flex gap-2">
-                  <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-                  <span>{item}</span>
-                </p>
-              ))}
+              {[result.firstAction, result.trafficAction, result.pace].map(
+                (item) => (
+                  <p key={item} className="flex gap-2">
+                    <CheckCircle2
+                      className="mt-0.5 size-4 shrink-0 text-primary"
+                      aria-hidden="true"
+                    />
+                    <span>{item}</span>
+                  </p>
+                )
+              )}
             </div>
             <div className="grid gap-3">
-              <Link href="/checklist" className="inline-flex min-h-11 items-center justify-center rounded-lg bg-card px-4 text-sm font-semibold text-card-foreground ring-1 ring-border hover:bg-muted">
-                Open My 7-Day Checklist
-              </Link>
-              <AffiliateCta eventName="quiz_result_cta_click" variant="light" className="w-full">
-                Start My Shopify Trial
-              </AffiliateCta>
+              {result.readyToBuild ? (
+                <>
+                  <AffiliateCta
+                    eventName="quiz_result_cta_click"
+                    trackingPlacement="quiz_ready_trial"
+                    className="w-full"
+                  >
+                    Start My Shopify Trial
+                  </AffiliateCta>
+                  <Link
+                    href="/checklist"
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-card px-4 text-sm font-semibold text-card-foreground ring-1 ring-border hover:bg-muted"
+                  >
+                    Open My 7-Day Checklist
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/checklist"
+                    className="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground hover:brightness-95"
+                  >
+                    Open My 7-Day Checklist
+                  </Link>
+                  <AffiliateCta
+                    eventName="quiz_result_cta_click"
+                    trackingPlacement="quiz_explore_trial"
+                    variant="light"
+                    className="w-full"
+                  >
+                    Start My Shopify Trial
+                  </AffiliateCta>
+                </>
+              )}
             </div>
           </div>
         ) : (
           <div className="mt-4 space-y-4">
-            <h3 className="text-2xl font-semibold tracking-tight">Answer all four questions.</h3>
+            <h3 className="text-2xl font-semibold tracking-tight">
+              Answer all four questions.
+            </h3>
             <p className="text-sm leading-6 text-background/75 dark:text-muted-foreground">
-              Your result will include a store model, first validation task, traffic action, and realistic pace. It is shown immediately without an email gate.
+              Your result will include a store model, first validation task,
+              traffic action, and realistic pace. It is shown immediately
+              without an email gate.
             </p>
           </div>
         )}

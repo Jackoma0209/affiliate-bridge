@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         destination: "https://www.getyourfirstsale.com/:path*",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "affiliate-bridge-pi.vercel.app" }],
+        destination: "https://www.getyourfirstsale.com/:path*",
+        permanent: true,
+      },
     ];
   },
 };

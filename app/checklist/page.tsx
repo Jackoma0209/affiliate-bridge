@@ -2,10 +2,15 @@ import type { Metadata } from "next";
 import { CheckCircle2, ClipboardCheck } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
+import { JsonLd } from "@/components/json-ld";
 import { PrintChecklistButton } from "@/components/print-checklist-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
+import {
+  breadcrumbJsonLd,
+  howToJsonLd,
+} from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Shopify Launch Checklist: A Practical 7-Day Plan",
@@ -32,7 +37,8 @@ const checklist = [
   {
     day: "Day 1",
     title: "Choose one focused product idea",
-    objective: "Finish the day with one buyer, one problem, and one offer you can explain in a sentence.",
+    objective:
+      "Finish the day with one buyer, one problem, and one offer you can explain in a sentence.",
     items: [
       "Choose one specific audience.",
       "Choose one problem, desire, or job to be done.",
@@ -43,18 +49,21 @@ const checklist = [
   {
     day: "Day 2",
     title: "Open Shopify and create the basic store",
-    objective: "Create a functional foundation without losing the day to naming or visual branding.",
+    objective:
+      "Create a functional foundation without losing the day to naming or visual branding.",
     items: [
       "Choose a clear working store name.",
       "Open your Shopify trial only when you are ready to build.",
       "Choose a clean free or starter theme.",
       "Create the essential navigation and contact page.",
     ],
+    showTrialCta: true,
   },
   {
     day: "Day 3",
     title: "Build the product page and offer",
-    objective: "Publish a product page that clearly explains who the product is for and why it is useful.",
+    objective:
+      "Publish a product page that clearly explains who the product is for and why it is useful.",
     items: [
       "Write a descriptive product title.",
       "Lead with benefits before technical details.",
@@ -65,7 +74,8 @@ const checklist = [
   {
     day: "Day 4",
     title: "Configure payments, shipping, and policies",
-    objective: "Remove the operational problems that can stop a genuine customer from ordering.",
+    objective:
+      "Remove the operational problems that can stop a genuine customer from ordering.",
     items: [
       "Configure and verify payment methods.",
       "Check shipping zones, rates, and delivery estimates.",
@@ -76,7 +86,8 @@ const checklist = [
   {
     day: "Day 5",
     title: "Add trust and test checkout",
-    objective: "Make the store feel understandable and safe, then test the complete buyer journey.",
+    objective:
+      "Make the store feel understandable and safe, then test the complete buyer journey.",
     items: [
       "Make contact and business information easy to find.",
       "Add factual FAQs that answer real objections.",
@@ -87,7 +98,8 @@ const checklist = [
   {
     day: "Day 6",
     title: "Send the first targeted visitors",
-    objective: "Create a small, relevant traffic test rather than broadcasting the store to everyone.",
+    objective:
+      "Create a small, relevant traffic test rather than broadcasting the store to everyone.",
     items: [
       "Invite a small warm audience to review the offer.",
       "Choose one community or search-led channel where buyers already gather.",
@@ -98,7 +110,8 @@ const checklist = [
   {
     day: "Day 7",
     title: "Review evidence and improve one thing",
-    objective: "Use behaviour to decide whether the next problem is traffic, trust, or the offer itself.",
+    objective:
+      "Use behaviour to decide whether the next problem is traffic, trust, or the offer itself.",
     items: [
       "Check visitor numbers and traffic sources.",
       "Check product-page engagement and CTA clicks.",
@@ -109,10 +122,27 @@ const checklist = [
 ] as const;
 
 export default function ChecklistPage() {
+  const howTo = howToJsonLd({
+    name: "7-Day Shopify Launch Checklist",
+    description:
+      "A practical day-by-day plan to choose one product, open a simple Shopify store, test checkout, and send your first targeted visitors.",
+    path: "/checklist",
+    steps: checklist.map((day) => ({
+      name: `${day.day}: ${day.title}`,
+      text: `${day.objective} Tasks: ${day.items.join(" ")}`,
+    })),
+  });
+
+  const breadcrumbs = breadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "7-Day Checklist", path: "/checklist" },
+  ]);
+
   return (
     <>
+      <JsonLd data={[howTo, breadcrumbs]} />
       <SiteHeader />
-      <main className="bg-background text-foreground">
+      <main className="bg-background pb-24 text-foreground md:pb-0">
         <section className="bg-[image:var(--hero-gradient)] px-4 py-14 sm:px-6 md:py-20 print:bg-none print:py-6">
           <div className="mx-auto max-w-5xl">
             <div className="max-w-3xl">
@@ -126,7 +156,8 @@ export default function ChecklistPage() {
                 The 7-Day Shopify Launch Checklist
               </h1>
               <p className="mt-5 text-lg leading-8 text-muted-foreground">
-                Move from product idea to a tested store and your first targeted visitors without getting trapped in research or redesign loops.
+                Move from product idea to a tested store and your first targeted
+                visitors without getting trapped in research or redesign loops.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row print:hidden">
                 <PrintChecklistButton />
@@ -135,31 +166,78 @@ export default function ChecklistPage() {
                 </AffiliateCta>
               </div>
               <p className="mt-4 text-xs leading-5 text-muted-foreground print:hidden">
-                The checklist is free and already visible below. Shopify is optional. Affiliate disclosure: {config.affiliateDisclosure.replace("Disclosure: ", "")} Results vary.
+                The checklist is free and already visible below. Shopify is
+                optional. Affiliate disclosure:{" "}
+                {config.affiliateDisclosure.replace("Disclosure: ", "")} Results
+                vary.
               </p>
             </div>
           </div>
         </section>
 
-        <section id="checklist" className="px-4 py-14 sm:px-6 md:py-20 print:px-0 print:py-4">
+        <section
+          id="checklist"
+          className="px-4 py-14 sm:px-6 md:py-20 print:px-0 print:py-4"
+        >
           <div className="mx-auto grid max-w-5xl gap-4 print:max-w-none">
-            {checklist.map((day) => (
-              <article key={day.day} className="break-inside-avoid rounded-lg border border-border bg-card p-5 shadow-sm shadow-black/[0.03] print:shadow-none">
+            {checklist.map((day, index) => (
+              <article
+                key={day.day}
+                id={`day-${index + 1}`}
+                className="break-inside-avoid rounded-lg border border-border bg-card p-5 shadow-sm shadow-black/[0.03] print:shadow-none"
+              >
                 <div className="grid gap-4 md:grid-cols-[11rem_1fr]">
                   <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-primary">{day.day}</p>
-                    <h2 className="mt-2 text-xl font-semibold tracking-tight text-card-foreground">{day.title}</h2>
+                    <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                      {day.day}
+                    </p>
+                    <h2 className="mt-2 text-xl font-semibold tracking-tight text-card-foreground">
+                      {day.title}
+                    </h2>
                   </div>
                   <div>
-                    <p className="mb-4 text-sm leading-6 text-card-foreground"><strong>Objective:</strong> {day.objective}</p>
+                    <p className="mb-4 text-sm leading-6 text-card-foreground">
+                      <strong>Objective:</strong> {day.objective}
+                    </p>
                     <ul className="grid gap-3 sm:grid-cols-2">
                       {day.items.map((item) => (
-                        <li key={item} className="flex gap-3 text-sm leading-6 text-muted-foreground">
-                          <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+                        <li
+                          key={item}
+                          className="flex gap-3 text-sm leading-6 text-muted-foreground"
+                        >
+                          <CheckCircle2
+                            className="mt-0.5 size-4 shrink-0 text-primary"
+                            aria-hidden="true"
+                          />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
+
+                    {"showTrialCta" in day && day.showTrialCta ? (
+                      <div className="mt-6 rounded-lg border border-primary/30 bg-primary/10 p-4 print:hidden">
+                        <p className="text-sm font-semibold text-card-foreground">
+                          Ready for Day 2? Open your Shopify trial now
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                          This is the highest-intent moment in the checklist.
+                          Start the trial, pick a clean theme, and keep moving—
+                          do not redesign before you have visitors.
+                        </p>
+                        <div className="mt-4">
+                          <AffiliateCta
+                            eventName="checklist_day2_cta_click"
+                            trackingPlacement="checklist_day2"
+                            large
+                          >
+                            Start My Shopify Trial
+                          </AffiliateCta>
+                        </div>
+                        <p className="mt-3 text-xs leading-5 text-muted-foreground">
+                          {config.affiliateDisclosure} Results vary.
+                        </p>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </article>
@@ -169,20 +247,30 @@ export default function ChecklistPage() {
 
         <section className="border-y border-border bg-muted/55 px-4 py-14 sm:px-6 md:py-20 print:hidden">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">Ready to build alongside the checklist?</h2>
+            <h2 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">
+              Ready to build alongside the checklist?
+            </h2>
             <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
-              Open Shopify, choose a simple theme, and complete one checklist stage at a time. The platform does not guarantee a sale; the checklist helps you run a clearer first test.
+              Open Shopify, choose a simple theme, and complete one checklist
+              stage at a time. The platform does not guarantee a sale; the
+              checklist helps you run a clearer first test.
             </p>
             <div className="mt-8 flex justify-center">
-              <AffiliateCta eventName="checklist_page_cta_click" large>Start My Shopify Trial</AffiliateCta>
+              <AffiliateCta eventName="checklist_page_cta_click" large>
+                Start My Shopify Trial
+              </AffiliateCta>
             </div>
             <p className="mx-auto mt-4 max-w-2xl text-xs leading-5 text-muted-foreground">
-              {config.affiliateDisclosure} Get Your First Sale is independent from Shopify. Results vary based on your product, offer, traffic, effort, and market.
+              {config.affiliateDisclosure} Get Your First Sale is independent
+              from Shopify. Results vary based on your product, offer, traffic,
+              effort, and market.
             </p>
           </div>
         </section>
       </main>
-      <div className="print:hidden"><SiteFooter /></div>
+      <div className="print:hidden">
+        <SiteFooter />
+      </div>
     </>
   );
 }

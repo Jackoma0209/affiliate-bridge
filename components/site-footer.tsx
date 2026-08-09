@@ -40,6 +40,12 @@ export function SiteFooter() {
           <Link href="/checklist" className="hover:text-background dark:hover:text-foreground">
             Checklist
           </Link>
+          <Link href="/#about" className="hover:text-background dark:hover:text-foreground">
+            About
+          </Link>
+          <Link href="/guides" className="hover:text-background dark:hover:text-foreground">
+            All Guides
+          </Link>
           <Link href="/affiliate-disclosure" className="hover:text-background dark:hover:text-foreground">
             Affiliate Disclosure
           </Link>
