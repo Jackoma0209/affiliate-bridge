@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
+import { config } from "@/config";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -235,7 +236,7 @@ export function FirstSaleQuiz() {
                     trackingPlacement="quiz_ready_trial"
                     className="w-full"
                   >
-                    Start My Shopify Trial
+                    {config.shopifyTrialCta}
                   </AffiliateCta>
                   <Link
                     href="/checklist"
@@ -258,7 +259,7 @@ export function FirstSaleQuiz() {
                     variant="light"
                     className="w-full"
                   >
-                    Start My Shopify Trial
+                    {config.shopifyTrialCta}
                   </AffiliateCta>
                 </>
               )}

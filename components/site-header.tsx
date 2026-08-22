@@ -26,12 +26,12 @@ export function SiteHeader() {
               {config.siteName}
             </span>
             <span className="hidden text-xs text-muted-foreground sm:block">
-              Independent beginner guide
+              By {config.authorName} · independent beginner guide
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 text-sm font-medium text-muted-foreground md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-5 text-sm font-medium text-muted-foreground lg:flex" aria-label="Main navigation">
           {links.map(([label, href]) => (
             <Link key={href} href={href} className="transition-colors hover:text-foreground">
               {label}
@@ -40,7 +40,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <details className="relative md:hidden">
+          <details className="relative lg:hidden">
             <summary className="flex size-11 cursor-pointer list-none items-center justify-center rounded-lg border border-border bg-card text-card-foreground focus-visible:ring-4 focus-visible:ring-primary/25 focus-visible:outline-none" aria-label="Open navigation menu">
               <Menu className="size-4" aria-hidden="true" />
             </summary>
@@ -52,14 +52,14 @@ export function SiteHeader() {
               ))}
             </nav>
           </details>
-          <ThemeToggle />
+          <ThemeToggle className="hidden sm:inline-flex" />
           <AffiliateCta
             eventName="hero_cta_click"
             trackingPlacement="header"
-            className="hidden sm:inline-flex sm:w-auto"
+            className="hidden px-3 text-xs md:inline-flex md:w-auto xl:px-5 xl:text-sm"
             showIcon={false}
           >
-            Start Shopify Trial
+            {config.shopifyTrialCta}
           </AffiliateCta>
         </div>
       </div>

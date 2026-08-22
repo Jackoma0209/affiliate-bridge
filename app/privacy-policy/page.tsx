@@ -3,9 +3,27 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal-page";
 import { config } from "@/config";
 
+const title = `Privacy Policy | ${config.siteName}`;
+const description = "Privacy policy for Get Your First Sale.";
+
 export const metadata: Metadata = {
-  title: `Privacy Policy | ${config.siteName}`,
-  description: "Privacy policy for Get Your First Sale.",
+  title,
+  description,
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+  openGraph: {
+    title,
+    description,
+    url: `${config.siteUrl}/privacy-policy`,
+    siteName: config.siteName,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function PrivacyPolicyPage() {

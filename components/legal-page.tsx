@@ -8,7 +8,7 @@ import { config } from "@/config";
 export function LegalPage({
   title,
   description,
-  lastUpdated = "July 5, 2026",
+  lastUpdated = config.lastUpdated,
   children,
 }: {
   title: string;
@@ -28,7 +28,7 @@ export function LegalPage({
             Back to {config.siteName}
           </Link>
           <p className="mt-8 text-sm font-medium text-muted-foreground">
-            Last updated: {lastUpdated}
+            Updated {lastUpdated} by {config.authorName}
           </p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-balance">
             {title}

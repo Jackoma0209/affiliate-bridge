@@ -16,7 +16,7 @@ export function Hero() {
           {content.hero.subhead}
         </p>
         <p className="mt-4 text-base font-semibold text-foreground">
-          Starting at {config.price}
+          Current offer: {config.shopifyTrialOffer}
         </p>
         <div className="mt-8 flex justify-center">
           <AffiliateCta>{content.hero.cta}</AffiliateCta>

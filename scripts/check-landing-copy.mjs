@@ -16,11 +16,14 @@ const unsafePhrases = [
 ];
 
 const requiredPhrases = [
-  "Launch your Shopify store in 7 days",
+  "How to get your first Shopify sale in 7 days (without guessing)",
+  "3 days free → $1/month",
   "Get the Free 7-Day Checklist",
+  "Written by",
+  "Jack",
+  "Independent Shopify guide for beginners",
   "affiliate disclosure",
   "results vary",
-  "Start My Shopify Trial",
 ];
 
 function normalize(value) {

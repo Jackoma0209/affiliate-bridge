@@ -8,7 +8,6 @@ import {
   ClipboardCheck,
   CreditCard,
   Lightbulb,
-  ListChecks,
   Megaphone,
   PackageCheck,
   PackageSearch,
@@ -19,6 +18,7 @@ import {
 } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
+import { AuthorProfile } from "@/components/author-profile";
 import { FirstSaleQuiz } from "@/components/first-sale-quiz";
 import { JsonLd } from "@/components/json-ld";
 import { LeadCapture } from "@/components/lead-capture";
@@ -32,10 +32,13 @@ import {
   organizationJsonLd,
   websiteJsonLd,
 } from "@/lib/structured-data";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: content.meta.title,
   description: content.meta.description,
+  authors: [{ name: config.authorName, url: `${config.siteUrl}/contact` }],
+  creator: config.authorName,
   alternates: { canonical: "/" },
   openGraph: {
     title: content.meta.title,
@@ -122,6 +125,120 @@ const faqItems = [
   },
 ] as const;
 
+const authorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: config.authorName,
+  description: config.authorBio,
+  url: `${config.siteUrl}/contact`,
+};
+
+function SectionHeader({
+  eyebrow,
+  title,
+  body,
+  align = "center",
+  className,
+}: {
+  eyebrow?: string;
+  title: string;
+  body?: string;
+  align?: "center" | "left";
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "mx-auto max-w-3xl",
+        align === "center" ? "text-center" : "text-left",
+        className
+      )}
+    >
+      {eyebrow ? (
+        <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+          {eyebrow}
+        </p>
+      ) : null}
+      <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground text-balance md:text-4xl">
+        {title}
+      </h2>
+      {body ? (
+        <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
+          {body}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function LaunchChecklistPreview() {
+  return (
+    <figure className="ml-auto max-w-md rounded-xl border border-border bg-card p-3 shadow-[0_24px_80px_var(--card-glow)]">
+      <div className="overflow-hidden rounded-lg bg-muted">
+        {/* eslint-disable-next-line @next/next/no-img-element -- The project explicitly requires semantic img elements for editorial images. */}
+        <img
+          src="/images/7-day-checklist-preview.webp"
+          width={1024}
+          height={1536}
+          alt="Printed 7-day ecommerce checklist with steps for product, store, product page, checkout, trust, traffic, and review"
+          className="h-[29rem] w-full object-cover object-center xl:h-[31rem]"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
+      </div>
+      <figcaption className="px-1 pt-3 text-xs leading-5 text-muted-foreground">
+        A practical preview of the seven steps—no revenue promises or hidden course pitch.
+      </figcaption>
+    </figure>
+  );
+}
+
+function CtaBand({
+  title,
+  body,
+  eventName,
+  variant = "light",
+}: {
+  title: string;
+  body: string;
+  eventName: "hero_cta_click" | "plan_cta_click" | "comparison_cta_click";
+  variant?: "light" | "dark";
+}) {
+  const isDark = variant === "dark";
+
+  return (
+    <section
+      className={cn(
+        "px-4 py-5 sm:px-6 md:py-8",
+        isDark
+          ? "bg-foreground text-background dark:bg-card dark:text-card-foreground"
+          : "border-y border-border bg-muted/65"
+      )}
+    >
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
+          <p
+            className={cn(
+              "mt-1 max-w-2xl text-sm leading-6",
+              isDark ? "text-background/75 dark:text-muted-foreground" : "text-muted-foreground"
+            )}
+          >
+            {body}
+          </p>
+        </div>
+        <AffiliateCta
+          eventName={eventName}
+          variant={isDark ? "light" : "primary"}
+          className="md:w-auto"
+        >
+          {config.shopifyTrialCta}
+        </AffiliateCta>
+      </div>
+    </section>
+  );
+}
 export default function Home() {
   return (
     <>
@@ -130,88 +247,50 @@ export default function Home() {
           organizationJsonLd(),
           websiteJsonLd(),
           faqPageJsonLd([...faqItems]),
+          authorSchema,
         ]}
       />
       <SiteHeader />
       <main className="bg-background pb-24 text-foreground md:pb-0">
-        <section className="bg-[image:var(--hero-gradient)] px-4 py-10 sm:px-6 md:py-20">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.05fr_0.8fr] lg:items-center">
+        <section className="bg-[image:var(--hero-gradient)] px-4 pt-7 pb-8 sm:px-6 md:py-10 xl:py-12">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.15fr_0.8fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-primary">
                 {content.hero.eyebrow}
               </p>
-              <h1 className="mt-4 max-w-4xl text-[2.25rem] leading-[1.05] font-semibold tracking-tight text-balance sm:text-5xl lg:text-[3.5rem]">
+              <h1 className="mt-3 max-w-3xl text-[2rem] leading-[1.02] font-semibold tracking-[-0.035em] text-foreground text-balance sm:text-[2.75rem] lg:text-5xl lg:leading-[0.98]">
                 {content.hero.headline}
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground md:text-lg md:leading-8">
+              <p className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground text-pretty xl:text-lg xl:leading-8">
                 {content.hero.subhead}
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-stretch">
+
+              <div className="mt-6 flex flex-col items-start gap-3 xl:flex-row">
                 <Link
                   href="/checklist"
-                  className="inline-flex min-h-14 flex-1 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_16px_38px_var(--card-glow)] transition-colors hover:brightness-95 focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none sm:flex-none"
+                  className="inline-flex min-h-14 items-center justify-center rounded-lg bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_16px_38px_var(--card-glow)] transition-colors hover:brightness-95 focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
                 >
                   Get the Free 7-Day Checklist
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
                 <AffiliateCta
                   eventName="hero_cta_click"
+                  trackingPlacement="hero_secondary_trial"
+                  variant="light"
+                  className="max-w-full text-sm"
                   large
-                  variant="dark"
-                  className="sm:min-w-[13.5rem]"
                 >
-                  Start My Shopify Trial
+                  {config.shopifyTrialCta}
                 </AffiliateCta>
               </div>
-              <p className="mt-4 max-w-2xl text-xs leading-5 text-muted-foreground">
-                The checklist opens instantly. Affiliate disclosure:{" "}
-                {config.affiliateDisclosure.replace("Disclosure: ", "")} Results
-                vary.
+
+              <p className="mt-3 max-w-3xl text-xs leading-5 text-muted-foreground">
+                Start with the checklist; open Shopify when you reach Day 2. Affiliate link — I
+                may earn a commission at no extra cost to you. Results vary.
               </p>
             </div>
 
-            <div className="rounded-lg border border-border bg-card p-5 shadow-[0_24px_80px_var(--card-glow)]">
-              <div className="flex items-center justify-between border-b border-border pb-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-primary">
-                    Checklist preview
-                  </p>
-                  <p className="mt-1 text-lg font-semibold">
-                    Your first-week path
-                  </p>
-                </div>
-                <ListChecks
-                  className="size-6 text-primary"
-                  aria-hidden="true"
-                />
-              </div>
-              <div className="mt-4 grid gap-3">
-                {[
-                  "Choose one focused product idea",
-                  "Publish a simple trustworthy store",
-                  "Test checkout on mobile",
-                  "Send your first targeted visitors",
-                ].map((item, index) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3 rounded-lg border border-border bg-muted/65 p-3"
-                  >
-                    <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-card text-xs font-semibold ring-1 ring-border">
-                      {index + 1}
-                    </span>
-                    <span className="text-sm font-medium">{item}</span>
-                    <CheckCircle2
-                      className="ml-auto size-4 text-primary"
-                      aria-hidden="true"
-                    />
-                  </div>
-                ))}
-              </div>
-              <p className="mt-4 text-xs leading-5 text-muted-foreground">
-                Seven practical stages covering product, store setup, trust,
-                checkout, traffic, and analytics.
-              </p>
-            </div>
+            <LaunchChecklistPreview />
           </div>
         </section>
 
@@ -231,6 +310,12 @@ export default function Home() {
               </strong>{" "}
               Clear disclosures beside affiliate links.
             </p>
+          </div>
+        </section>
+
+        <section className="border-b border-border bg-background px-4 py-6 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <AuthorProfile className="max-w-2xl" />
           </div>
         </section>
 
@@ -305,20 +390,27 @@ export default function Home() {
           className="scroll-mt-24 border-y border-border bg-muted/55 px-4 py-16 sm:px-6 md:py-24"
         >
           <div className="mx-auto max-w-6xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                Main checklist
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance md:text-4xl">
-                The 7-Day Shopify Launch Plan
-              </h2>
-              <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
-                Complete one focused job each day. Publish before the store
-                feels perfect, then use real visitor behaviour to decide what to
-                improve.
-              </p>
-            </div>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+            <SectionHeader
+              eyebrow="Main checklist"
+              title="7-Day First Sale Launch Plan"
+              body="Each day has one job. Keep the first version narrow, publish before you feel completely ready, and let real visitors show you what to improve."
+            />
+            <figure className="mt-10 overflow-hidden rounded-xl border border-border bg-card p-3 shadow-sm shadow-black/[0.03]">
+              {/* eslint-disable-next-line @next/next/no-img-element -- The project explicitly requires semantic img elements for editorial images. */}
+              <img
+                src="/images/7-day-progress.webp"
+                width={1983}
+                height={793}
+                alt="Seven-step ecommerce launch sequence: product, store, page, checkout, trust, traffic, and review"
+                className="h-auto w-full rounded-lg"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="px-2 pt-3 text-xs leading-5 text-muted-foreground">
+                An original process illustration. The steps guide the work; they do not guarantee a sale.
+              </figcaption>
+            </figure>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-7">
               {content.solution.steps.map((step, index) => {
                 const Icon = planIcons[index];
                 return (
@@ -355,14 +447,47 @@ export default function Home() {
               </Link>
               <AffiliateCta
                 eventName="plan_cta_click"
+                trackingPlacement="plan_after_days"
                 large
-                variant="dark"
+                variant="light"
               >
-                Start My Shopify Trial
+                {config.shopifyTrialCta}
               </AffiliateCta>
             </div>
           </div>
         </section>
+
+        <section className="px-4 py-16 sm:px-6 md:py-24">
+          <div className="mx-auto max-w-6xl">
+            <SectionHeader
+              eyebrow="Product page example"
+              title="Show the product clearly. Make the next action obvious."
+              body="A first product page does not need tricks. It needs a useful image, a clear title, an honest price, and one main action."
+            />
+            <figure className="mt-10 overflow-hidden rounded-xl border border-border bg-card p-3 shadow-[0_24px_80px_var(--card-glow)]">
+              {/* eslint-disable-next-line @next/next/no-img-element -- The project explicitly requires semantic img elements for editorial images. */}
+              <img
+                src="/images/shopify-product-page-example.webp"
+                width={1536}
+                height={1024}
+                alt="Annotated ecommerce product page example highlighting a clear title, honest price, useful product photo, and one main add-to-cart action"
+                className="h-auto w-full rounded-lg"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption className="px-2 pt-3 text-xs leading-5 text-muted-foreground">
+                Original illustrative mockup—not a real merchant page, testimonial, or sales result.
+              </figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <CtaBand
+          title="Ready to turn the checklist into a real store?"
+          body="Open the trial, choose a clean theme, and use the 7-day plan to keep the first version moving."
+          eventName="plan_cta_click"
+          variant="dark"
+        />
 
         <LeadCapture />
 
@@ -521,8 +646,12 @@ export default function Home() {
               focused checklist stage each day.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <AffiliateCta eventName="final_cta_click" large>
-                Start My Shopify Trial
+              <AffiliateCta
+                eventName="final_cta_click"
+                trackingPlacement="final_primary_trial"
+                large
+              >
+                {config.shopifyTrialCta}
               </AffiliateCta>
               <Link
                 href="/checklist"

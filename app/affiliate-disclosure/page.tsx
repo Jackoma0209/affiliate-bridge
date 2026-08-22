@@ -3,10 +3,28 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal-page";
 import { config } from "@/config";
 
+const title = `Affiliate Disclosure | ${config.siteName}`;
+const description =
+  "Affiliate disclosure for Get Your First Sale, an independent Shopify affiliate guide.";
+
 export const metadata: Metadata = {
-  title: `Affiliate Disclosure | ${config.siteName}`,
-  description:
-    "Affiliate disclosure for Get Your First Sale, an independent Shopify affiliate guide.",
+  title,
+  description,
+  alternates: {
+    canonical: "/affiliate-disclosure",
+  },
+  openGraph: {
+    title,
+    description,
+    url: `${config.siteUrl}/affiliate-disclosure`,
+    siteName: config.siteName,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function AffiliateDisclosurePage() {

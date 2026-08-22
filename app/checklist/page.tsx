@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { CheckCircle2, ClipboardCheck } from "lucide-react";
+import { CheckCircle2, Clock3, ClipboardCheck, Palette } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
 import { JsonLd } from "@/components/json-ld";
+import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { PrintChecklistButton } from "@/components/print-checklist-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -161,8 +162,13 @@ export default function ChecklistPage() {
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row print:hidden">
                 <PrintChecklistButton />
-                <AffiliateCta eventName="checklist_page_cta_click" large>
-                  Start My Shopify Trial
+                <AffiliateCta
+                  eventName="checklist_page_cta_click"
+                  variant="light"
+                  className="text-sm"
+                  large
+                >
+                  {config.shopifyTrialCta}
                 </AffiliateCta>
               </div>
               <p className="mt-4 text-xs leading-5 text-muted-foreground print:hidden">
@@ -180,68 +186,141 @@ export default function ChecklistPage() {
           className="px-4 py-14 sm:px-6 md:py-20 print:px-0 print:py-4"
         >
           <div className="mx-auto grid max-w-5xl gap-4 print:max-w-none">
-            {checklist.map((day, index) => (
-              <article
-                key={day.day}
-                id={`day-${index + 1}`}
-                className="break-inside-avoid rounded-lg border border-border bg-card p-5 shadow-sm shadow-black/[0.03] print:shadow-none"
-              >
-                <div className="grid gap-4 md:grid-cols-[11rem_1fr]">
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-                      {day.day}
-                    </p>
-                    <h2 className="mt-2 text-xl font-semibold tracking-tight text-card-foreground">
-                      {day.title}
-                    </h2>
-                  </div>
-                  <div>
-                    <p className="mb-4 text-sm leading-6 text-card-foreground">
-                      <strong>Objective:</strong> {day.objective}
-                    </p>
-                    <ul className="grid gap-3 sm:grid-cols-2">
-                      {day.items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex gap-3 text-sm leading-6 text-muted-foreground"
-                        >
-                          <CheckCircle2
-                            className="mt-0.5 size-4 shrink-0 text-primary"
-                            aria-hidden="true"
-                          />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+            {checklist.map((day, index) => {
+              const isTrialDay = index === 1;
 
-                    {"showTrialCta" in day && day.showTrialCta ? (
-                      <div className="mt-6 rounded-lg border border-primary/30 bg-primary/10 p-4 print:hidden">
-                        <p className="text-sm font-semibold text-card-foreground">
-                          Ready for Day 2? Open your Shopify trial now
+              if (isTrialDay) {
+                return (
+                  <article
+                    id="day-2"
+                    key={day.day}
+                    className="break-inside-avoid scroll-mt-24 overflow-hidden rounded-xl border-2 border-primary/40 bg-card p-6 shadow-[0_24px_80px_var(--card-glow)] md:p-8 print:border-border print:shadow-none"
+                  >
+                    <div className="grid gap-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+                      <div>
+                        <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                          Day 2 · Store setup
                         </p>
-                        <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                          This is the highest-intent moment in the checklist.
-                          Start the trial, pick a clean theme, and keep moving—
-                          do not redesign before you have visitors.
+                        <h2 className="mt-2 text-3xl font-semibold tracking-tight text-card-foreground text-balance md:text-4xl">
+                          Day 2 – Open your Shopify trial
+                        </h2>
+                        <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground md:text-base md:leading-7">
+                          Open the store, choose a dependable free theme, and stop once the basic
+                          structure is ready. You can refine the design after real visitors have
+                          used it.
                         </p>
-                        <div className="mt-4">
-                          <AffiliateCta
-                            eventName="checklist_day2_cta_click"
-                            trackingPlacement="checklist_day2"
-                            large
-                          >
-                            Start My Shopify Trial
-                          </AffiliateCta>
+
+                        <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                          <div className="rounded-lg border border-border bg-muted/60 p-4">
+                            <div className="flex items-center gap-2 text-primary">
+                              <Palette className="size-4" aria-hidden="true" />
+                              <p className="text-xs font-semibold uppercase tracking-wide">
+                                Recommended theme
+                              </p>
+                            </div>
+                            <p className="mt-2 text-lg font-semibold text-card-foreground">Dawn</p>
+                            <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                              Free, clean, and flexible enough for a first store.
+                            </p>
+                          </div>
+                          <div className="rounded-lg border border-border bg-muted/60 p-4">
+                            <div className="flex items-center gap-2 text-primary">
+                              <Clock3 className="size-4" aria-hidden="true" />
+                              <p className="text-xs font-semibold uppercase tracking-wide">
+                                Time estimate
+                              </p>
+                            </div>
+                            <p className="mt-2 text-lg font-semibold text-card-foreground">
+                              45–90 minutes
+                            </p>
+                            <p className="mt-1 text-xs leading-5 text-muted-foreground">
+                              Enough for setup—not a full brand redesign.
+                            </p>
+                          </div>
                         </div>
+                      </div>
+
+                      <div className="rounded-xl border border-primary/30 bg-primary/10 p-5 md:p-6 print:hidden">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                          Current Shopify offer
+                        </p>
+                        <p className="mt-2 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+                          3 days free → then $1/month
+                        </p>
+                        <ul className="mt-5 grid gap-3">
+                          {[
+                            "Choose a short, easy-to-spell store name.",
+                            "Open Shopify and select the Dawn theme.",
+                            "Add your logo or store name, then move on.",
+                          ].map((item) => (
+                            <li
+                              key={item}
+                              className="flex gap-3 text-sm leading-6 text-muted-foreground"
+                            >
+                              <CheckCircle2
+                                className="mt-0.5 size-4 shrink-0 text-primary"
+                                aria-hidden="true"
+                              />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <AffiliateCta
+                          eventName="checklist_page_cta_click"
+                          trackingPlacement="checklist_day2"
+                          className="mt-6 w-full sm:w-auto"
+                          large
+                        >
+                          {config.shopifyTrialCta}
+                        </AffiliateCta>
                         <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                          {config.affiliateDisclosure} Results vary.
+                          Affiliate link. I may earn a commission at no extra cost to you. Shopify
+                          controls its pricing and trial terms.
                         </p>
                       </div>
-                    ) : null}
+                    </div>
+                  </article>
+                );
+              }
+
+              return (
+                <article
+                  id={`day-${index + 1}`}
+                  key={day.day}
+                  className="break-inside-avoid scroll-mt-24 rounded-lg border border-border bg-card p-5 shadow-sm shadow-black/[0.03] print:shadow-none"
+                >
+                  <div className="grid gap-4 md:grid-cols-[11rem_1fr]">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                        {day.day}
+                      </p>
+                      <h2 className="mt-2 text-xl font-semibold tracking-tight text-card-foreground">
+                        {day.title}
+                      </h2>
+                    </div>
+                    <div>
+                      <p className="mb-4 text-sm leading-6 text-card-foreground">
+                        <strong>Objective:</strong> {day.objective}
+                      </p>
+                      <ul className="grid gap-3 sm:grid-cols-2">
+                        {day.items.map((item) => (
+                          <li
+                            key={item}
+                            className="flex gap-3 text-sm leading-6 text-muted-foreground"
+                          >
+                            <CheckCircle2
+                              className="mt-0.5 size-4 shrink-0 text-primary"
+                              aria-hidden="true"
+                            />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </section>
 
@@ -257,7 +336,7 @@ export default function ChecklistPage() {
             </p>
             <div className="mt-8 flex justify-center">
               <AffiliateCta eventName="checklist_page_cta_click" large>
-                Start My Shopify Trial
+                {config.shopifyTrialCta}
               </AffiliateCta>
             </div>
             <p className="mx-auto mt-4 max-w-2xl text-xs leading-5 text-muted-foreground">
@@ -270,6 +349,7 @@ export default function ChecklistPage() {
       </main>
       <div className="print:hidden">
         <SiteFooter />
+        <MobileStickyCta />
       </div>
     </>
   );

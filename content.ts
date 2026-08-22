@@ -1,3 +1,5 @@
+import { config } from "@/config";
+
 export const content = {
   meta: {
     title: "How to Get Your First Shopify Sale: 7-Day Launch Plan",
@@ -8,7 +10,7 @@ export const content = {
   hero: {
     eyebrow: "Free Shopify launch checklist for beginners",
     headline:
-      "Launch your Shopify store in 7 days — without guessing what to do next",
+      "How to get your first Shopify sale in 7 days (without guessing)",
     subhead:
       "Use a practical day-by-day checklist for choosing one product, building a trustworthy store, testing checkout, and attracting your first targeted visitors. No coding and no income promises.",
     cta: "Get the Free 7-Day Checklist",
@@ -106,7 +108,7 @@ export const content = {
     body: "You do not need a perfect brand, a giant budget, or a guaranteed winning product before you begin. Use the free checklist first, then open Shopify when you are ready to build.",
     riskReversal:
       "This is an independent affiliate guide. Your sales depend on your product, offer, traffic, and effort.",
-    cta: "Start My Shopify Trial",
+    cta: config.shopifyTrialCta,
     microCopy:
       "Disclosure: I may earn a commission if you start Shopify through my link, at no extra cost to you. Results vary.",
   },

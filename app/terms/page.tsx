@@ -3,9 +3,27 @@ import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal-page";
 import { config } from "@/config";
 
+const title = `Terms of Use | ${config.siteName}`;
+const description = "Terms for using Get Your First Sale.";
+
 export const metadata: Metadata = {
-  title: `Terms | ${config.siteName}`,
-  description: "Terms for using Get Your First Sale.",
+  title,
+  description,
+  alternates: {
+    canonical: "/terms",
+  },
+  openGraph: {
+    title,
+    description,
+    url: `${config.siteUrl}/terms`,
+    siteName: config.siteName,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function TermsPage() {
