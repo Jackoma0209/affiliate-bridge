@@ -3,6 +3,7 @@ import Script from "next/script";
 
 import { AnalyticsScripts } from "@/components/analytics-scripts";
 import { AttributionCapture } from "@/components/attribution-capture";
+import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { config } from "@/config";
 
 import "./globals.css";
@@ -38,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="min-h-full overflow-x-hidden font-sans">
+      <body className="min-h-full overflow-x-hidden pb-[5.75rem] font-sans md:pb-0">
         <Script id="theme-init" strategy="beforeInteractive">
           {`
             (function() {
@@ -54,6 +55,7 @@ export default function RootLayout({
         </Script>
         <AttributionCapture />
         {children}
+        <MobileStickyCta />
         <AnalyticsScripts />
       </body>
     </html>

@@ -1,6 +1,7 @@
 export type TrackingEventName =
   | "hero_checklist_click"
   | "hero_cta_click"
+  | "header_cta_click"
   | "sticky_checklist_click"
   | "sticky_trial_click"
   | "quiz_start"
@@ -18,6 +19,8 @@ export type TrackingEventName =
   | "checklist_request_email_open"
   | "affiliate_click"
   | "guide_cta_click"
+  | "worksheets_cta_click"
+  | "setup_cta_click"
   | "theme_toggle_click";
 
 type TrackingParameters = Record<string, string | number | boolean | undefined>;

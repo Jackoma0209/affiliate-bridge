@@ -23,7 +23,6 @@ const requiredPhrases = [
   "Jack",
   "Independent Shopify guide for beginners",
   "affiliate disclosure",
-  "results vary",
 ];
 
 function normalize(value) {

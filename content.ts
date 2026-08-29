@@ -14,6 +14,8 @@ export const content = {
     subhead:
       "Use a practical day-by-day checklist for choosing one product, building a trustworthy store, testing checkout, and attracting your first targeted visitors. No coding and no income promises.",
     cta: "Get the Free 7-Day Checklist",
+    trialHint:
+      "Have a product and time this week? Open the trial. Still deciding what to sell? Start with the checklist.",
   },
 
   problem: {

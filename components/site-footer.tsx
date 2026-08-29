@@ -14,8 +14,7 @@ export function SiteFooter() {
             {config.affiliateDisclosure}
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-6">
-            This site is independent from Shopify. It is not Shopify, not owned
-            by Shopify, and does not imply that I work for Shopify. Results vary.
+            Independent from Shopify. Written by {config.authorName}.
           </p>
         </div>
 
@@ -24,11 +23,14 @@ export function SiteFooter() {
           <Link href="/shopify-for-beginners" className="hover:text-background dark:hover:text-foreground">
             Shopify for Beginners
           </Link>
-          <Link href="/what-to-sell-on-shopify" className="hover:text-background dark:hover:text-foreground">
-            What to Sell
+          <Link href="/shopify-dawn-theme-setup" className="hover:text-background dark:hover:text-foreground">
+            Dawn Setup
           </Link>
-          <Link href="/why-my-shopify-store-isnt-getting-sales" className="hover:text-background dark:hover:text-foreground">
-            Store Not Getting Sales
+          <Link href="/test-shopify-checkout-on-mobile" className="hover:text-background dark:hover:text-foreground">
+            Mobile Checkout Test
+          </Link>
+          <Link href="/get-first-shopify-visitors" className="hover:text-background dark:hover:text-foreground">
+            First Visitors
           </Link>
           <Link href="/shopify-vs-etsy" className="hover:text-background dark:hover:text-foreground">
             Shopify vs Etsy
@@ -40,11 +42,14 @@ export function SiteFooter() {
           <Link href="/checklist" className="hover:text-background dark:hover:text-foreground">
             Checklist
           </Link>
-          <Link href="/#about" className="hover:text-background dark:hover:text-foreground">
-            About
+          <Link href="/worksheets" className="hover:text-background dark:hover:text-foreground">
+            Worksheets
           </Link>
           <Link href="/guides" className="hover:text-background dark:hover:text-foreground">
             All Guides
+          </Link>
+          <Link href="/contact#setup" className="hover:text-background dark:hover:text-foreground">
+            Paid setup
           </Link>
           <Link href="/affiliate-disclosure" className="hover:text-background dark:hover:text-foreground">
             Affiliate Disclosure

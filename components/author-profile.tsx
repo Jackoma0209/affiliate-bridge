@@ -44,7 +44,7 @@ export function AuthorProfile({
       ) : (
         <div
           role="img"
-          aria-label={`Headshot placeholder for ${config.authorName}`}
+          aria-label={`${config.authorName}, author of ${config.siteName}`}
           className="flex size-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xl font-semibold text-primary ring-2 ring-primary/20"
         >
           J
@@ -55,9 +55,6 @@ export function AuthorProfile({
         <p className="text-xs font-semibold uppercase tracking-wide text-primary">{label}</p>
         <p className="mt-1 text-lg font-semibold text-card-foreground">{authorName}</p>
         <p className="mt-1 text-sm leading-6 text-muted-foreground">{config.authorBio}</p>
-        {!config.authorImagePath ? (
-          <p className="mt-1 text-xs text-muted-foreground">Headshot to be added.</p>
-        ) : null}
       </div>
     </div>
   );

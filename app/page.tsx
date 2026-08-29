@@ -22,7 +22,6 @@ import { AuthorProfile } from "@/components/author-profile";
 import { FirstSaleQuiz } from "@/components/first-sale-quiz";
 import { JsonLd } from "@/components/json-ld";
 import { LeadCapture } from "@/components/lead-capture";
-import { MobileStickyCta } from "@/components/mobile-sticky-cta";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
@@ -121,7 +120,12 @@ const faqItems = [
   {
     question: "When should I open a Shopify trial?",
     answer:
-      "Open the trial when you are ready to build—typically Day 2 of the checklist—after you can describe one buyer, one problem, and one simple offer. You do not need a perfect brand first.",
+      "If you already have a product and a few hours this week, open it today. If you still cannot describe one buyer and one offer, do Day 1 of the checklist first, then open the trial on Day 2. You do not need a perfect brand first.",
+  },
+  {
+    question: "Can you set up the store for me?",
+    answer:
+      "Yes, as a paid setup. Email getyourfirstsale@gmail.com with the subject SETUP and include your product, audience, and deadline. This is independent from Shopify and separate from the free checklist.",
   },
 ] as const;
 
@@ -251,7 +255,7 @@ export default function Home() {
         ]}
       />
       <SiteHeader />
-      <main className="bg-background pb-24 text-foreground md:pb-0">
+      <main className="bg-background text-foreground">
         <section className="bg-[image:var(--hero-gradient)] px-4 pt-7 pb-8 sm:px-6 md:py-10 xl:py-12">
           <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.15fr_0.8fr] lg:items-center">
             <div>
@@ -266,27 +270,35 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex flex-col items-start gap-3 xl:flex-row">
-                <Link
-                  href="/checklist"
-                  className="inline-flex min-h-14 items-center justify-center rounded-lg bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_16px_38px_var(--card-glow)] transition-colors hover:brightness-95 focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
-                >
-                  Get the Free 7-Day Checklist
-                  <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
                 <AffiliateCta
                   eventName="hero_cta_click"
-                  trackingPlacement="hero_secondary_trial"
-                  variant="light"
+                  trackingPlacement="hero_primary"
                   className="max-w-full text-sm"
                   large
                 >
                   {config.shopifyTrialCta}
                 </AffiliateCta>
+                <Link
+                  href="/checklist"
+                  className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border border-border bg-card px-6 text-base font-semibold text-card-foreground shadow-sm transition-colors hover:bg-muted focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
+                >
+                  Get the Free 7-Day Checklist
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
               </div>
 
-              <p className="mt-3 max-w-3xl text-xs leading-5 text-muted-foreground">
-                Start with the checklist; open Shopify when you reach Day 2. Affiliate link — I
-                may earn a commission at no extra cost to you. Results vary.
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
+                {content.hero.trialHint}
+              </p>
+              <p className="mt-2 max-w-3xl text-xs leading-5 text-muted-foreground">
+                {config.affiliateDisclosureShort}{" "}
+                <Link
+                  href="/affiliate-disclosure"
+                  className="font-medium text-foreground underline-offset-4 hover:underline"
+                >
+                  Full disclosure
+                </Link>
+                .
               </p>
             </div>
 
@@ -301,8 +313,8 @@ export default function Home() {
               Not owned by Shopify.
             </p>
             <p>
-              <strong className="text-foreground">No fake proof.</strong> No
-              guaranteed-income claims.
+              <strong className="text-foreground">Checklist is free.</strong>{" "}
+              No email wall to read it.
             </p>
             <p>
               <strong className="text-foreground">
@@ -336,13 +348,20 @@ export default function Home() {
               <div className="space-y-4 text-sm leading-7 text-muted-foreground md:text-base">
                 <p>{config.aboutBlurb}</p>
                 <p>
-                  Questions or feedback:{" "}
+                  Questions:{" "}
                   <a
                     href={`mailto:${config.contactEmail}`}
                     className="font-medium text-foreground underline-offset-4 hover:underline"
                   >
                     {config.contactEmail}
                   </a>
+                  . Need the store built for you?{" "}
+                  <Link
+                    href="/contact#setup"
+                    className="font-medium text-foreground underline-offset-4 hover:underline"
+                  >
+                    Paid setup details
+                  </Link>
                   .
                 </p>
               </div>
@@ -489,6 +508,30 @@ export default function Home() {
           variant="dark"
         />
 
+        <section className="px-4 py-12 sm:px-6">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-lg border border-border bg-card p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Free worksheets
+              </p>
+              <h2 className="mt-1 text-xl font-semibold tracking-tight">
+                Offer sentence, product-page template, and Day 6 outreach scripts
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+                Printable templates that sit next to the 7-day plan. No email
+                required.
+              </p>
+            </div>
+            <Link
+              href="/worksheets"
+              className="inline-flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground hover:brightness-95"
+            >
+              Open the worksheets
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
+
         <LeadCapture />
 
         <section id="quiz" className="scroll-mt-24 px-4 py-16 sm:px-6 md:py-24">
@@ -601,7 +644,7 @@ export default function Home() {
                 eventName="comparison_cta_click"
                 large
               >
-                Start My Shopify Trial
+                {config.shopifyTrialCta}
               </AffiliateCta>
             </div>
           </div>
@@ -662,13 +705,19 @@ export default function Home() {
               </Link>
             </div>
             <p className="mt-4 text-xs leading-5 text-background/65 dark:text-muted-foreground">
-              {config.affiliateDisclosure} Results vary.
+              {config.affiliateDisclosureShort}{" "}
+              <Link
+                href="/affiliate-disclosure"
+                className="underline-offset-4 hover:underline"
+              >
+                Full disclosure
+              </Link>
+              .
             </p>
           </div>
         </section>
       </main>
       <SiteFooter />
-      <MobileStickyCta />
     </>
   );
 }

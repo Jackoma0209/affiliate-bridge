@@ -3,7 +3,7 @@ import { CheckCircle2, Clock3, ClipboardCheck, Palette } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
 import { JsonLd } from "@/components/json-ld";
-import { MobileStickyCta } from "@/components/mobile-sticky-cta";
+import { LeadForm } from "@/components/lead-form";
 import { PrintChecklistButton } from "@/components/print-checklist-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -172,11 +172,26 @@ export default function ChecklistPage() {
                 </AffiliateCta>
               </div>
               <p className="mt-4 text-xs leading-5 text-muted-foreground print:hidden">
-                The checklist is free and already visible below. Shopify is
-                optional. Affiliate disclosure:{" "}
-                {config.affiliateDisclosure.replace("Disclosure: ", "")} Results
-                vary.
+                {config.affiliateDisclosureShort} The checklist is already
+                visible below — no email required.
               </p>
+            </div>
+
+            <div className="mt-10 max-w-xl rounded-lg border border-border bg-card p-5 shadow-sm print:hidden">
+              <p className="text-sm font-semibold text-card-foreground">
+                Optional: get the Day 2 trial reminder
+              </p>
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                Most people should open Shopify on Day 2. I’ll email that
+                prompt, then one focused task a day.
+              </p>
+              <div className="mt-4">
+                <LeadForm
+                  source="checklist_hero"
+                  compact
+                  submitLabel="Send me Day 2"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -334,22 +349,26 @@ export default function ChecklistPage() {
               stage at a time. The platform does not guarantee a sale; the
               checklist helps you run a clearer first test.
             </p>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <AffiliateCta eventName="checklist_page_cta_click" large>
                 {config.shopifyTrialCta}
               </AffiliateCta>
+              <a
+                href="/worksheets"
+                className="inline-flex min-h-14 items-center justify-center rounded-lg border border-border bg-card px-6 text-base font-semibold text-card-foreground hover:bg-muted"
+              >
+                Open free worksheets
+              </a>
             </div>
             <p className="mx-auto mt-4 max-w-2xl text-xs leading-5 text-muted-foreground">
-              {config.affiliateDisclosure} Get Your First Sale is independent
-              from Shopify. Results vary based on your product, offer, traffic,
-              effort, and market.
+              {config.affiliateDisclosureShort} Get Your First Sale is
+              independent from Shopify.
             </p>
           </div>
         </section>
       </main>
       <div className="print:hidden">
         <SiteFooter />
-        <MobileStickyCta />
       </div>
     </>
   );

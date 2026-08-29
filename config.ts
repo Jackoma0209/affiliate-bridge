@@ -5,7 +5,7 @@ export const config = {
   authorBio:
     "Independent Shopify guide for beginners. No courses, no fake income claims.",
   authorImagePath: null as string | null,
-  lastUpdated: "22 Aug 2026",
+  lastUpdated: "29 Aug 2026",
   affiliateUrl: "https://shopify.pxf.io/5kqbaL",
   productName: "Shopify",
   shopifyTrialOffer: "3 days free, then $1/month",
@@ -15,8 +15,11 @@ export const config = {
   clarityProjectId: "",
   affiliateDisclosure:
     "Disclosure: I'm a Shopify affiliate and may earn a commission if you start Shopify through my link, at no extra cost to you.",
+  affiliateDisclosureShort:
+    "Affiliate link — commission at no extra cost to you.",
   contactEmail: "getyourfirstsale@gmail.com",
-  reviewedLabel: "Updated 22 Aug 2026 by Jack",
+  reviewedLabel: "Updated 29 Aug 2026 by Jack",
+  contentDateIso: "2026-08-29",
   aboutBlurb:
     "Get Your First Sale is an independent beginner resource built to replace vague Shopify advice with a practical launch sequence: one offer, a trustworthy store, a tested checkout, and a small traffic experiment. No fake testimonials, no income promises—just a clearer next step each day.",
 } as const;

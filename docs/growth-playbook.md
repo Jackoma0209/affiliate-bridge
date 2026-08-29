@@ -4,7 +4,10 @@ Use this pack the same day you ship conversion fixes. The site converts better w
 
 Canonical site: `https://www.getyourfirstsale.com`  
 Checklist: `https://www.getyourfirstsale.com/checklist`  
+Worksheets: `https://www.getyourfirstsale.com/worksheets`  
 Affiliate base (do not post bare without UTM context on the site): handled by on-site CTAs via Impact.
+
+Primary on-site CTA is now the Shopify trial. The checklist remains free and ungated. Day 2 of the checklist is the money moment — MailerLite email 2 should point there.
 
 ---
 
@@ -111,7 +114,7 @@ Primary links inside emails:
 
 - Checklist: `https://www.getyourfirstsale.com/checklist?utm_source=email&utm_medium=email&utm_campaign=day{N}`
 - Home quiz: `https://www.getyourfirstsale.com/?utm_source=email&utm_medium=email&utm_campaign=day{N}#quiz`
-- On-site “Start My Shopify Trial” buttons are preferred for tracking; if you must link out, still send people through the site first when possible.
+- On-site “Start Shopify trial (3 days free → $1/month)” buttons are preferred for tracking; if you must link out, still send people through the site first when possible.
 
 ### Email 0 — Immediate welcome (trigger)
 
@@ -260,7 +263,7 @@ If you're ready to build or continue building, use the Shopify trial CTA on the 
 
 ## 4. Analytics checks (same day)
 
-1. GA4 realtime: load homepage, click **Start My Shopify Trial** → expect `affiliate_click` (+ placement event).
+1. GA4 realtime: load homepage, click **Start Shopify trial** → expect `affiliate_click` (+ placement event).
 2. Quiz complete → `quiz_complete` with `ready_to_build` when product exists + 5–10+ hours.
 3. Mobile sticky: checklist + trial both fire events.
 4. Checklist Day 2 CTA → `checklist_day2_cta_click`.

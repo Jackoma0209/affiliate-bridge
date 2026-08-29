@@ -8,9 +8,9 @@ import { config } from "@/config";
 const links = [
   ["Plan", "/#launch-plan"],
   ["Checklist", "/checklist"],
+  ["Worksheets", "/worksheets"],
   ["Guides", "/guides"],
   ["Quiz", "/#quiz"],
-  ["Compare", "/#comparison"],
 ] as const;
 
 export function SiteHeader() {
@@ -54,12 +54,12 @@ export function SiteHeader() {
           </details>
           <ThemeToggle className="hidden sm:inline-flex" />
           <AffiliateCta
-            eventName="hero_cta_click"
+            eventName="header_cta_click"
             trackingPlacement="header"
             className="hidden px-3 text-xs md:inline-flex md:w-auto xl:px-5 xl:text-sm"
             showIcon={false}
           >
-            {config.shopifyTrialCta}
+            Start trial
           </AffiliateCta>
         </div>
       </div>

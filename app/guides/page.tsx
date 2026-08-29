@@ -38,6 +38,26 @@ const guides = [
     title: "7-Day Shopify Launch Checklist",
     description: "Work through the complete launch sequence and print or save it as a PDF.",
   },
+  {
+    href: "/worksheets",
+    title: "First Sale Worksheets",
+    description: "Offer sentence, product-page outline, policy starters, and Day 6 outreach scripts.",
+  },
+  {
+    href: "/shopify-dawn-theme-setup",
+    title: "Shopify Dawn Setup",
+    description: "Pick Dawn, add one product, publish a contact page, and stop before a redesign loop.",
+  },
+  {
+    href: "/test-shopify-checkout-on-mobile",
+    title: "Test Checkout on Mobile",
+    description: "Run the full phone path before you send anyone to the store.",
+  },
+  {
+    href: "/get-first-shopify-visitors",
+    title: "First Visitors Without Ads",
+    description: "Get 25 relevant people to the store with warm messages and one channel.",
+  },
 ] as const;
 
 export default function GuidesPage() {

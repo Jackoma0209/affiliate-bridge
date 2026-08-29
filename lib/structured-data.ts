@@ -18,6 +18,23 @@ type ArticleInput = {
   dateModified?: string;
 };
 
+export function personJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: config.authorName,
+    url: `${config.siteUrl}/contact`,
+    email: config.contactEmail,
+    jobTitle: config.authorBio,
+    worksFor: {
+      "@type": "Organization",
+      name: config.siteName,
+      url: config.siteUrl,
+    },
+    description: config.aboutBlurb,
+  };
+}
+
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -25,6 +42,11 @@ export function organizationJsonLd() {
     name: config.siteName,
     url: config.siteUrl,
     email: config.contactEmail,
+    founder: {
+      "@type": "Person",
+      name: config.authorName,
+      url: `${config.siteUrl}/contact`,
+    },
     description:
       "Independent beginner resource for launching a first Shopify store with a practical checklist.",
   };
@@ -110,7 +132,7 @@ export function articleJsonLd({
   description,
   path,
   datePublished = "2026-07-30",
-  dateModified = "2026-08-09",
+  dateModified = config.contentDateIso,
 }: ArticleInput) {
   const url = `${config.siteUrl}${path}`;
 
@@ -124,9 +146,9 @@ export function articleJsonLd({
     datePublished,
     dateModified,
     author: {
-      "@type": "Organization",
-      name: config.siteName,
-      url: config.siteUrl,
+      "@type": "Person",
+      name: config.authorName,
+      url: `${config.siteUrl}/contact`,
     },
     publisher: {
       "@type": "Organization",

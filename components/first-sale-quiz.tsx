@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
+import { LeadForm } from "@/components/lead-form";
 import { config } from "@/config";
 import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,8 @@ type Answers = {
   audience: string;
   time: string;
 };
+
+type Intent = "trial_now" | "trial_lean" | "trial_after_sentence" | "checklist_first";
 
 const questions = [
   {
@@ -64,12 +67,17 @@ const initialAnswers: Answers = {
   time: "",
 };
 
-function isReadyToBuild(answers: Answers) {
-  // Product exists + enough time this week = prioritise Shopify trial CTA.
-  return (
-    answers.hasProduct === "yes" &&
-    (answers.time === "five" || answers.time === "ten")
-  );
+function getIntent(answers: Answers): Intent {
+  if (answers.hasProduct === "yes" && (answers.time === "five" || answers.time === "ten")) {
+    return "trial_now";
+  }
+  if (answers.hasProduct === "yes") {
+    return "trial_lean";
+  }
+  if (answers.hasProduct === "idea" && answers.time === "ten") {
+    return "trial_after_sentence";
+  }
+  return "checklist_first";
 }
 
 function getResult(answers: Answers) {
@@ -90,11 +98,23 @@ function getResult(answers: Answers) {
     dropshipping: "A supplier-backed product test store",
   };
 
+  const modelAction: Record<string, string> = {
+    physical:
+      "Write honest delivery times and a returns line before you polish the theme.",
+    digital:
+      "Make the file, the outcome, and the delivery email obvious on one product page.",
+    services:
+      "Sell one named package with a clear scope, price, and next step — not an open-ended enquiry form.",
+    pod: "Pick one niche design, one mockup style, and one buyer. Do not launch a catalogue of 40 shirts.",
+    dropshipping:
+      "Name one supplier you can actually reach and publish real delivery estimates. Vague shipping kills trust.",
+  };
+
   const firstAction =
     answers.hasProduct === "no"
       ? "Choose one customer problem and list three possible offers before opening a theme editor."
       : answers.hasProduct === "idea"
-        ? "Validate the idea with five potential buyers before spending time on branding."
+        ? "Finish the offer sentence, then show it to five relevant people before spending a day on branding."
         : "Write one clear product page that explains the buyer, outcome, delivery, and returns.";
 
   const trafficAction =
@@ -111,12 +131,27 @@ function getResult(answers: Answers) {
         ? "Complete the core store and checkout this week, but avoid redesign loops."
         : "Use the extra time for original photos, policy checks, mobile testing, and a small traffic experiment.";
 
+  const intent = getIntent(answers);
+
+  const nextStepCopy: Record<Intent, string> = {
+    trial_now: `Open Shopify today (${config.shopifyTrialOffer}), pick Dawn or another clean theme, and skip to Day 3 of the checklist.`,
+    trial_lean:
+      "Open a simple trial, then stop at a working store shell. Do not spend the week on logos.",
+    trial_after_sentence:
+      "Write the offer sentence today. Open Shopify on Day 2 only after a stranger would understand who the product is for.",
+    checklist_first:
+      "Use Day 1 of the checklist before you pay for a theme, ads, or inventory.",
+  };
+
   return {
     recommendedStoreType: storeTypeMap[answers.storeType],
     firstAction,
+    modelAction: modelAction[answers.storeType],
     trafficAction,
     pace,
-    readyToBuild: isReadyToBuild(answers),
+    intent,
+    nextStepCopy: nextStepCopy[intent],
+    readyToBuild: intent === "trial_now" || intent === "trial_lean",
   };
 }
 
@@ -178,6 +213,7 @@ export function FirstSaleQuiz() {
                               audience: next.audience,
                               time_available: next.time,
                               ready_to_build: completed.readyToBuild,
+                              intent: completed.intent,
                             });
                           }
                         }}
@@ -209,60 +245,78 @@ export function FirstSaleQuiz() {
               <h3 className="mt-1 text-2xl font-semibold tracking-tight">
                 {result.recommendedStoreType}
               </h3>
-              {result.readyToBuild ? (
-                <p className="mt-2 text-sm font-medium text-primary">
-                  You look ready to open a simple Shopify trial this week.
-                </p>
-              ) : null}
+              <p className="mt-2 text-sm font-medium text-primary">
+                {result.nextStepCopy}
+              </p>
             </div>
             <div className="space-y-3 text-sm leading-6 text-background/75 dark:text-muted-foreground">
-              {[result.firstAction, result.trafficAction, result.pace].map(
-                (item) => (
-                  <p key={item} className="flex gap-2">
-                    <CheckCircle2
-                      className="mt-0.5 size-4 shrink-0 text-primary"
-                      aria-hidden="true"
-                    />
-                    <span>{item}</span>
-                  </p>
-                )
-              )}
+              {[
+                result.firstAction,
+                result.modelAction,
+                result.trafficAction,
+                result.pace,
+              ].map((item) => (
+                <p key={item} className="flex gap-2">
+                  <CheckCircle2
+                    className="mt-0.5 size-4 shrink-0 text-primary"
+                    aria-hidden="true"
+                  />
+                  <span>{item}</span>
+                </p>
+              ))}
             </div>
             <div className="grid gap-3">
               {result.readyToBuild ? (
                 <>
                   <AffiliateCta
                     eventName="quiz_result_cta_click"
-                    trackingPlacement="quiz_ready_trial"
+                    trackingPlacement={`quiz_${result.intent}`}
                     className="w-full"
                   >
                     {config.shopifyTrialCta}
                   </AffiliateCta>
                   <Link
-                    href="/checklist"
+                    href={result.intent === "trial_now" ? "/checklist#day-3" : "/checklist"}
                     className="inline-flex min-h-11 items-center justify-center rounded-lg bg-card px-4 text-sm font-semibold text-card-foreground ring-1 ring-border hover:bg-muted"
                   >
-                    Open My 7-Day Checklist
+                    {result.intent === "trial_now"
+                      ? "Skip to Day 3 of the checklist"
+                      : "Open the 7-day checklist"}
                   </Link>
                 </>
               ) : (
                 <>
                   <Link
-                    href="/checklist"
+                    href="/checklist#day-1"
                     className="inline-flex min-h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground hover:brightness-95"
                   >
-                    Open My 7-Day Checklist
+                    Start Day 1 of the checklist
                   </Link>
                   <AffiliateCta
                     eventName="quiz_result_cta_click"
-                    trackingPlacement="quiz_explore_trial"
+                    trackingPlacement={`quiz_${result.intent}`}
                     variant="light"
                     className="w-full"
                   >
-                    {config.shopifyTrialCta}
+                    {result.intent === "trial_after_sentence"
+                      ? "I’ll open Shopify on Day 2"
+                      : config.shopifyTrialCta}
                   </AffiliateCta>
                 </>
               )}
+            </div>
+            <div className="rounded-lg border border-background/15 bg-background/5 p-4 dark:border-border dark:bg-muted/40">
+              <p className="text-sm font-semibold">Get the Day 2 reminder</p>
+              <p className="mt-1 text-xs leading-5 text-background/70 dark:text-muted-foreground">
+                Optional. The result above is already yours — no email required.
+              </p>
+              <div className="mt-3">
+                <LeadForm
+                  source="quiz_result"
+                  compact
+                  submitLabel="Send me Day 2"
+                />
+              </div>
             </div>
           </div>
         ) : (
@@ -271,9 +325,9 @@ export function FirstSaleQuiz() {
               Answer all four questions.
             </h3>
             <p className="text-sm leading-6 text-background/75 dark:text-muted-foreground">
-              Your result will include a store model, first validation task,
-              traffic action, and realistic pace. It is shown immediately
-              without an email gate.
+              Your result will include a store model, the next action, and
+              whether you should open Shopify today or stay on Day 1. Shown
+              immediately, no email gate.
             </p>
           </div>
         )}

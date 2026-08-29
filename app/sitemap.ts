@@ -5,11 +5,15 @@ import { config } from "@/config";
 const routes = [
   "",
   "/checklist",
+  "/worksheets",
   "/guides",
   "/shopify-for-beginners",
   "/what-to-sell-on-shopify",
   "/why-my-shopify-store-isnt-getting-sales",
   "/shopify-vs-etsy",
+  "/shopify-dawn-theme-setup",
+  "/get-first-shopify-visitors",
+  "/test-shopify-checkout-on-mobile",
   "/affiliate-disclosure",
   "/privacy-policy",
   "/terms",
@@ -17,7 +21,7 @@ const routes = [
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-08-09T00:00:00.000Z");
+  const lastModified = new Date(`${config.contentDateIso}T00:00:00.000Z`);
 
   return routes.map((route) => ({
     url: `${config.siteUrl}${route}`,
@@ -28,9 +32,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? 1
         : route === "/checklist"
           ? 0.9
-          : route === "/guides"
+          : route === "/worksheets" || route === "/guides"
             ? 0.85
-            : route.startsWith("/shopify") || route.includes("shopify")
+            : route.startsWith("/shopify") ||
+                route.includes("shopify") ||
+                route.includes("visitors") ||
+                route.includes("checkout")
               ? 0.8
               : 0.6,
   }));

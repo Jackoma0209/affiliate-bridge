@@ -72,9 +72,11 @@ export default function PrivacyPolicyPage() {
       <h2>Quiz, analytics, and affiliate links</h2>
       <p>
         The mini quiz runs in your browser and does not submit your answers to a
-        backend. Analytics scripts are only loaded when measurement IDs are
-        configured. Affiliate links may send you to Shopify through impact.com,
-        where their own privacy policies and terms apply.
+        backend. If you use the optional email form on the quiz or checklist
+        page, only the email and optional first name are sent to MailerLite —
+        not the quiz answers. Analytics scripts are only loaded when measurement
+        IDs are configured. Affiliate links may send you to Shopify through
+        impact.com, where their own privacy policies and terms apply.
       </p>
 
       <h2>Your choices</h2>
