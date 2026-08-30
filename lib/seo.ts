@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { config } from "@/config";
+import { media } from "@/lib/media";
 
 type PageMetadataInput = {
   title: string;
@@ -9,10 +10,10 @@ type PageMetadataInput = {
 };
 
 const socialImage = {
-  url: `${config.siteUrl}/opengraph-image`,
-  width: 1200,
-  height: 630,
-  alt: "Get Your First Sale — practical Shopify launch guidance for beginners",
+  url: media.og.src,
+  width: media.og.width,
+  height: media.og.height,
+  alt: media.og.alt,
 };
 
 export function buildPageMetadata({
@@ -38,7 +39,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [`${config.siteUrl}/twitter-image`],
+      images: [media.og.src],
     },
   };
 }

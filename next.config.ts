@@ -1,6 +1,16 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/media/:path*.vtt",
+        headers: [
+          { key: "Content-Type", value: "text/vtt; charset=utf-8" },
+        ],
+      },
+    ];
+  },
   async redirects() {
     return [
       {

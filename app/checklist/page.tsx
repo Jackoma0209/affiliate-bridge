@@ -4,10 +4,12 @@ import { CheckCircle2, Clock3, ClipboardCheck, Palette } from "lucide-react";
 import { AffiliateCta } from "@/components/affiliate-cta";
 import { JsonLd } from "@/components/json-ld";
 import { LeadForm } from "@/components/lead-form";
+import { MediaFigure } from "@/components/media-figure";
 import { PrintChecklistButton } from "@/components/print-checklist-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
+import { copy, media } from "@/lib/media";
 import {
   breadcrumbJsonLd,
   howToJsonLd,
@@ -25,12 +27,21 @@ export const metadata: Metadata = {
     url: `${config.siteUrl}/checklist`,
     siteName: config.siteName,
     type: "article",
+    images: [
+      {
+        url: media.og.src,
+        width: media.og.width,
+        height: media.og.height,
+        alt: media.og.alt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Shopify Launch Checklist: A Practical 7-Day Plan",
     description:
       "Use a practical 7-day Shopify launch checklist covering product choice, store setup, trust, checkout, first visitors, and analytics.",
+    images: [media.og.src],
   },
 };
 
@@ -177,6 +188,15 @@ export default function ChecklistPage() {
               </p>
             </div>
 
+            <MediaFigure
+              src={media.launchPlan.src}
+              mobileSrc={media.launchPlan.mobileSrc}
+              alt={media.launchPlan.alt}
+              caption="Printable preview of the 7-day sequence. Tick boxes on the vertical version."
+              contain
+              className="mt-10 max-w-3xl"
+            />
+
             <div className="mt-10 max-w-xl rounded-lg border border-border bg-card p-5 shadow-sm print:hidden">
               <p className="text-sm font-semibold text-card-foreground">
                 Optional: get the Day 2 trial reminder
@@ -220,10 +240,14 @@ export default function ChecklistPage() {
                           Day 2 – Open your Shopify trial
                         </h2>
                         <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground md:text-base md:leading-7">
-                          Open the store, choose a dependable free theme, and stop once the basic
-                          structure is ready. You can refine the design after real visitors have
-                          used it.
+                          {copy.day2}
                         </p>
+                        <MediaFigure
+                          src={media.day2.src}
+                          alt={media.day2.alt}
+                          caption={media.day2.caption}
+                          className="mt-5 max-w-none"
+                        />
 
                         <div className="mt-5 grid gap-3 sm:grid-cols-2">
                           <div className="rounded-lg border border-border bg-muted/60 p-4">

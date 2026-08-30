@@ -19,13 +19,17 @@ import {
 
 import { AffiliateCta } from "@/components/affiliate-cta";
 import { AuthorProfile } from "@/components/author-profile";
+import { DisclosureLine } from "@/components/disclosure-line";
 import { FirstSaleQuiz } from "@/components/first-sale-quiz";
 import { JsonLd } from "@/components/json-ld";
 import { LeadCapture } from "@/components/lead-capture";
+import { LoopVideo } from "@/components/loop-video";
+import { MediaFigure } from "@/components/media-figure";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
 import { content } from "@/content";
+import { copy, media } from "@/lib/media";
 import {
   faqPageJsonLd,
   organizationJsonLd,
@@ -45,11 +49,20 @@ export const metadata: Metadata = {
     url: config.siteUrl,
     siteName: config.siteName,
     type: "website",
+    images: [
+      {
+        url: media.og.src,
+        width: media.og.width,
+        height: media.og.height,
+        alt: media.og.alt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: content.meta.title,
     description: content.meta.description,
+    images: [media.og.src],
   },
 };
 
@@ -198,51 +211,6 @@ function LaunchChecklistPreview() {
   );
 }
 
-function CtaBand({
-  title,
-  body,
-  eventName,
-  variant = "light",
-}: {
-  title: string;
-  body: string;
-  eventName: "hero_cta_click" | "plan_cta_click" | "comparison_cta_click";
-  variant?: "light" | "dark";
-}) {
-  const isDark = variant === "dark";
-
-  return (
-    <section
-      className={cn(
-        "px-4 py-5 sm:px-6 md:py-8",
-        isDark
-          ? "bg-foreground text-background dark:bg-card dark:text-card-foreground"
-          : "border-y border-border bg-muted/65"
-      )}
-    >
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <div>
-          <h2 className="text-xl font-semibold tracking-tight">{title}</h2>
-          <p
-            className={cn(
-              "mt-1 max-w-2xl text-sm leading-6",
-              isDark ? "text-background/75 dark:text-muted-foreground" : "text-muted-foreground"
-            )}
-          >
-            {body}
-          </p>
-        </div>
-        <AffiliateCta
-          eventName={eventName}
-          variant={isDark ? "light" : "primary"}
-          className="md:w-auto"
-        >
-          {config.shopifyTrialCta}
-        </AffiliateCta>
-      </div>
-    </section>
-  );
-}
 export default function Home() {
   return (
     <>
@@ -303,6 +271,34 @@ export default function Home() {
             </div>
 
             <LaunchChecklistPreview />
+          </div>
+
+          <div className="mx-auto mt-8 max-w-3xl print:hidden">
+            <LoopVideo
+              src={media.videoPlan.src}
+              poster={media.videoPlan.poster}
+              captions={media.videoPlan.captions}
+              title={media.videoPlan.title}
+              caption={media.videoPlan.caption}
+              eager
+            />
+            <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row">
+              <Link
+                href="/checklist"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground hover:brightness-95"
+              >
+                Get the Free 7-Day Checklist
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+              <AffiliateCta
+                eventName="hero_cta_click"
+                trackingPlacement="hero_video"
+                variant="light"
+              >
+                {config.shopifyTrialCta}
+              </AffiliateCta>
+            </div>
+            <DisclosureLine className="mt-3" />
           </div>
         </section>
 
@@ -376,10 +372,29 @@ export default function Home() {
                 Why beginner Shopify stores stall before the first sale
               </h2>
               <p className="mt-4 text-base leading-7 text-muted-foreground md:text-lg">
-                Most stores do not stall because the owner lacks motivation.
-                They stall because one essential part of the launch sequence is
-                missing.
+                {copy.stall}
               </p>
+              <p className="mt-3 text-base font-medium leading-7 text-foreground">
+                {copy.stallLine}
+              </p>
+            </div>
+            <div className="mt-10">
+              <LoopVideo
+                src={media.videoStall.src}
+                poster={media.videoStall.poster}
+                captions={media.videoStall.captions}
+                title={media.videoStall.title}
+                caption={media.videoStall.caption}
+              />
+              <div className="mt-5 flex justify-center">
+                <Link
+                  href="/checklist"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground hover:brightness-95"
+                >
+                  Open the 7-day plan
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              </div>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
               {problems.map((item) => {
@@ -414,21 +429,14 @@ export default function Home() {
               title="7-Day First Sale Launch Plan"
               body="Each day has one job. Keep the first version narrow, publish before you feel completely ready, and let real visitors show you what to improve."
             />
-            <figure className="mt-10 overflow-hidden rounded-xl border border-border bg-card p-3 shadow-sm shadow-black/[0.03]">
-              {/* eslint-disable-next-line @next/next/no-img-element -- The project explicitly requires semantic img elements for editorial images. */}
-              <img
-                src="/images/7-day-progress.webp"
-                width={1983}
-                height={793}
-                alt="Seven-step ecommerce launch sequence: product, store, page, checkout, trust, traffic, and review"
-                className="h-auto w-full rounded-lg"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption className="px-2 pt-3 text-xs leading-5 text-muted-foreground">
-                An original process illustration. The steps guide the work; they do not guarantee a sale.
-              </figcaption>
-            </figure>
+            <MediaFigure
+              src={media.launchPlan.src}
+              mobileSrc={media.launchPlan.mobileSrc}
+              alt={media.launchPlan.alt}
+              caption={media.launchPlan.caption}
+              contain
+              className="mx-auto mt-10 max-w-5xl"
+            />
             <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-7">
               {content.solution.steps.map((step, index) => {
                 const Icon = planIcons[index];
@@ -456,23 +464,42 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link
-                href="/checklist"
-                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg bg-primary px-6 text-base font-semibold text-primary-foreground shadow-[0_16px_38px_var(--card-glow)] hover:brightness-95"
-              >
-                Open the Complete Checklist
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </Link>
-              <AffiliateCta
-                eventName="plan_cta_click"
-                trackingPlacement="plan_after_days"
-                large
-                variant="light"
-              >
-                {config.shopifyTrialCta}
-              </AffiliateCta>
-            </div>
+            <article className="mt-8 grid gap-6 overflow-hidden rounded-xl border-2 border-primary/40 bg-card p-5 shadow-sm lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:p-7">
+              <MediaFigure
+                src={media.day2.src}
+                alt={media.day2.alt}
+                caption={media.day2.caption}
+                className="max-w-none"
+              />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-primary">
+                  Day 2 · highest-intent step
+                </p>
+                <h3 className="mt-2 text-2xl font-semibold tracking-tight">
+                  Open Shopify and choose a simple theme
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground md:text-base">
+                  {copy.day2}
+                </p>
+                <div className="mt-5">
+                  <AffiliateCta
+                    eventName="plan_cta_click"
+                    trackingPlacement="home_day2"
+                    large
+                  >
+                    {config.shopifyTrialCta}
+                  </AffiliateCta>
+                </div>
+                <DisclosureLine className="mt-3" />
+                <Link
+                  href="/checklist"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                >
+                  Open the complete checklist
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
           </div>
         </section>
 
@@ -501,12 +528,44 @@ export default function Home() {
           </div>
         </section>
 
-        <CtaBand
-          title="Ready to turn the checklist into a real store?"
-          body="Open the trial, choose a clean theme, and use the 7-day plan to keep the first version moving."
-          eventName="plan_cta_click"
-          variant="dark"
-        />
+        <section className="bg-foreground px-4 py-16 text-background sm:px-6 md:py-20 dark:bg-card dark:text-card-foreground">
+          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <MediaFigure
+              src={media.celebration.src}
+              alt={media.celebration.alt}
+              caption={media.celebration.caption}
+              className="max-w-none [&_figcaption]:text-background/70 dark:[&_figcaption]:text-muted-foreground"
+            />
+            <div>
+              <h2 className="text-3xl font-semibold tracking-tight text-balance md:text-4xl">
+                Ready to turn the checklist into a real store?
+              </h2>
+              <p className="mt-4 text-base leading-7 text-background/75 dark:text-muted-foreground">
+                Open the trial, choose a clean theme, and use the 7-day plan to
+                keep the first version moving.
+              </p>
+              <div className="mt-6">
+                <AffiliateCta
+                  eventName="plan_cta_click"
+                  trackingPlacement="home_ready_to_build"
+                  large
+                >
+                  {config.shopifyTrialCta}
+                </AffiliateCta>
+              </div>
+              <p className="mt-3 text-xs leading-5 text-background/65 dark:text-muted-foreground">
+                {config.affiliateDisclosureShort}{" "}
+                <Link
+                  href="/affiliate-disclosure"
+                  className="underline-offset-4 hover:underline"
+                >
+                  Full disclosure
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="px-4 py-12 sm:px-6">
           <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-lg border border-border bg-card p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">

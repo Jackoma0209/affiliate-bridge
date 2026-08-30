@@ -6,10 +6,12 @@ import { AffiliateCta } from "@/components/affiliate-cta";
 import { DisclosureLine } from "@/components/disclosure-line";
 import { JsonLd } from "@/components/json-ld";
 import { LeadForm } from "@/components/lead-form";
+import { MediaFigure } from "@/components/media-figure";
 import { PrintChecklistButton } from "@/components/print-checklist-button";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
+import { media } from "@/lib/media";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
@@ -17,6 +19,16 @@ export const metadata: Metadata = {
   description:
     "Free printable Shopify launch worksheets: offer sentence, product-page template, policy starters, and Day 6 outreach scripts. No email wall.",
   alternates: { canonical: "/worksheets" },
+  openGraph: {
+    images: [
+      {
+        url: media.og.src,
+        width: media.og.width,
+        height: media.og.height,
+        alt: media.og.alt,
+      },
+    ],
+  },
 };
 
 const worksheets = [
@@ -122,6 +134,14 @@ export default function WorksheetsPage() {
                 <ArrowRight className="size-4" aria-hidden="true" />
               </Link>
             </div>
+            <MediaFigure
+              src={media.launchPlan.src}
+              mobileSrc={media.launchPlan.mobileSrc}
+              alt={media.launchPlan.alt}
+              caption={media.launchPlan.caption}
+              contain
+              className="mt-10 max-w-xl"
+            />
           </div>
         </section>
 

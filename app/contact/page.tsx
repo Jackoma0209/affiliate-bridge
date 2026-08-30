@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 
 import { AuthorProfile } from "@/components/author-profile";
 import { LegalPage } from "@/components/legal-page";
+import { MediaFigure } from "@/components/media-figure";
 import { config } from "@/config";
+import { media } from "@/lib/media";
 
 const title = `Contact ${config.siteName}`;
 const description = `Contact ${config.authorName}, author of Get Your First Sale.`;
@@ -62,6 +64,12 @@ export default function ContactPage() {
         </p>
 
         <h2 id="setup">Paid first-store setup</h2>
+        <MediaFigure
+          src={media.celebration.src}
+          alt={media.celebration.alt}
+          caption="The outcome paid setup aims to make possible — not a result Jack produced for a named client. Illustrative mock-up — not a real merchant result or testimonial."
+          className="max-w-lg"
+        />
         <p>
           If you already have a product and want the store shell, product page,
           policies, and a working checkout path set up for you, email with the

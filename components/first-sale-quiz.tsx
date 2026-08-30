@@ -8,6 +8,7 @@ import { AffiliateCta } from "@/components/affiliate-cta";
 import { LeadForm } from "@/components/lead-form";
 import { config } from "@/config";
 import { trackEvent } from "@/lib/analytics";
+import { media } from "@/lib/media";
 import { cn } from "@/lib/utils";
 
 type Answers = {
@@ -248,6 +249,24 @@ export function FirstSaleQuiz() {
               <p className="mt-2 text-sm font-medium text-primary">
                 {result.nextStepCopy}
               </p>
+              <div className="mt-4 overflow-hidden rounded-lg border border-background/15">
+                {/* eslint-disable-next-line @next/next/no-img-element -- Quiz result stills need explicit alt. */}
+                <img
+                  src={
+                    result.readyToBuild
+                      ? media.day2.src
+                      : media.portraitPlan.src
+                  }
+                  alt={
+                    result.readyToBuild
+                      ? media.day2.alt
+                      : media.portraitPlan.alt
+                  }
+                  width={result.readyToBuild ? 1280 : 768}
+                  height={result.readyToBuild ? 720 : 1280}
+                  className="max-h-48 w-full object-cover object-center"
+                />
+              </div>
             </div>
             <div className="space-y-3 text-sm leading-6 text-background/75 dark:text-muted-foreground">
               {[
