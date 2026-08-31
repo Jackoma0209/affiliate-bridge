@@ -69,3 +69,28 @@ export const copy = {
     "Stores stall when one step is missing: offer, store, checkout, trust, or traffic.",
   stallLine: "Most stalls are a missing step, not a missing course.",
 } as const;
+
+/** London calendar date when Variant B starts (hide Video 12). */
+const HERO_PLAN_VIDEO_HIDE_FROM = "2026-09-03";
+
+function londonCalendarDate(now = new Date()): string {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Europe/London",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(now);
+}
+
+/**
+ * Variant A (video 12): London dates before 3 Sep 2026.
+ * Variant B (hidden): from 3 Sep 2026 00:00 Europe/London onward.
+ * NEXT_PUBLIC_SHOW_HERO_PLAN_VIDEO=true|false overrides the date rule (requires rebuild).
+ */
+export function showHeroPlanVideo(now = new Date()): boolean {
+  const override = process.env.NEXT_PUBLIC_SHOW_HERO_PLAN_VIDEO?.trim().toLowerCase();
+  if (override === "true") return true;
+  if (override === "false") return false;
+
+  return londonCalendarDate(now) < HERO_PLAN_VIDEO_HIDE_FROM;
+}

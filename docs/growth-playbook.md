@@ -301,3 +301,14 @@ If you're ready to build or continue building, use the Shopify trial CTA on the 
 | 7 | Double down on the best source; improve that landing CTA only |
 
 Commissions depend on program rules (often trial → paid), cookie windows, and real visitor quality. The site and this playbook improve probability; they do not guarantee sales.
+
+---
+
+## Hero video 12 test
+
+- **A:** 31 Aug–2 Sep 2026 Europe/London — Video 12 visible (`showHeroPlanVideo` true).
+- **B:** 3 Sep 00:00–5 Sep 23:59 Europe/London — hide Video 12 only. From 6 Sep keep hidden.
+- Date rule is automatic (`lib/media.ts`). Homepage ISR is 1 hour so the cutoff does not need a git commit.
+- Winner: `affiliate_click` where `cta_location` in (`hero_primary`, `home_day2`, `checklist_day2`) **plus** `/checklist` pageviews and `hero_checklist_click`. Ignore video plays.
+- Env override (rebuild required, no code change): `NEXT_PUBLIC_SHOW_HERO_PLAN_VIDEO=true|false`. Env wins over the date.
+- Variant B on 3 Sep: set `NEXT_PUBLIC_SHOW_HERO_PLAN_VIDEO=false` in Vercel and Redeploy if you do not want to wait for ISR.

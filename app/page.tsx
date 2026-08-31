@@ -21,6 +21,7 @@ import { AffiliateCta } from "@/components/affiliate-cta";
 import { AuthorProfile } from "@/components/author-profile";
 import { DisclosureLine } from "@/components/disclosure-line";
 import { FirstSaleQuiz } from "@/components/first-sale-quiz";
+import { HeroChecklistLink } from "@/components/hero-checklist-link";
 import { JsonLd } from "@/components/json-ld";
 import { LeadCapture } from "@/components/lead-capture";
 import { LoopVideo } from "@/components/loop-video";
@@ -29,13 +30,15 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
 import { content } from "@/content";
-import { copy, media } from "@/lib/media";
+import { copy, media, showHeroPlanVideo } from "@/lib/media";
 import {
   faqPageJsonLd,
   organizationJsonLd,
   websiteJsonLd,
 } from "@/lib/structured-data";
 import { cn } from "@/lib/utils";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: content.meta.title,
@@ -212,6 +215,8 @@ function LaunchChecklistPreview() {
 }
 
 export default function Home() {
+  const heroPlanVideo = showHeroPlanVideo();
+
   return (
     <>
       <JsonLd
@@ -246,13 +251,10 @@ export default function Home() {
                 >
                   {config.shopifyTrialCta}
                 </AffiliateCta>
-                <Link
-                  href="/checklist"
-                  className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border border-border bg-card px-6 text-base font-semibold text-card-foreground shadow-sm transition-colors hover:bg-muted focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none"
-                >
+                <HeroChecklistLink className="inline-flex min-h-14 items-center justify-center gap-2 rounded-lg border border-border bg-card px-6 text-base font-semibold text-card-foreground shadow-sm transition-colors hover:bg-muted focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none">
                   Get the Free 7-Day Checklist
                   <ArrowRight className="size-4" aria-hidden="true" />
-                </Link>
+                </HeroChecklistLink>
               </div>
 
               <p className="mt-3 max-w-3xl text-sm leading-6 text-muted-foreground">
@@ -273,33 +275,35 @@ export default function Home() {
             <LaunchChecklistPreview />
           </div>
 
-          <div className="mx-auto mt-8 max-w-3xl print:hidden">
-            <LoopVideo
-              src={media.videoPlan.src}
-              poster={media.videoPlan.poster}
-              captions={media.videoPlan.captions}
-              title={media.videoPlan.title}
-              caption={media.videoPlan.caption}
-              eager
-            />
-            <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row">
-              <Link
-                href="/checklist"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground hover:brightness-95"
-              >
-                Get the Free 7-Day Checklist
-                <ArrowRight className="size-4" aria-hidden="true" />
-              </Link>
-              <AffiliateCta
-                eventName="hero_cta_click"
-                trackingPlacement="hero_video"
-                variant="light"
-              >
-                {config.shopifyTrialCta}
-              </AffiliateCta>
+          {heroPlanVideo ? (
+            <div className="mx-auto mt-8 max-w-3xl print:hidden">
+              <LoopVideo
+                src={media.videoPlan.src}
+                poster={media.videoPlan.poster}
+                captions={media.videoPlan.captions}
+                title={media.videoPlan.title}
+                caption={media.videoPlan.caption}
+                eager
+              />
+              <div className="mt-4 flex flex-col items-start gap-3 sm:flex-row">
+                <Link
+                  href="/checklist"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground hover:brightness-95"
+                >
+                  Get the Free 7-Day Checklist
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+                <AffiliateCta
+                  eventName="hero_cta_click"
+                  trackingPlacement="hero_video"
+                  variant="light"
+                >
+                  {config.shopifyTrialCta}
+                </AffiliateCta>
+              </div>
+              <DisclosureLine className="mt-3" />
             </div>
-            <DisclosureLine className="mt-3" />
-          </div>
+          ) : null}
         </section>
 
         <section className="border-y border-border bg-muted/55 px-4 py-6 sm:px-6">
