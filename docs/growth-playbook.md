@@ -312,3 +312,38 @@ Commissions depend on program rules (often trial → paid), cookie windows, and 
 - Winner: `affiliate_click` where `cta_location` in (`hero_primary`, `home_day2`, `checklist_day2`) **plus** `/checklist` pageviews and `hero_checklist_click`. Ignore video plays.
 - Env override (rebuild required, no code change): `NEXT_PUBLIC_SHOW_HERO_PLAN_VIDEO=true|false`. Env wins over the date.
 - Variant B on 3 Sep: set `NEXT_PUBLIC_SHOW_HERO_PLAN_VIDEO=false` in Vercel and Redeploy if you do not want to wait for ISR.
+
+---
+
+## First conversions
+
+Ready traffic (product + time this week) lands on `/start`. Still-deciding and community value posts stay on `/checklist`.
+
+Ready:
+
+```text
+https://www.getyourfirstsale.com/start?utm_source=SOURCE&utm_medium=MEDIUM&utm_campaign=ready_now
+```
+
+Still deciding:
+
+```text
+https://www.getyourfirstsale.com/checklist?utm_source=SOURCE&utm_medium=social&utm_campaign=day1_checklist
+```
+
+Ready-to-copy:
+
+```text
+https://www.getyourfirstsale.com/start?utm_source=reddit&utm_medium=social&utm_campaign=ready_now
+https://www.getyourfirstsale.com/start?utm_source=x&utm_medium=social&utm_campaign=ready_now
+https://www.getyourfirstsale.com/start?utm_source=facebook&utm_medium=social&utm_campaign=ready_now
+```
+
+### Template F — Ready now (use only if you already have a product)
+
+> If you already have something to sell and a few hours this week, Day 2 is: open Shopify, pick Dawn, stop redesigning.
+> One-screen version (affiliate disclosure on the page):
+> [START_UTM_LINK]
+> Still choosing a product? Use the free checklist instead: [CHECKLIST_UTM_LINK]
+
+GA4: mark `affiliate_click` and `start_cta_click` as key events in the GA4 UI (not in code). `/start` trial uses `cta_location=start_ready` (`subId2=startready`, `subId3=start`).

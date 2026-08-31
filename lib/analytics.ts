@@ -21,6 +21,8 @@ export type TrackingEventName =
   | "guide_cta_click"
   | "worksheets_cta_click"
   | "setup_cta_click"
+  | "start_cta_click"
+  | "start_checklist_click"
   | "theme_toggle_click";
 
 type TrackingParameters = Record<string, string | number | boolean | undefined>;

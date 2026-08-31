@@ -5,6 +5,7 @@ import { config } from "@/config";
 const routes = [
   "",
   "/checklist",
+  "/start",
   "/worksheets",
   "/guides",
   "/shopify-for-beginners",
@@ -32,7 +33,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? 1
         : route === "/checklist"
           ? 0.9
-          : route === "/worksheets" || route === "/guides"
+          : route === "/start"
+            ? 0.88
+            : route === "/worksheets" || route === "/guides"
             ? 0.85
             : route.startsWith("/shopify") ||
                 route.includes("shopify") ||

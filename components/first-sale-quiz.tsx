@@ -302,6 +302,12 @@ export function FirstSaleQuiz() {
                       ? "Skip to Day 3 of the checklist"
                       : "Open the 7-day checklist"}
                   </Link>
+                  <Link
+                    href="/start"
+                    className="inline-flex min-h-11 items-center justify-center text-sm font-medium text-background/80 underline-offset-4 hover:underline dark:text-muted-foreground"
+                  >
+                    One-screen Day 2 → /start
+                  </Link>
                 </>
               ) : (
                 <>

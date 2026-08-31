@@ -502,6 +502,12 @@ export default function Home() {
                   Open the complete checklist
                   <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
+                <Link
+                  href="/start"
+                  className="mt-2 block text-sm text-muted-foreground underline-offset-4 hover:underline"
+                >
+                  Prefer a one-screen version? Open /start
+                </Link>
               </div>
             </article>
           </div>
