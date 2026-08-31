@@ -62,6 +62,12 @@ export default function ContactPage() {
             {config.contactEmail}
           </a>
         </p>
+        <p>
+          X:{" "}
+          <a href={config.xUrl} rel="me">
+            @{config.xHandle}
+          </a>
+        </p>
 
         <h2 id="setup">Paid first-store setup</h2>
         <MediaFigure

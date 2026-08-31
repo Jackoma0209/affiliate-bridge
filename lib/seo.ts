@@ -37,6 +37,8 @@ export function buildPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      site: `@${config.xHandle}`,
+      creator: `@${config.xHandle}`,
       title,
       description,
       images: [media.og.src],

@@ -55,6 +55,15 @@ export function AuthorProfile({
         <p className="text-xs font-semibold uppercase tracking-wide text-primary">{label}</p>
         <p className="mt-1 text-lg font-semibold text-card-foreground">{authorName}</p>
         <p className="mt-1 text-sm leading-6 text-muted-foreground">{config.authorBio}</p>
+        <p className="mt-1 text-sm leading-6">
+          <a
+            href={config.xUrl}
+            className="font-medium text-foreground underline-offset-4 hover:underline"
+            rel="me"
+          >
+            @{config.xHandle}
+          </a>
+        </p>
       </div>
     </div>
   );

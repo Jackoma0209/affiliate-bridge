@@ -25,6 +25,7 @@ export function personJsonLd() {
     name: config.authorName,
     url: `${config.siteUrl}/contact`,
     email: config.contactEmail,
+    sameAs: [config.xUrl],
     jobTitle: config.authorBio,
     worksFor: {
       "@type": "Organization",
@@ -42,6 +43,7 @@ export function organizationJsonLd() {
     name: config.siteName,
     url: config.siteUrl,
     email: config.contactEmail,
+    sameAs: [config.xUrl],
     founder: {
       "@type": "Person",
       name: config.authorName,

@@ -18,6 +18,8 @@ export const config = {
   affiliateDisclosureShort:
     "Affiliate link — commission at no extra cost to you.",
   contactEmail: "getyourfirstsale@gmail.com",
+  xHandle: "getyour1stsale",
+  xUrl: "https://x.com/getyour1stsale",
   reviewedLabel: "Updated 29 Aug 2026 by Jack",
   contentDateIso: "2026-08-29",
   aboutBlurb:

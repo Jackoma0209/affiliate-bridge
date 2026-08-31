@@ -14,7 +14,15 @@ export function SiteFooter() {
             {config.affiliateDisclosure}
           </p>
           <p className="mt-2 max-w-2xl text-sm leading-6">
-            Independent from Shopify. Written by {config.authorName}.
+            Independent from Shopify. Written by {config.authorName}.{" "}
+            <a
+              href={config.xUrl}
+              className="text-background hover:underline dark:text-foreground"
+              rel="me"
+            >
+              @{config.xHandle} on X
+            </a>
+            .
           </p>
         </div>
 

@@ -347,3 +347,33 @@ https://www.getyourfirstsale.com/start?utm_source=facebook&utm_medium=social&utm
 > Still choosing a product? Use the free checklist instead: [CHECKLIST_UTM_LINK]
 
 GA4: mark `affiliate_click` and `start_cta_click` as key events in the GA4 UI (not in code). `/start` trial uses `cta_location=start_ready` (`subId2=startready`, `subId3=start`).
+
+---
+
+## X profile (@getyour1stsale)
+
+Live: `https://x.com/getyour1stsale`  
+Website field on X: `https://www.getyourfirstsale.com` (not the Shopify affiliate URL).
+
+**Bio**
+
+```text
+Independent Shopify guide for beginners. Free 7-day launch checklist. No courses, no fake income claims. Written by Jack. Affiliate links disclosed.
+```
+
+**Pin (post 1)** — then pin it.
+
+```text
+Free 7-day Shopify launch plan for beginners.
+
+One job a day: offer → store → checkout → first visitors.
+No email wall. No income promises.
+
+Already have a product and a few hours this week?
+https://www.getyourfirstsale.com/start?utm_source=x&utm_medium=social&utm_campaign=ready_now
+
+Still choosing what to sell?
+https://www.getyourfirstsale.com/checklist?utm_source=x&utm_medium=social&utm_campaign=day1_checklist
+
+I’m a Shopify affiliate; disclosure is on the page.
+```

@@ -26,6 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: `@${config.xHandle}`,
+    creator: `@${config.xHandle}`,
     title: "Get Your First Sale with Shopify | Beginner Store Launch Checklist",
     description:
       "Start your Shopify trial and follow a simple 7-day checklist to launch your first online store, choose a product, and start driving your first visitors.",
