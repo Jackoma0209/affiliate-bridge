@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { CheckCircle2, Clock3, ClipboardCheck, Palette } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, CheckCircle2, Clock3, ClipboardCheck, Palette } from "lucide-react";
 
 import { AffiliateCta } from "@/components/affiliate-cta";
 import { JsonLd } from "@/components/json-ld";
@@ -70,6 +71,10 @@ const checklist = [
       "Create the essential navigation and contact page.",
     ],
     showTrialCta: true,
+    readNext: {
+      href: "/shopify-dawn-theme-setup",
+      label: "Read next: Dawn theme setup",
+    },
   },
   {
     day: "Day 3",
@@ -82,6 +87,10 @@ const checklist = [
       "Add original or accurate product images and specifications.",
       "Explain price, delivery, returns, and the primary call to action.",
     ],
+    readNext: {
+      href: "/shopify-product-page-template",
+      label: "Read next: product page template",
+    },
   },
   {
     day: "Day 4",
@@ -94,6 +103,10 @@ const checklist = [
       "Publish a clear returns and refund policy.",
       "Publish privacy, terms, and contact information.",
     ],
+    readNext: {
+      href: "/shopify-trust-policies",
+      label: "Read next: trust copy and policies",
+    },
   },
   {
     day: "Day 5",
@@ -106,6 +119,10 @@ const checklist = [
       "Test product selection, cart, checkout, and confirmation flow.",
       "Repeat the test on a mobile device and fix any friction.",
     ],
+    readNext: {
+      href: "/test-shopify-checkout-on-mobile",
+      label: "Read next: test checkout on mobile",
+    },
   },
   {
     day: "Day 6",
@@ -118,6 +135,10 @@ const checklist = [
       "Create one useful short-form post or contribution.",
       "Ask what is unclear instead of asking only whether people would buy.",
     ],
+    readNext: {
+      href: "/get-first-shopify-visitors",
+      label: "Read next: first visitors without ads",
+    },
   },
   {
     day: "Day 7",
@@ -130,6 +151,10 @@ const checklist = [
       "Check add-to-cart and checkout activity.",
       "Choose one evidence-based improvement for the next test.",
     ],
+    readNext: {
+      href: "/7-day-shopify-plan-what-usually-happens",
+      label: "Read next: what usually happens in 7 days",
+    },
   },
 ] as const;
 
@@ -277,6 +302,17 @@ export default function ChecklistPage() {
                             </p>
                           </div>
                         </div>
+                        {"readNext" in day ? (
+                          <p className="mt-5 print:hidden">
+                            <Link
+                              href={day.readNext.href}
+                              className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                            >
+                              {day.readNext.label}
+                              <ArrowRight className="size-4" aria-hidden="true" />
+                            </Link>
+                          </p>
+                        ) : null}
                       </div>
 
                       <div className="rounded-xl border border-primary/30 bg-primary/10 p-5 md:p-6 print:hidden">
@@ -355,6 +391,17 @@ export default function ChecklistPage() {
                           </li>
                         ))}
                       </ul>
+                      {"readNext" in day ? (
+                        <p className="mt-4 print:hidden">
+                          <Link
+                            href={day.readNext.href}
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                          >
+                            {day.readNext.label}
+                            <ArrowRight className="size-4" aria-hidden="true" />
+                          </Link>
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </article>

@@ -535,6 +535,15 @@ export default function Home() {
                 Original illustrative mockup—not a real merchant page, testimonial, or sales result.
               </figcaption>
             </figure>
+            <p className="mt-5 text-center">
+              <Link
+                href="/shopify-product-page-template"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+              >
+                Open the product page template
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            </p>
           </div>
         </section>
 
@@ -598,6 +607,69 @@ export default function Home() {
               Open the worksheets
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
+          </div>
+        </section>
+
+        <section className="px-4 pb-16 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                  Beginner guides
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
+                  Articles that sit next to the 7-day plan
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+                  Use these when the checklist is open and you need the matching
+                  page, policy copy, or a realistic Day 7 review.
+                </p>
+              </div>
+              <Link
+                href="/guides"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+              >
+                All guides
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {[
+                {
+                  href: "/shopify-product-page-template",
+                  title: "Product page template",
+                  description:
+                    "Title, first screen, contents, delivery, and three FAQs for a first item.",
+                },
+                {
+                  href: "/shopify-trust-policies",
+                  title: "Trust copy and policies",
+                  description:
+                    "Contact, shipping, returns, and privacy before you send the first visitor.",
+                },
+                {
+                  href: "/7-day-shopify-plan-what-usually-happens",
+                  title: "What usually happens in 7 days",
+                  description:
+                    "Realistic outcomes and the five stalls that stop a first-sale week.",
+                },
+              ].map((guide) => (
+                <Link
+                  key={guide.href}
+                  href={guide.href}
+                  className="rounded-lg border border-border bg-card p-5 shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-lg"
+                >
+                  <h3 className="font-semibold text-card-foreground">{guide.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {guide.description}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                    Read guide
+                    <ArrowRight className="size-4" aria-hidden="true" />
+                  </span>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

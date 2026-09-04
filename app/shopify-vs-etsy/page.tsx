@@ -3,7 +3,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 const title = "Shopify vs Etsy for Beginners: Which Should You Start With?";
 const description =
-  "Compare Shopify and Etsy for beginners across audience ownership, built-in demand, setup, branding, fees, testing, and when each option makes sense.";
+  "Compare Shopify and Etsy for beginners across demand, control, and setup. Includes where Instagram Shop fits as a later channel, not a first store.";
 const path = "/shopify-vs-etsy";
 
 export const metadata = buildPageMetadata({ title, description, path });
@@ -35,6 +35,7 @@ export default function ShopifyVsEtsyPage() {
       description={description}
       path={path}
       trackingPlacement="shopifyetsy"
+      dateModified="2026-09-04"
       related={related}
       sections={[
         {
@@ -100,6 +101,30 @@ export default function ShopifyVsEtsyPage() {
             "Do not build two complicated stores at once just to avoid making a decision.",
             "Keep product, message, and audience consistent enough that you can learn from the result.",
             "If Shopify is the path, open a simple trial only when you are ready to build—then follow a focused checklist.",
+          ],
+        },
+        {
+          title: "Where Instagram Shop fits",
+          paragraphs: [
+            "Instagram Shop is a sales channel, not a third store to build this week. It can show products to people who already follow you. It does not give you Etsy’s marketplace demand, and it does not replace a checkout you control.",
+            "If you do not already have an Instagram audience that talks about this problem, skip Shop for the first test. A half-connected catalog on a quiet profile teaches you less than ten warm messages to a live Shopify page.",
+          ],
+          bullets: [
+            "Use Instagram as a place to talk about the problem, not as a second storefront.",
+            "If you already post there, you can later connect a Shopify catalog — after checkout works on a phone.",
+            "Do not split the first test across Shopify, Etsy, and Instagram Shop in the same week.",
+          ],
+        },
+        {
+          title: "Do this today",
+          paragraphs: [
+            "Pick one platform for the first test. If you need marketplace browsing, start with Etsy. If you already know how you will send people to a page you own, start with Shopify. Write the offer sentence before you open either.",
+          ],
+        },
+        {
+          title: "Common stall",
+          paragraphs: [
+            "The stall is building three incomplete storefronts so you never have to choose. One live product page with a working checkout beats a Shop tag, an Etsy draft, and a Shopify theme that is still on password.",
           ],
         },
         {

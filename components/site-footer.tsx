@@ -34,11 +34,20 @@ export function SiteFooter() {
           <Link href="/shopify-dawn-theme-setup" className="hover:text-background dark:hover:text-foreground">
             Dawn Setup
           </Link>
+          <Link href="/shopify-product-page-template" className="hover:text-background dark:hover:text-foreground">
+            Product Page Template
+          </Link>
+          <Link href="/shopify-trust-policies" className="hover:text-background dark:hover:text-foreground">
+            Trust Copy and Policies
+          </Link>
           <Link href="/test-shopify-checkout-on-mobile" className="hover:text-background dark:hover:text-foreground">
             Mobile Checkout Test
           </Link>
           <Link href="/get-first-shopify-visitors" className="hover:text-background dark:hover:text-foreground">
             First Visitors
+          </Link>
+          <Link href="/7-day-shopify-plan-what-usually-happens" className="hover:text-background dark:hover:text-foreground">
+            What Usually Happens in 7 Days
           </Link>
           <Link href="/shopify-vs-etsy" className="hover:text-background dark:hover:text-foreground">
             Shopify vs Etsy

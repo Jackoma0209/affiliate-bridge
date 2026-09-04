@@ -15,14 +15,14 @@ const related = [
     description: "Narrow a broad idea into a product you can actually test.",
   },
   {
+    href: "/shopify-product-page-template",
+    title: "Product page template",
+    description: "Turn the offer sentence into a first-screen, contents, and FAQ page.",
+  },
+  {
     href: "/why-my-shopify-store-isnt-getting-sales",
     title: "Why Your Shopify Store Is Not Getting Sales",
     description: "Diagnose traffic, offer, trust, and checkout problems in the right order.",
-  },
-  {
-    href: "/shopify-vs-etsy",
-    title: "Shopify vs Etsy for Beginners",
-    description: "Compare ownership, demand, setup, and where each option fits.",
   },
 ];
 

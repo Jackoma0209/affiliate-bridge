@@ -15,9 +15,9 @@ const related = [
     description: "Get a simple store shell live before you test checkout.",
   },
   {
-    href: "/why-my-shopify-store-isnt-getting-sales",
-    title: "Why Your Store Is Not Getting Sales",
-    description: "Cart activity with no purchase usually points here.",
+    href: "/shopify-trust-policies",
+    title: "Trust copy and policies",
+    description: "Checkout tests fail for strangers if shipping and returns are still placeholders.",
   },
   {
     href: "/checklist",

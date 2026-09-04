@@ -15,14 +15,14 @@ const related = [
     description: "Build the minimum store you need to start learning from real visitors.",
   },
   {
+    href: "/shopify-product-page-template",
+    title: "Product page template",
+    description: "After you pick one product, write the page a first buyer can scan.",
+  },
+  {
     href: "/why-my-shopify-store-isnt-getting-sales",
     title: "Why Your Shopify Store Is Not Getting Sales",
     description: "Use evidence to find the bottleneck after you launch.",
-  },
-  {
-    href: "/shopify-vs-etsy",
-    title: "Shopify vs Etsy for Beginners",
-    description: "Decide whether a standalone store or marketplace is the better first test.",
   },
 ];
 

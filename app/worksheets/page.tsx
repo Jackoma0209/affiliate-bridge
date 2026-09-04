@@ -59,6 +59,10 @@ const worksheets = [
       "Delivery estimate and returns in one short paragraph.",
       "Three FAQs that answer real objections, not marketing fluff.",
     ],
+    readNext: {
+      href: "/shopify-product-page-template",
+      label: "Read next: product page template",
+    },
   },
   {
     id: "policies",
@@ -72,6 +76,10 @@ const worksheets = [
       "Returns: how many days, who pays return postage, and how a refund is issued.",
       "Privacy: what you collect at checkout and that you do not sell the list.",
     ],
+    readNext: {
+      href: "/shopify-trust-policies",
+      label: "Read next: trust copy and policies",
+    },
   },
   {
     id: "outreach",
@@ -85,6 +93,10 @@ const worksheets = [
       "Short post: “Day 6 of a 7-day launch. One product, one page. What would stop you buying this?”",
       "Follow-up: thank them, change one thing, do not argue with the feedback.",
     ],
+    readNext: {
+      href: "/get-first-shopify-visitors",
+      label: "Read next: first visitors without ads",
+    },
   },
 ] as const;
 
@@ -184,6 +196,17 @@ export default function WorksheetsPage() {
                     </li>
                   ))}
                 </ul>
+                {"readNext" in sheet ? (
+                  <p className="mt-5 print:hidden">
+                    <Link
+                      href={sheet.readNext.href}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
+                    >
+                      {sheet.readNext.label}
+                      <ArrowRight className="size-4" aria-hidden="true" />
+                    </Link>
+                  </p>
+                ) : null}
               </article>
             ))}
           </div>

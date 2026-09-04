@@ -10,9 +10,9 @@ export const metadata = buildPageMetadata({ title, description, path });
 
 const related = [
   {
-    href: "/why-my-shopify-store-isnt-getting-sales",
-    title: "Why Your Store Is Not Getting Sales",
-    description: "If people arrive and do not buy, diagnose offer, trust, and checkout next.",
+    href: "/7-day-shopify-plan-what-usually-happens",
+    title: "What usually happens in 7 days",
+    description: "After the first 25 people, use Day 7 to read the stall honestly.",
   },
   {
     href: "/checklist",

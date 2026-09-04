@@ -15,14 +15,14 @@ const related = [
     description: "Build the essential store foundation before trying to scale traffic.",
   },
   {
-    href: "/what-to-sell-on-shopify",
-    title: "What to Sell on Shopify",
-    description: "Check whether the product and buyer are focused enough to test.",
+    href: "/shopify-trust-policies",
+    title: "Trust copy and policies",
+    description: "Missing contact, shipping, or returns copy is a common no-sale cause.",
   },
   {
-    href: "/shopify-vs-etsy",
-    title: "Shopify vs Etsy for Beginners",
-    description: "Compare a standalone store with a marketplace that already has shopper demand.",
+    href: "/7-day-shopify-plan-what-usually-happens",
+    title: "What usually happens in 7 days",
+    description: "Match the stall to the week you just ran, then change one thing.",
   },
 ];
 

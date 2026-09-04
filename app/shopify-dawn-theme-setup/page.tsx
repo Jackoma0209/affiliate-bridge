@@ -15,9 +15,9 @@ const related = [
     description: "Day 2 is when most people should open Shopify and pick a theme.",
   },
   {
-    href: "/shopify-for-beginners",
-    title: "Shopify for Beginners",
-    description: "The full first-store sequence around the theme choice.",
+    href: "/shopify-product-page-template",
+    title: "Product page template",
+    description: "Day 3 is writing the page, not decorating Dawn further.",
   },
   {
     href: "/test-shopify-checkout-on-mobile",
