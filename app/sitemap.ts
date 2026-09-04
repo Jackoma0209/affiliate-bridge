@@ -13,6 +13,9 @@ const routes = [
   "/why-my-shopify-store-isnt-getting-sales",
   "/shopify-vs-etsy",
   "/shopify-dawn-theme-setup",
+  "/shopify-product-page-template",
+  "/shopify-trust-policies",
+  "/7-day-shopify-plan-what-usually-happens",
   "/get-first-shopify-visitors",
   "/test-shopify-checkout-on-mobile",
   "/affiliate-disclosure",
@@ -40,7 +43,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
             : route.startsWith("/shopify") ||
                 route.includes("shopify") ||
                 route.includes("visitors") ||
-                route.includes("checkout")
+                route.includes("checkout") ||
+                route.includes("7-day")
               ? 0.8
               : 0.6,
   }));

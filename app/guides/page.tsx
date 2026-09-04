@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo";
 export const metadata = buildPageMetadata({
   title: "Shopify Beginner Guides | Get Your First Sale",
   description:
-    "Practical beginner guides for choosing a product, launching Shopify, diagnosing no-sales problems, and comparing Shopify with Etsy.",
+    "Practical beginner guides for choosing a product, writing a first Shopify page, publishing policies, getting visitors, and reviewing a 7-day launch.",
   path: "/guides",
 });
 
@@ -24,9 +24,39 @@ const guides = [
     description: "Use a simple product filter instead of relying on hype or supposed winning-product lists.",
   },
   {
+    href: "/shopify-dawn-theme-setup",
+    title: "Shopify Dawn Setup",
+    description: "Pick Dawn, add one product, publish a contact page, and stop before a redesign loop.",
+  },
+  {
+    href: "/shopify-product-page-template",
+    title: "Product Page Template",
+    description: "Title, first screen, contents, delivery, and three FAQs for a first item.",
+  },
+  {
+    href: "/shopify-trust-policies",
+    title: "Trust Copy and Policies",
+    description: "Contact, shipping, returns, and privacy before you send the first visitor.",
+  },
+  {
+    href: "/test-shopify-checkout-on-mobile",
+    title: "Test Checkout on Mobile",
+    description: "Run the full phone path before you send anyone to the store.",
+  },
+  {
+    href: "/get-first-shopify-visitors",
+    title: "First Visitors Without Ads",
+    description: "Get 25 relevant people to the store with warm messages and one channel.",
+  },
+  {
     href: "/why-my-shopify-store-isnt-getting-sales",
     title: "Why Your Shopify Store Is Not Getting Sales",
     description: "Diagnose traffic, relevance, trust, product-page, and checkout problems in the right order.",
+  },
+  {
+    href: "/7-day-shopify-plan-what-usually-happens",
+    title: "What Usually Happens in 7 Days",
+    description: "Realistic outcomes and the five stalls that stop a first-sale week.",
   },
   {
     href: "/shopify-vs-etsy",
@@ -43,21 +73,6 @@ const guides = [
     title: "First Sale Worksheets",
     description: "Offer sentence, product-page outline, policy starters, and Day 6 outreach scripts.",
   },
-  {
-    href: "/shopify-dawn-theme-setup",
-    title: "Shopify Dawn Setup",
-    description: "Pick Dawn, add one product, publish a contact page, and stop before a redesign loop.",
-  },
-  {
-    href: "/test-shopify-checkout-on-mobile",
-    title: "Test Checkout on Mobile",
-    description: "Run the full phone path before you send anyone to the store.",
-  },
-  {
-    href: "/get-first-shopify-visitors",
-    title: "First Visitors Without Ads",
-    description: "Get 25 relevant people to the store with warm messages and one channel.",
-  },
 ] as const;
 
 export default function GuidesPage() {
@@ -72,7 +87,7 @@ export default function GuidesPage() {
               Practical Shopify Guides for Getting From Idea to Real Visitor Feedback
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
-              Use these guides to answer one launch question at a time: what to sell, how to build the first store, where sales problems happen, and whether Shopify is the right next platform for your test.
+              Use these guides to answer one launch question at a time: what to sell, how to build the first store, how to write the page and policies, where sales problems happen, and whether the 7-day plan stalled.
             </p>
           </div>
         </section>
