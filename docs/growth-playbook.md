@@ -11,6 +11,19 @@ Primary on-site CTA is now the Shopify trial. The checklist remains free and ung
 
 ---
 
+## 0. Income-today checklist (do these before anything else)
+
+1. **Turn on the MailerLite automation.** `/api/subscribe` health check (Oct 2026) reports `automationFound: true`, `automationEnabled: false`, `automationStepCount: 0` — every signup currently receives nothing. Paste emails 0–7 from section 3 into "7-Day Shopify Checklist Welcome", trigger = joins group "7-Day Shopify Checklist", then enable.
+2. **Sell the $149 setup directly.** Payment link: `https://buy.stripe.com/9B6aEPdAT2DuggtdLObQY01` (Stripe product `prod_VSn7UR22KQoJyc`). Booking page: `https://www.getyourfirstsale.com/contact?utm_source=SOURCE&utm_medium=social&utm_campaign=setup_offer#setup`. Clicks fire GA4 `setup_cta_click`.
+3. **Post the setup offer where store-builders already ask for help** (Reddit r/shopify and r/smallbusiness weekly threads that allow offers, Facebook Shopify beginner groups, X replies to "how do I set up Shopify"). Template:
+
+   > Have a product but haven't built the Shopify store yet? I'll set up the first version for $149 one-off: theme, one product page, shipping/returns/privacy pages, payments, and a mobile checkout test, delivered in 5 business days. You own the store. Full refund if I haven't started. Details: [SETUP_UTM_LINK]
+
+4. **Run the checklist posts in section 2** for the affiliate side. Shopify (Impact) commissions only confirm after the referred store moves to a paid plan, so affiliate income lags weeks behind traffic; setup sales are the same-day money.
+5. **Turn on measurement:** enable Vercel Web Analytics on the project and paste a Microsoft Clarity ID into `config.ts` so you can see which pages and posts produce clicks.
+
+---
+
 ## 1. UTM matrix
 
 Always promote the **custom domain**, not the Vercel preview URL.

@@ -66,7 +66,7 @@ export function SiteFooter() {
             All Guides
           </Link>
           <Link href="/contact#setup" className="hover:text-background dark:hover:text-foreground">
-            Paid setup
+            Paid setup ({config.setupPrice})
           </Link>
           <Link href="/affiliate-disclosure" className="hover:text-background dark:hover:text-foreground">
             Affiliate Disclosure

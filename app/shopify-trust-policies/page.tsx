@@ -103,7 +103,7 @@ export default function TrustPoliciesPage() {
           title: "Common stall",
           paragraphs: [
             "The stall is leaving Shopify’s placeholder policy text live, then sending warm traffic. People notice. Write four short pages, link them, test checkout, then do Day 6.",
-            "If you want the store shell built for you, email with the subject SETUP. The policies still have to be true for your product.",
+            "If you want the store shell built for you, paid setup is $149 one-off (see the contact page). The policies still have to be true for your product.",
           ],
         },
       ]}

@@ -26,6 +26,7 @@ import { JsonLd } from "@/components/json-ld";
 import { LeadCapture } from "@/components/lead-capture";
 import { LoopVideo } from "@/components/loop-video";
 import { MediaFigure } from "@/components/media-figure";
+import { SetupCta } from "@/components/setup-cta";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { config } from "@/config";
@@ -141,7 +142,7 @@ const faqItems = [
   {
     question: "Can you set up the store for me?",
     answer:
-      "Yes, as a paid setup. Email getyourfirstsale@gmail.com with the subject SETUP and include your product, audience, and deadline. This is independent from Shopify and separate from the free checklist.",
+      "Yes. Paid first-store setup is $149 one-off: theme, one product page, policy pages, payments, and a mobile checkout test, delivered within 5 business days. Book it on the contact page. This is independent from Shopify and separate from the free checklist.",
   },
 ] as const;
 
@@ -360,7 +361,7 @@ export default function Home() {
                     href="/contact#setup"
                     className="font-medium text-foreground underline-offset-4 hover:underline"
                   >
-                    Paid setup details
+                    Paid store setup ({config.setupPrice})
                   </Link>
                   .
                 </p>
@@ -607,6 +608,31 @@ export default function Home() {
               Open the worksheets
               <ArrowRight className="size-4" aria-hidden="true" />
             </Link>
+          </div>
+        </section>
+
+        <section className="px-4 pb-12 sm:px-6">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 rounded-lg border-2 border-primary/40 bg-card p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+                Done-for-you option · {config.setupPrice} one-off
+              </p>
+              <h2 className="mt-1 text-xl font-semibold tracking-tight">
+                Have a product but no time? I&apos;ll build the first store.
+              </h2>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
+                Theme, one product page, policy pages, payments, and a mobile
+                checkout test, delivered within 5 business days. You own the
+                store. Full refund if work hasn&apos;t started.{" "}
+                <Link
+                  href="/contact#setup"
+                  className="font-medium text-foreground underline-offset-4 hover:underline"
+                >
+                  What&apos;s included
+                </Link>
+              </p>
+            </div>
+            <SetupCta trackingPlacement="home_setup_card" className="shrink-0" />
           </div>
         </section>
 

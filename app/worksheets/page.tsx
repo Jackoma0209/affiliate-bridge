@@ -220,8 +220,8 @@ export default function WorksheetsPage() {
               </h2>
               <p className="mt-4 text-base leading-7 text-muted-foreground">
                 Day 2 of the checklist is the usual moment to start Shopify.
-                Need the first store built for you instead? Email with the
-                subject SETUP.
+                Need the first store built for you instead? Paid setup is{" "}
+                {config.setupPrice} one-off.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <AffiliateCta
@@ -235,7 +235,7 @@ export default function WorksheetsPage() {
                   href="/contact#setup"
                   className="inline-flex min-h-14 items-center justify-center rounded-lg border border-border bg-card px-6 text-base font-semibold text-card-foreground hover:bg-muted"
                 >
-                  Paid setup details
+                  Paid setup ({config.setupPrice})
                 </Link>
               </div>
               <DisclosureLine className="mt-4" />

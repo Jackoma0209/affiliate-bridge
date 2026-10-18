@@ -51,6 +51,15 @@ export default function TermsPage() {
         examples are illustrative only, and results vary by product, offer,
         traffic source, pricing, execution, and market conditions.
       </p>
+      <h2>Paid store setup</h2>
+      <p>
+        Paid first-store setup ({config.setupPrice}, one-off) is processed by
+        Stripe. Work starts once your product details arrive and is delivered
+        within 5 business days of that. You can cancel for a full refund any
+        time before work starts. Setup covers the store build only and does not
+        guarantee sales. You remain the owner of your Shopify account and pay
+        Shopify directly.
+      </p>
       <h2>Third-party services</h2>
       <p>
         Shopify is a third-party platform. If you start a Shopify trial or
