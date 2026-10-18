@@ -632,7 +632,12 @@ export default function Home() {
                 </Link>
               </p>
             </div>
-            <SetupCta trackingPlacement="home_setup_card" className="shrink-0" />
+            <div className="shrink-0 sm:max-w-56">
+              <SetupCta trackingPlacement="home_setup_card" className="w-full" />
+              <p className="mt-2 text-xs leading-5 text-muted-foreground">
+                {config.setupCheckoutNote}
+              </p>
+            </div>
           </div>
         </section>
 

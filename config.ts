@@ -21,6 +21,8 @@ export const config = {
   setupPrice: "$149",
   setupPaymentUrl: "https://buy.stripe.com/9B6aEPdAT2DuggtdLObQY01",
   setupCta: "Book store setup — $149",
+  setupCheckoutNote:
+    "Secure checkout by Stripe, shown under my business name DopaTools.",
   xHandle: "getyour1stsale",
   xUrl: "https://x.com/getyour1stsale",
   reviewedLabel: "Updated 29 Aug 2026 by Jack",

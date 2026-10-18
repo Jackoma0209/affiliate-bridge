@@ -97,7 +97,7 @@ export default function ContactPage() {
           <SetupCta trackingPlacement="contact_setup" />
         </p>
         <p className="text-sm">
-          After paying, reply to the receipt with your product, who it is for,
+          {config.setupCheckoutNote} After paying, reply to the receipt with your product, who it is for,
           photos, and your deadline. Questions first?{" "}
           <a
             href={`mailto:${config.contactEmail}?subject=SETUP%20%E2%80%94%20first%20store&body=Product%3A%0AAudience%3A%0ADeadline%3A%0AWhat%20you%20need%20built%3A%0A`}
