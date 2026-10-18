@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { AuthorProfile } from "@/components/author-profile";
 import { LegalPage } from "@/components/legal-page";
 import { MediaFigure } from "@/components/media-figure";
+import { SetupCta } from "@/components/setup-cta";
 import { config } from "@/config";
 import { media } from "@/lib/media";
 
@@ -77,18 +78,33 @@ export default function ContactPage() {
           className="max-w-lg"
         />
         <p>
-          If you already have a product and want the store shell, product page,
-          policies, and a working checkout path set up for you, email with the
-          subject line <strong>SETUP</strong>. Include the product, who it is
-          for, and your deadline. This is paid work, independent from Shopify,
-          and separate from the free checklist.
+          <strong>{config.setupPrice}, one-off.</strong> If you already have a
+          product and want the first store built for you, I set up:
+        </p>
+        <ul>
+          <li>A clean, fast theme with your logo and colours</li>
+          <li>One product page written from your details and photos</li>
+          <li>Contact, shipping, returns, and privacy pages that match your product</li>
+          <li>Payments connected and a full mobile checkout test</li>
+        </ul>
+        <p>
+          Delivered within 5 business days of receiving your product details.
+          You keep full ownership of the store and pay Shopify directly. Full
+          refund if work has not started. This is paid work, independent from
+          Shopify, and separate from the free checklist.
         </p>
         <p>
+          <SetupCta trackingPlacement="contact_setup" />
+        </p>
+        <p className="text-sm">
+          {config.setupCheckoutNote} After paying, reply to the receipt with your product, who it is for,
+          photos, and your deadline. Questions first?{" "}
           <a
             href={`mailto:${config.contactEmail}?subject=SETUP%20%E2%80%94%20first%20store&body=Product%3A%0AAudience%3A%0ADeadline%3A%0AWhat%20you%20need%20built%3A%0A`}
           >
-            Email a SETUP request
+            Email a SETUP question
           </a>
+          .
         </p>
 
         <h2>Shopify account problems</h2>
